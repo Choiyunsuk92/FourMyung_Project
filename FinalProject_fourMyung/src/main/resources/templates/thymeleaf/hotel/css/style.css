@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.container{
+	background: beige;
+	height: 100vh;
+}
+
+.navbar{
+	display: flex;
+}
