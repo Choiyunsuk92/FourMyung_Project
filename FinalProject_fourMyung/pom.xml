@@ -93,7 +93,7 @@
 		<!-- 암호화 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId> 
 		</dependency>
 	    	<!-- validation -->
 		<dependency> 
@@ -154,8 +154,8 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-		<!--  <version>3.4.0</version> -->
-			<version>3.2.8</version>
+			<version>3.4.0</version>
+		<!--  <version>3.2.8</version> -->
 		</dependency>
 		<!-- email -->
 		<dependency>

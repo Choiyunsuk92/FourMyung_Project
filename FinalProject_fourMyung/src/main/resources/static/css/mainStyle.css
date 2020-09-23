@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'Apple SD Gothic Neo','malgun gothic','맑은 고딕','돋움','dotum';
+}
+body{
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+	font-size : 24px;
+	cursor: pointer;
+}
+h2,h3,p{
+	margin: 0;
+	color: white;
+}
+.container{
+	height: 100vh;
+}
+
+.navbar{
+	display: flex;
+	width:100%;
+	margin: 0;
+	height: 6vh;
+	align-items: center;
+}
+.group_icon{
+	width: 10%;
+	display: flex;
+	justify-content: center;
+}
+.navbar_menu{
+	display : flex;
+	justify-content: space-evenly;
+	width: 60%;
+}
+.navbar_menu a{
+	text-decoration: none;
+}
+.contents{
+	margin: 0;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+}
+.tapWrap{
+	position: relative;
+	padding-top: 100px;
+}
+.tapWrap_ul{
+	display: flex;
+	justify-content: space-evenly;
+}
+.tapWrap_ul li{
+	color: white;
+}
+.tapWrap_ul li:hover{
+	color: #9d8698;
+}
+.mainImg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: cover;
+	cursor: default;
+}
+
+.content_select{
+	background-color: #f0f0f0;
+	background-color: rgba(255,255,255,0.5);
+	width: 1000px;
+	height: auto;
+	margin: 30px auto;
+}
+
+.selContent_div_1{
+	width: 70%;
+	float: left;
+}
+.selContent_div_btn{
+	width: 28%;
+	float: right;
+	margin-top: 20px;
+}
+.selContent_div_2{
+	clear: both;
+}
+.sel_img{
+	width: 100%;
+	height: 300px;
+}
+.webSiteMove{
+	position: absolute;
+	width: 220px;
+	height: 34px;
+}
