@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.hotel_heder{
+	height: 50vh;
+	overflow: hidden;
+}
+.roomImg{
+	background: url("../../img/room/room_res.jpg");
+	width: 100%;
+	height: 120%;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.roomImg span{
+	color: #ffffff;
+}
+
+.roomContent{
+	display: flex;
+	width: 100%;
+	height: 100vh;
+}
+
+.roomSel{
+	background: green;
+	width: 30%;
+	height: 100%;
+}
+.resRoom{
+	background: yellow;
+	width: 70%;
+	height: 100%;
+}

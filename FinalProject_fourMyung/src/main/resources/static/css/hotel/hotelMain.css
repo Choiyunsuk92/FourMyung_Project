@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.container{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.hotel_heder{
+	height: 70vh;
+}
+
+.hotel_img{
+	background: url("../../img/hotel/h_main_1.jpg");
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+.content{
+	width: 100%;
+	height: 10vh;
+	background: #29434e;
+}
+.hotel_Res{
+	height: 100%;
+	position: relative;
+}
+.hotel_Res ul{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.hotel_Res ul li{
+	font-size: 30px;
+	color: #d49466;
+}
+.check_search{
+	padding: 10px;
+	width: 100px;
+}
+select {
+	width: 100px;
+	padding: .8em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('../../img/hotel/svg3.png') no-repeat 95% 50%;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+select::-ms-expand {
+	display: none;
+}
+.chek_In_Date{
+	position: relative;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	padding: 10px 0px 10px 0px;
+	bottom: 5px;
+}
+.chek_Out_Date{
+	position: relative;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	padding: 10px 0px 10px 0px;
+	bottom: 5px;
+}
+input[type="date"]::before {content:attr(data-placeholder); width:100%}
+input[type="date"]:valid::before {display: none}

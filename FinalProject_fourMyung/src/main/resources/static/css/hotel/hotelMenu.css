@@ -1,0 +1,56 @@
+@charset "UTF-8";
+body{
+	background-color: rgb(218, 179, 120);
+}
+button{
+	background: none;
+	border: none;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: balck;
+}
+.tapMenu{
+	display: flex;
+	background-color: yellow;
+	justify-content: space-around;
+	align-items: center;
+	margin: auto;
+	padding:20px 0;
+	box-sizing: border-box;
+}
+.offers ul,
+.rooms ul,
+.dining ul,
+.facilties ul,
+.service ul{
+	position: absolute;
+	background: white;
+	margin-top: 10px;
+	width: 150px;
+	height: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	padding: 0;
+}
+.offers li,
+.rooms li,
+.dining li,
+.facilties li,
+.service li{
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+}
+.offers li:hover,
+.rooms li:hover,
+.dining li:hover,
+.facilties li:hover,
+.service li:hover{
+	background-color: rgb(218, 179, 191);
+}

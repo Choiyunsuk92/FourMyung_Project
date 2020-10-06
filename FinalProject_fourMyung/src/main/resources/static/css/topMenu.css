@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.navTop{
+	margin-top: 8px;
+	display: flex;
+}
+.index_top,
+.login_Info{
+	width: 100%;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style-type: none;
+	padding: 0 8px;
+}
+.index_ul{
+	display: flex;
+	justify-content: flex-start;
+	
+}
+.login_ul{
+	display: flex;
+	justify-content: flex-end;
+}
+.index_ul li{
+	margin-left: 10px;
+}

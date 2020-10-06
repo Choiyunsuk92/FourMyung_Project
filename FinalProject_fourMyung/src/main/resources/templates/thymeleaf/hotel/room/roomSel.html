@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../static/css/hotel/roomSel.css">
+</head>
+<body>
+<header>
+		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+		<div class="hotel_heder">
+			<div class="hotelMenu" th:include="thymeleaf/hotel/h_tap_menu2.html"></div>
+			<div class="roomImg">
+				<span style="font-size: 35px; font-weight: bold;">객실 예약</span>
+				<span style="font-size: 20px">객실 선택</span>
+			</div>
+		</div>
+</header>
+<div class="roomContent">
+	<div class="roomSel">
+		<div class="resInfo"></div>
+		<div class="selRoom"></div>
+	</div>
+	<div class="resRoom">
+		<div class="resStep"></div>
+		<div class="resultRoom"></div>
+	</div>
+</div>
+</body>
+</html>
