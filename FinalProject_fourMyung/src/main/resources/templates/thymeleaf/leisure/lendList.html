@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<title>내명파크</title>
+<style>
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border-style: none;
+}
+
+.bg {
+	font-size: 22px;
+	width: 500px;
+}
+thead tr{
+	background-color: darkgray
+}
+ tbody tr:nth-child(odd) {
+	background-color: #f1f1f1
+}
+
+</style>
+<script>
+	
+</script>
+</head>
+
+<body>
+	<div id="header">
+		<header th:include="thymeleaf/include/header.html"></header>
+	</div>
+
+	<table width="70%">
+		<caption style="font-size: 20px; font-weight: bold; text-align: left">예약자리스트
+			<input type="text" placeholder="발권번호 입력">
+			<button>검색</button>
+			<button>전체보기</button>
+			</caption>
+		<thead>
+			<tr>
+				<td width="25%">대여번호</td>
+				<td width="25%">발권번호</td>
+				<td width="25%">물품번호</td>
+				<td width="25%">반납현황</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
+</body>
+</html>

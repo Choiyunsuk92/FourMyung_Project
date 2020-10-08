@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fourMyung.mapper.LeisureMapper" >
+<insert id="insertLeisure" parameterType="fourMyung.domain.leisure.LeisureDTO">
+	insert into l_lsr_list ( leisure_num, leisure_name, leisure_age, leisure_time, leisure_price )
+		values(1111,#{leisureName},#{leisureAge},#{leisureTime},#{leisurePrice})
+</insert>
+
+<resultMap type="fourMyung.domain.leisure.LeisureDTO" id="baseLeisure" >
+	<constructor>
+		<idArg column="leisure_num" javaType="int" />
+		<arg column="leisure_name" javaType="string" />
+		<arg column="leisure_age" javaType="string" />
+		<arg column="leisure_time" javaType="string" />
+		<arg column="leisure_price" javaType="int"/>
+	</constructor>
+</resultMap>
+
+<select id="selectByLeisure" parameterType="fourMyung.domain.leisure.LeisureDTO" resultMap="baseLeisure"> 
+	select leisure_num, leisure_name, leisure_age, leisure_time, leisure_price 
+	from l_lsr_list
+	order by leisure_num desc
+</select>
+
+<delete id="leisureDel" parameterType="int">
+	delete from l_lsr_list
+	<where>
+		leisure_num = #{leisureNum}
+	</where>
+</delete>
+</mapper>

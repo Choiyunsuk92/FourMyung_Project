@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>내명파크</title>
+<style>
+html{
+	background-image:url("../../img/leisure/NmSubMain.jpg");
+} 
+</style>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+<script>
+	
+</script>
+</head>
+
+<body>
+	<header>
+		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+	</header>
+	<a href="leisureList">레저등록 및 조회</a>
+	<a href="reservList">예약 리스트</a>
+	<a href="">발권등록</a>
+	<a href="ticketList">발권리스트</a>
+	<a href="lendList">대여리스트</a>
+	<a href="">대여물품조회</a>
+	<a href="">대여등록</a>
+	<a href=""></a>
+	<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
+</body>
+</html>
