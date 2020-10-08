@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<title>내명파크</title>
+<style>
+/* html{
+	background-image:url("../../img/leisure/NmSubMain.jpg");
+} */
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border-style: none;
+}
+
+.bg {
+	font-size: 22px;
+	width: 500px;
+}
+
+thead tr {
+	background-color: darkgray
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #f1f1f1
+}
+</style>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+<script>
+	
+</script>
+</head>
+
+<body>
+	<header>
+		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+		<div class="leisureMenu"
+			th:include="thymeleaf/leisure/leisure_top.html"></div>
+	</header>
+	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm'
+		id="frm" th:object="${leisureCommand}">
+		<table width="70%">
+			<caption style="font-size: 20px; font-weight: bold; text-align: left">레저등록</caption>
+			<thead>
+				<tr>
+					<td width="24%">레저이름</td>
+					<td width="24%">연령대</td>
+					<td width="24%">이용시간</td>
+					<td width="24%">이용금액</td>
+					<td width="4%"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type='text' name='leisureName' id='leisureName'
+						class='leisureName' size='15' maxlength='10' autofocus="autofocus" /></td>
+					<td><select name='leisureAge' id='leisureAge'>
+							<option value='' selected>-- 선택 --</option>
+							<option value='adult'>대인</option>
+							<option value='child'>소인</option>
+					</select></td>
+					<td><select name='leisureTime' id='leisureTime'>
+							<option value='' selected>-- 선택 --</option>
+							<option value='allDay'>종일권</option>
+							<option value='AM'>오전권</option>
+							<option value='PM'>오후권</option>
+					</select></td>
+					<td><input type='text' name='leisurePrice' id='leisurePrice'
+						class='leisurePrice' size='15' maxlength='10'
+						autofocus="autofocus" /></td>
+					<td><input type="submit" value="추가"></td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+	</form>
+	<table width="70%">
+		<caption style="font-size: 20px; font-weight: bold; text-align: left">레저목록</caption>
+		<thead>
+			<tr>
+				<td width='24%'>레저이름</td>
+				<td width='24%'>연령대</td>
+				<td width='24%'>이용시간</td>
+				<td width='24%'>이용금액</td>
+				<td width='4%'></td>
+
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="aaaa : ${list}">
+				<form th:action='@{/leisure/leisureDel}' method='POST' id="frm">
+				<tr>
+					<input type="hidden" th:value="${aaaa.leisureNum}" name="leisureNum">
+					<td>[[${aaaa.leisureName}]]</td>
+					<td>[[${aaaa.leisureAge}]]</td>
+					<td>[[${aaaa.leisureTime}]]</td>
+					<td>[[${aaaa.leisurePrice}]]</td>
+					<td><input type="submit" value="삭제"></td>
+				</tr>
+				</form>
+			</th:block>
+		</tbody>
+	</table>
+	<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
+</body>
+</html>
