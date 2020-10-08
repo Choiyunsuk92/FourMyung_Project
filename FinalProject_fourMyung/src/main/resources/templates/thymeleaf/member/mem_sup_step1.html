@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/member/sup_step1.css">
+<script src="https://kit.fontawesome.com/19c81546e5.js" crossorigin="anonymous"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+	<header>
+		<h2>동아제약 상시채용</h2>
+	</header>
+	<div class="content">
+		<div class="sub_header"><h3>기본정보</h3></div>
+		<div class="basic_Info">
+			<div class="applicant">
+				<div class="fir_text">*지원자</div>
+				<div class="fir_input">
+					<div><span>최연석</span></div>
+					<div><span>영문이름</span><input type="text">
+						 <span>한문이름</span><input type="text">
+					</div>
+					<div><span>성별</span>
+						<input type='radio' name='userGender' id='userGender' value='M'/>남자
+						<input type='radio' name='userGender' id='userGender' value='F'/>여자
+					</div>
+				</div>
+			</div>
+			<div class="Support_Areas">
+				<div class="fir_text">*지원분야</div>
+				<div class="fir_input">
+					<div><span>-[지원분야] ※채용공고문의 부문 / 담당업무 / 근무지 확인 후 지원</span></div>
+					<div>
+						<select>
+							<option>분야</option>
+							<option>--------------</option>
+							<option>호텔</option>
+							<option>레저</option>
+							<option>푸드</option>
+						</select>
+						<select>
+							<option>직무</option>
+							<option>--------------</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="salary">
+				<div class="fir_text">연봉</div>
+				<div class="fir_input">
+					<div>
+						<span>희망연봉</span>
+						<input type="number">
+						<span>직전연봉</span>
+						<input type="number">
+					</div>
+				</div>
+			</div>
+			<div class="Job_related">
+				<div class="fir_text">*입사관련</div>
+				<div class="fir_input">
+					<div><span>입사가능일자</span><input type="date"></div>
+				</div>
+			</div>
+		</div>
+		<div class="sub_header"><h3>인적사항</h3></div>
+		<div class="basic_Info">
+			<div class="person_Info">
+				<div class="fir_text"><span><input type="image"></span></div>
+				<div class="fir_input">
+					<div><span>* 지원서 사진등록 (권장사이즈 : 가로 160px X 세로 200px 혹은 가로 4 : 세로 5 비율)</span></div>
+					<div><span>※ 최근 6개월 이내 촬영한 증명사진만 첨부</span></div>
+					<div><input type="file" value="사진등록"> <input type="button" value="삭제"></div>
+				</div>
+			</div>
+			<div class="adress">
+				<div class="fir_text"><span>주소</span></div>
+				<div class="fir_input">
+					<div><span>현주소</span><input type="button" value="우편번호"></div>
+					<div><input type="text"> <input type="text"></div>
+				</div>
+			</div>
+			<div class="phoneNum">
+				<div class="fir_text"><span>*연락처</span></div>
+				<div class="fir_input">
+					<div><span>이메일주소</span><span>지원자 메일주소</span></div>
+					<div><span>핸드폰번호</span><span>지원자 핸드폰번호</span></div>
+				</div>
+			</div>
+		</div>
+		<div class="sub_header"><h3>경력사항</h3></div>
+		<div class="basic_Info">
+			<div class="person_Info">
+				<div class="fir_text"><span>고등학교</span></div>
+				<div class="Career">
+					<div><div>*졸업구분 
+						</div>
+							<input type="radio">졸업
+							<input type="radio">졸업예정
+							<input type="radio">중퇴
+							<input type="radio">휴학
+					</div>
+					<div><div>재학기간</div> <input type="date"> ~ <input type="date"> 2021.02.28 이전 졸업(예정)만 최종학력으로 인정</div>
+				</div>
+			</div>
+			<div class="person_Info">
+				<div class="fir_text"><span>대학교</span></div>
+				<div class="Career">
+					<div><div>학교명</div><input type="text"></div>
+					<div><div>재학기간</div> <input type="date"> ~ <input type="date"> 2021.02.28 이전 졸업(예정)만 최종학력으로 인정</div>
+					<div><div>*졸업구분</div>
+							<input type="radio">졸업
+							<input type="radio">졸업예정
+							<input type="radio">중퇴
+							<input type="radio">휴학
+					</div>
+					<div><div>학과/전공</div> <input type="text"></div>
+				</div>
+			</div>
+			<div class="person_Info">
+				<div class="fir_text"><span>직장경력</span></div>
+				<div class="Career">
+					<div><div>고용형태 
+						</div>
+						<select>
+							<option>고용형태를 선택하세요</option>
+							<option>정규직</option>
+							<option>계약직</option>
+							<option>파견직</option>
+							<option>프리랜서</option>
+						</select>
+					</div>
+					<div><div>*회사명</div><input type="text"></div>
+					<div><div>*근무기간</div><input type="date"> ~ <input type="date"></div>
+					<div><div>*부서</div><input type="text"><span>*직급</span><input type="text"></div>
+					<div><div>*담당업무</div><input type="text"></div>
+					<div><div>연봉</div><input type="number"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="resume_submit">
+		<input type="submit" value="제출하기">
+	</div>
+</form>
+</body>
+</html>

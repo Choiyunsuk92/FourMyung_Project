@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/hotel/roomWrite.css">
+<title> </title>
+</head>
+<body>
+<header>
+	<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+</header>
+<form th:action="@{../regist/roomWritePro}" method="post" name="roomWrite" th:object="${RoomInfoCommand}">
+	<table style="margin-top: 50px;">
+		<tr><th colspan="4" class="header"><h2>객실  등록</h2></th></tr>
+		<tr>
+			<td>객실 이름</td>
+			<td colspan="3">
+				<input type="text" style="width: 430px" name="roomNm">
+			</td>
+		</tr>
+		<tr>
+			<td>객실호수</td>
+			<td>
+				<input type="text" style="width: 100px" name="roomNum">
+			</td>
+			<td style="text-align: center;">가격</td>
+			<td>
+				<input type="number" style="width: 100px" name="price">원
+			</td>
+		</tr>
+		<tr>
+			<td>객실층</td>
+			<td colspan="3">
+				<select name="roomLayer">
+					<option value="3">3</option>
+					<option value="3">4</option>
+					<option value="3">5</option>
+					<option value="3">6</option>
+					<option value="3">7</option>
+					<option value="3">8</option>
+					<option value="3">9</option>
+					<option value="3">10</option>
+				</select>
+				객실등급
+				<select name="roomClass">
+					<option value="D">DELUXE</option>
+					<option value="S">SUITE</option>
+				</select>
+				기준인원(성인)
+				<select name="roomTo">
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>크기</td>
+			<td><input type="text" style="width: 100px" name="roomSize"></td>
+			<td style="text-align: center;">침대구성</td>
+			<td><input type="text" style="width: 100px" name="bedInfo"></td>
+		</tr>
+		<tr>
+			<td>제공 서비스</td>
+			<td colspan="3"><textarea name ="offerSvc"placeholder="','으로 구분지어 주세요.ex)에어컨,발코니,목욕가운,샤워부스"></textarea></td>
+		</tr>
+		<tr>
+			<td>객실 이미지</td>
+			<td colspan="3">
+				<div>
+					<label for="file">업로드</label>
+					<input type="file" class="roomImg" multiple="multiple">
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div class="div_btn">
+		<input type="submit" class="submit" value="객실등록">
+	</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/member/sup_step1.css">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+	<table>
+		<tr><td colspan="5" class="header"><h2>내명그룹 상시 채용</h2></td></tr>
+		<tr><th colspan="5">기본정보</tr>
+		<tr>
+			<td>*지원자</td>
+			<td>최연석</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td width="10px;" style="word-break:break-all">영문이름</td><td><input type="text"></td>
+			<td>한문이름</td><td><input type="text"></td>
+		</tr>
+		<tr class="border_tr">
+			<td></td>
+			<td>성별</td><td><input type='radio' name='userGender' id='userGender' value='M'  /> 남자
+							<input type='radio' name='userGender' id='userGender' value='F'  />	여자</td>
+			<td>생년월일</td><td><input type="date"></td>
+		</tr>
+		<tr>
+			<td>*지원분야</td>
+			<td colspan="4">-[지원분야] ※채용공고문의 부문 / 담당업무 / 근무지 확인 후 지원</td>
+		</tr>
+		<tr class="border_tr">
+			<td></td>
+			<td>
+				<select>
+					<option>분야</option>
+					<option>--------------</option>
+					<option>호텔</option>
+					<option>레저</option>
+					<option>푸드</option>
+				</select>
+			</td>
+			<td>	
+				<select>
+					<option>직무</option>
+					<option>--------------</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="border_tr">
+			<td>연봉</td>
+			<td>희망연봉</td>
+			<td><input type="text">만원</td>
+			<td>직전연봉</td>
+			<td><input type="text">만원</td>
+		</tr>
+		<tr><th colspan="5">인적사항</tr>
+		<tr>
+			<td><input type="image"></td>
+			<td colspan="4">* 지원서 사진등록 (권장사이즈 : 가로 160px X 세로 200px 혹은 가로 4 : 세로 5 비율)<br>※ 최근 6개월 이내 촬영한 증명사진만 첨부</td>
+		</tr>
+		<tr class="border_tr">
+			<td></td>
+			<td><input type="file" value="사진등록"></td>
+			<td><input type="button" value="삭제"></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td>현주소</td>
+			<td colspan="1"><input type="button" value="우편번호"></td>
+		</tr>
+		<tr class="border_tr">
+			<td></td>
+			<td colspan="3"><input type="text"> <input type="text"></td>
+		</tr>
+		<tr class="border_tr">
+			<td>*연락처</td>
+			<td>이메일주소</td>
+			<td><span>지원자 이메일주소(DB호출)</span></td>
+			<td>핸드폰번호</td>
+			<td><span>지원자 핸드폰번호(DB호출)</span></td>
+		</tr>
+		<tr><th colspan="5">경력사항</tr>
+		<tr>
+			<td>고등학교</td>
+			<td>*졸업구분</td>
+			<td colspan="3">
+				<input type="radio">졸업
+				<input type="radio">졸업예정
+				<input type="radio">중퇴
+				<input type="radio">휴학
+			</td>
+		</tr>
+		<tr class="border_tr">
+			<td></td>
+			<td>재학기간</td>
+			<td colspan="3">
+				입학일<input type="date"> ~ 졸업일<input type="date"> 2021.02.28 이전 졸업(예정)만 최종학력으로 인정
+			</td>
+		</tr>
+		<tr>
+	</table>
+</form>
+</body>
+</html>

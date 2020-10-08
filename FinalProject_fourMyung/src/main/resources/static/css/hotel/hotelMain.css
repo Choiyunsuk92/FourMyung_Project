@@ -69,3 +69,11 @@ select::-ms-expand {
 }
 input[type="date"]::before {content:attr(data-placeholder); width:100%}
 input[type="date"]:valid::before {display: none}
+
+a{
+	text-decoration: none;
+}
+li{
+	list-style-type: none;
+	padding: 0 8px;
+}

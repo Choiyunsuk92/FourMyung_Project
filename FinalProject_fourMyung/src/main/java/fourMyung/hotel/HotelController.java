@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fourMyung.Command.HotelResCommand;
 import fourMyung.Command.HotelRoomCommand;
 import fourMyung.hotel.service.RoomSearchService;
 
@@ -21,10 +22,16 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value = "RoomSearch", method = RequestMethod.POST)
-	public String RoomSearch(HotelRoomCommand hotelRoomCommand, Model model) {
+	public String RoomSearch(HotelRoomCommand hotelRoomCommand, Model model) throws Exception{
 		
 		rommSearchService.roomSearch(hotelRoomCommand, model);
 		
 		return "thymeleaf/hotel/room/roomSel";
+	}
+	
+	@RequestMapping(value="RoomSelect", method = RequestMethod.POST)
+	public String RoomReservation(HotelResCommand hotelResCommand, Model model) {
+		
+		return "thymeleaf/hotel/h_room_res";
 	}
 }

@@ -1,0 +1,190 @@
+@charset "UTF-8";
+body{
+	font-family: 'Noto Sans KR';
+	font-size: 14px;
+	color: #555555;
+}
+li{
+	list-style: none;
+}
+.hotel_heder{
+	height: 50vh;
+	overflow: hidden;
+}
+.roomImg{
+	background: url("../../img/room/room_res.jpg");
+	width: 100%;
+	height: 120%;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.roomImg span{
+	color: #ffffff;
+}
+
+.roomContent{
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	margin-top: 30px;
+}
+
+.roomSel{
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding-right: 20px;
+}
+.roomDeatilInfo{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}
+.resInfoInput{
+	width: 70%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.resInfo,
+.selRoom{
+	width: 240px;
+	height: 220px;
+	background: #f1f1f1;
+	right: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+.res_check{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 20px 15px;
+}
+.res_textH4{
+	 width: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	padding: 10px;
+	border-bottom: 1px solid #e7e7e7;
+}
+.res_check_1 div,
+.res_check_2 div{
+	padding: 3px 0;
+	font-weight: 1000;
+}
+.res_check_2{
+	text-align: right;
+}
+.person_Info{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 1px 10px;
+}
+.person_Info div{
+	padding: 5px 0;
+}
+.room_Select{
+	display: flex;
+	justify-content: space-around;
+	font-weight: 800;
+	font-size: 16px;
+	border-top: 1px solid #e7e7e7;
+}
+.rel_price{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	background-color: #d49466;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: 1000;
+	padding: 30px 0px;
+}
+.info_1{
+	display: flex;
+}
+.info_1 h4,
+.info_1 span {
+	padding: 0px 4px;
+}
+.room_name{
+	font-size: 16px;
+	font-weight: 1000;
+	color: #d49466;
+	margin-bottom: 2px;
+}
+
+
+
+.resInfoInput_1,
+.resInfoInput_2{
+	border: 1px solid #e7e7e7;
+	margin: 10px;
+	border-radius: 8px;
+	width: 60%;
+}
+.res_div_head{
+	border-bottom: 1px solid #e7e7e7;
+	background-color: #e7e7e1;
+	padding: 10px;
+	font-weight: 600;
+}
+.res_div1_content ul li{
+	padding-left: 10px;
+	font-weight: 1000;
+	padding: 4px;
+	margin-left: 10px;
+}
+.resInput ul li{
+	padding: 10px;
+	margin:10px;
+	border-radius: 8px;
+}
+.div_first{
+	display: flex;
+}
+.span_first{
+	border: 1px solid #e7e7e7;
+	background-color: #e7e7e1;
+	padding: 10px;
+	width: 150px;
+	text-align: center;
+}
+.div_first input[type="text"]{
+	border: 1px solid #e7e7e7;
+	padding: 10px;
+	width: 80%;
+}
+.res_text1,
+.res_text2{
+	margin: 10px;
+}
+.submit_div{
+	width: 55%;
+	padding: 20px;
+	text-align: center;
+	
+}
+.submit_div input[type="submit"]{
+	position: absolute;
+	padding: 10px 35px;
+	background-color: #d49466;
+	border: none;
+	color: #ffffff;
+	font-weight: 800;
+	border-radius: 3px;
+}

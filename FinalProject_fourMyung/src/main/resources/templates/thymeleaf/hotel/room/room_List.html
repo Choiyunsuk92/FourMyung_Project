@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/hotel/roomList.css">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+<header>
+	<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+</header>
+<table>
+	<thead>
+		<tr><td colspan="5" style="text-align: center;"><h2>객실 리스트</h2></td></tr>
+		<tr>
+			<th style="width: 100px;">번호</th>
+			<th style="width: 100px;">호수</th>
+			<th style="width: 400px;">객실 이름</th>
+			<th style="width: 100px;">작성자</th>
+			<th style="width: 100px;">등록 날짜</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>301</td>
+			<td>Deluxe Double Lower Floor Room</td>
+			<td>회장님</td>
+			<td>2017.10.01</td>
+		</tr>
+	</tbody>
+</table>
+<div class="div_btn">
+	<button><a href="roomWrite">객실 등록</a></button>
+</div>
+</div>
+</body>
+</html>

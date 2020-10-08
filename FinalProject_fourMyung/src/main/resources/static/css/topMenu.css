@@ -1,4 +1,14 @@
 @charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	
+}
+body {
+	width: 100%;
+}
+
 .navTop{
 	margin-top: 8px;
 	display: flex;
@@ -7,10 +17,12 @@
 .login_Info{
 	width: 100%;
 }
-a{
+.index_ul li a,
+.login_ul li a{
 	text-decoration: none;
 }
-li{
+.index_ul li,
+.login_ul li{
 	list-style-type: none;
 	padding: 0 8px;
 }
@@ -25,4 +37,16 @@ li{
 }
 .index_ul li{
 	margin-left: 10px;
+}
+.registration:hover .registration_ul{
+	display: block;
+	position: absolute;
+	background: white;
+	z-index: 1;
+}
+.registration_ul{
+	display: none;
+}
+.registration_ul li:hover{
+	background-color: rgb(218, 179, 191);
 }

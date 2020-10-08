@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/member/support.css">
+<title> </title>
+</head>
+<body>
+<form>
+	<table>
+		<tr><td colspan="2" class="header"><h2>지원서 작성</h2></td></tr>
+		<tr>
+			<td class="item_td">공고명</td>
+			<td>
+				<select>
+					<option>내명그룹 상시채용</option>
+					<option>내명호텔 상시채용</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">성명</td>
+			<td>
+				<input type="text">
+				<span>※ 공백 없이 입력하세요.</span>
+			</td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">휴대전화</td>
+			<td>
+				<input type="text" placeholder="'-'없이 입력하세요">
+				<span>※ 전형결과 알림에 사용되오니, 반드시 연결가능한 번호를 입력하세요. (본인 미보유시, 가족 핸드폰 입력)</span>
+			</td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">이메일</td>
+			<td><input type="email" placeholder="이메일을 입력해주세요"></td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">비밀번호</td>
+			<td>
+				<input type="password" placeholder="비밀번호를 입력해주새요.">
+				<span>※ 8~9자 영문 대문자/소문자/특수문자/숫자 중 3종류, 혹은 10자 이상 영문/숫자/특수문자 중 2종류를 사용하세요.</span>
+			</td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">비빌번호 확인</td>
+			<td><input type="password" placeholder="비밀번호를  확인을 위해 다시 한번 입력해주새요."></td>
+		</tr>
+		<tr class="item_tr">
+			<td class="item_td">본인확인</td>
+			<td><button class="btn_email">이메일 인증</button></td>
+		</tr>
+	</table>
+	<div class="div_submit"><button class="btn_submit">지원서 작성</button></div>
+</form>
+</body>
+</html>
