@@ -32,6 +32,6 @@ public class HotelController {
 	@RequestMapping(value="RoomSelect", method = RequestMethod.POST)
 	public String RoomReservation(HotelResCommand hotelResCommand, Model model) {
 		
-		return "thymeleaf/hotel/h_room_res";
+		return "thymeleaf/regist/hotelList";
 	}
 }

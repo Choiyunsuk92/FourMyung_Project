@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import fourMyung.hotel.domain.RoomDTO;
+import fourMyung.domain.hotel.RoomDTO;
 
 
 @Component

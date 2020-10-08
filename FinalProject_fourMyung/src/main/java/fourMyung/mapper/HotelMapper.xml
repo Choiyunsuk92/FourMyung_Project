@@ -9,5 +9,43 @@
 </select>
 
 <insert id="roomInsert">
+INSERT INTO H_HTL_ROOM(
+ROOM_SEQ,
+ROOM_NUM,
+ROOM_NM,
+ROOM_CLASS,
+PRICE,
+ROOM_TO,
+ROOM_SIZE,
+BED_INFO,
+ROOM_RES_YN,
+OFFER_SVC,
+EMP_NUM,
+EMP_NM,
+SYS_CRET_DT,
+SYS_MDF_DT,
+ROOM_IMG_ORG,
+ROOM_IMG_STORE,
+FILE_SIZE
+) 
+VALUES(
+H_ROOM_SEQ.NEXTVAL,
+#{roomNum},
+#{rooNm},
+#{roomClass},
+#{price},
+#{roomTo},
+#{roomSize},
+#{bedInfo},
+'Y',
+#{offerSvc},
+null,
+'관리자',
+SYSDATE,
+NULL,
+#{originalFileName},
+#{storeFileName},
+#{fileSize}
+)
 </insert>
 </mapper>

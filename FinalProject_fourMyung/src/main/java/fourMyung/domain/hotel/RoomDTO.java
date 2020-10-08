@@ -1,4 +1,4 @@
-package fourMyung.hotel.domain;
+package fourMyung.domain.hotel;
 
 import java.time.LocalDate;
 
@@ -22,5 +22,7 @@ public class RoomDTO {
 	String roomSize; // 크기
 	String bedInfo; // 침대구성
 	String offerSvc; // 제공서비스
-	String roomImg; // 객실이미지
+	String originalFileName;
+	String storeFileName;
+	String fileSize;
 }

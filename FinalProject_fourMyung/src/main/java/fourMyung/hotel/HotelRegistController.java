@@ -1,5 +1,7 @@
 package fourMyung.hotel;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +29,8 @@ public class HotelRegistController {
 	}
 	
 	@RequestMapping(value="roomWritePro", method = RequestMethod.POST)
-	public String roomWritePro(RoomInfoCommand roomInfoCommand, Model model) throws Exception{
-		roomRegistService.roomInsert(roomInfoCommand, model);
-		return "redirect:/regist/hotelList";
+	public String roomWritePro(RoomInfoCommand roomInfoCommand, Model model, HttpServletRequest request) throws Exception{
+		String location  = roomRegistService.roomInsert(roomInfoCommand, model, request);
+		return location;
 	}
 }

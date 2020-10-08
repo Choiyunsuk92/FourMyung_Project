@@ -9,7 +9,7 @@
 <header>
 	<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
 </header>
-<form th:action="@{../regist/roomWritePro}" method="post" name="roomWrite" th:object="${RoomInfoCommand}">
+<form th:action="@{../regist/roomWritePro}" method="post" name="roomWrite" th:object="${RoomInfoCommand}" enctype="multipart/form-data">
 	<table style="margin-top: 50px;">
 		<tr><th colspan="4" class="header"><h2>객실  등록</h2></th></tr>
 		<tr>
@@ -71,7 +71,7 @@
 			<td colspan="3">
 				<div>
 					<label for="file">업로드</label>
-					<input type="file" class="roomImg" multiple="multiple">
+					<input type="file" name="roomImg" class="roomImg" multiple="multiple">
 				</div>
 			</td>
 		</tr>

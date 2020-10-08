@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import fourMyung.Command.HotelRoomCommand;
-import fourMyung.hotel.domain.RoomDTO;
+import fourMyung.domain.hotel.RoomDTO;
 import fourMyung.mapper.HotelMapper;
 
 @Component
