@@ -20,7 +20,7 @@ window.onload = function(){
 		document.getElementById('selContent_h3').innerHTML = "비발디 & 오션월드";
 		$("#sel_img").attr("src", "static/img/main/WaterPark_main.jpg");
 		document.getElementById('selContent_P2').innerHTML = "일년 365일, 이글거리는 태양 아래 넘실대는 파도가 끊이지 않는 테마 워터파크 ‘비발디파크 오션월드’.이집트 사막과 오아시스의 이국적인 풍경을 그대로 옮겨놓은 오션월드에서 여러분의 바다를 만끽하세요.";
-		$("#webSiteMove").attr("href", "#");
+		$("#webSiteMove").attr("href", "leisure/leisureMain");
 	});
 	// 푸드 클릭
 	$("#main_li3").on("click", function(){
