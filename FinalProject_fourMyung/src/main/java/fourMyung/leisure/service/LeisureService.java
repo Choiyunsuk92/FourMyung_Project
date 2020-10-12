@@ -29,14 +29,16 @@ public class LeisureService {
 	}
 
 	public void selectByLeisure(Model model) {
+		int count = leisureMapper.getLeisureCount();
 		LeisureDTO leisuredto = new LeisureDTO();
 		List<LeisureDTO> list = leisureMapper.selectByLeisure(leisuredto);
 		System.out.println(list.size());
 		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		
 	}
 
 	public void deleteLeisure(Integer leisureNum) {
 		leisureMapper.leisureDel(leisureNum);
 	}
-
 }

@@ -42,34 +42,33 @@ tbody tr:nth-child(odd) {
 	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm'
 		id="frm" th:object="${leisureCommand}">
 		<table width="70%">
-			<caption style="font-size: 20px; font-weight: bold; text-align: left">레저등록</caption>
+			<caption style="font-size: 20px; font-weight: bold; text-align: left">물품등록</caption>
 			<thead>
 				<tr>
-					<td width="24%">레저이름</td>
+					<td width="24%">물품이름</td>
 					<td width="24%">연령대</td>
-					<td width="24%">이용시간</td>
+					<td width="24%">수량</td>
 					<td width="24%">이용금액</td>
 					<td width="4%"></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<input type="hidden" name="leisureNum" />
-					<td><input type='text' name='leisureName' id='leisureName'
-						class='leisureName' size='15' maxlength='10' autofocus="autofocus" /></td>
-					<td><select name='leisureAge' id='leisureAge'>
+					<td><input type='text' name='stuffName' id='stuffName'
+						class='stuffName' size='15' maxlength='10' autofocus="autofocus" /></td>
+					<td><select name='stuffAge' id='stuffAge'>
 							<option value='' selected>-- 선택 --</option>
 							<option value='adult'>대인</option>
 							<option value='child'>소인</option>
 					</select></td>
-					<td><select name='leisureTime' id='leisureTime'>
+					<td><select name='stuffCount' id='stuffCount'>
 							<option value='' selected>-- 선택 --</option>
 							<option value='allDay'>종일권</option>
 							<option value='AM'>오전권</option>
 							<option value='PM'>오후권</option>
 					</select></td>
-					<td><input type='text' name='leisurePrice' id='leisurePrice'
-						class='leisurePrice' size='15' maxlength='10'
+					<td><input type='text' name='stuffPrice' id='stuffPrice'
+						class='stuffPrice' size='15' maxlength='10'
 						autofocus="autofocus" /></td>
 					<td><input type="submit" value="추가"></td>
 				</tr>

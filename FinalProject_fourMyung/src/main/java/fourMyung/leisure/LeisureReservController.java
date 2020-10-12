@@ -2,6 +2,7 @@ package fourMyung.leisure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,12 +23,16 @@ public class LeisureReservController {
 	
 	//레저 예약
 	@RequestMapping(value="reservation_1", method = RequestMethod.GET)
+	public String reservation() {
+		return "thymeleaf/leisure/leisureReserv_1";
+	}
+	@RequestMapping(value="reservation_1", method = RequestMethod.POST)
 	public String reservation_1() {
 		return "thymeleaf/leisure/leisureReserv_1";
 	}
-	@RequestMapping(value="reservation_2")
-	public String reservation_2() {
-		
+	@RequestMapping(value="reservation_2", method = RequestMethod.POST)
+	public String reservation_2(Model model) {
+		leisureService.selectByLeisure(model);
 		return "thymeleaf/leisure/leisureReserv_2";
 		
 	}

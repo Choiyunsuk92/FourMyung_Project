@@ -3,109 +3,124 @@
 <head>
 <title>내명파크</title>
 <style>
-
-
 table {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
 }
+
 table thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #369;
-    border-bottom: 3px solid #036;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
 }
+
 table tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #f3f6f7;
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
 }
-table tfoot{
+
+table tfoot {
 	left: 100%;
 }
+
 table td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
 }
+
 table {
 	margin: 0 auto;
 	width: 700px;
-  	padding: 20px;
+	padding: 20px;
 }
 </style>
 <script>
-
+	
 </script>
 </head>
 
 <body>
-	<div id="header">
-		<header th:include = "thymeleaf/include/header.html"></header>
-	</div>
-	
-	<table class="charge">
-	<caption style="font-size: 20px; font-weight:bold; text-align: left;">이용권 안내</caption>
-	<thead>
-		<tr>
-			<th colspan=2 scope="cols">이용권</th>
-			<th scope="cols">대인</th>
-			<th scope="cols">소인</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th scope="row">종일권</th>
-			<td>9:00~20:00</td>
-			<td>25000</td>
-			<td>20000</td>
-		</tr>
-		<tr>
-			<th scope="row">오전권</th>
-			<td>9:00~14:00</td>
-			<td>18000</td>
-			<td>13000</td>
-		</tr>
-		<tr>
-			<th scope="row">오후권</th>
-			<td>15:00~20:00</td>
-			<td>20000</td>
-			<td>15000</td>
-		</tr>
-	</tbody>
-	</table><br/>
-	
-	<table class="lend">
-	<caption style="font-size: 20px; font-weight:bold; text-align: left;">대여용품 안내</caption>
-		<thead>
-			<tr>
-				<th scope="cols">대여용품</th>
-				<th scope="cols">남</th>
-				<th scope="cols">여</th>
-				<th scope="cols">아동</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">수영복</th>
-				<td>18000</td>
-				<td>20000</td>
-				<td>15000</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr><td align="right" colspan=4><input type="button" value="예약하러가기" /></td></tr>
-		</tfoot>
-	</table><br/>
-	
-	<div class="footer">
-		<footer th:include = "thymeleaf/include/footer.html"></footer>
-	</div>
+	<form th:action='@{/reserv/reservation_1}' method="post">
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+			<div class="leisureMenu"
+				th:include="thymeleaf/leisure/leisure_top.html"></div>
+		</header>
+
+		<table class="charge">
+			<caption
+				style="font-size: 20px; font-weight: bold; text-align: left;">이용권
+				안내</caption>
+			<thead>
+				<tr>
+					<th colspan=2 scope="cols">이용권</th>
+					<th scope="cols">대인</th>
+					<th scope="cols">소인</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">종일권</th>
+					<td>9:00~20:00</td>
+					<td>25000</td>
+					<td>20000</td>
+				</tr>
+				<tr>
+					<th scope="row">오전권</th>
+					<td>9:00~14:00</td>
+					<td>18000</td>
+					<td>13000</td>
+				</tr>
+				<tr>
+					<th scope="row">오후권</th>
+					<td>15:00~20:00</td>
+					<td>20000</td>
+					<td>15000</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+
+		<table class="lend">
+			<caption
+				style="font-size: 20px; font-weight: bold; text-align: left;">대여용품
+				안내</caption>
+			<thead>
+				<tr>
+					<th scope="cols">대여용품</th>
+					<th scope="cols">남</th>
+					<th scope="cols">여</th>
+					<th scope="cols">아동</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">수영복</th>
+					<td>18000</td>
+					<td>20000</td>
+					<td>15000</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td align="right" colspan=4><input type="submit" value="예약하러가기" /></td>
+				</tr>
+			</tfoot>
+		</table>
+		<br />
+
+		<div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+		</div>
+		</form>
 </body>
 </html>

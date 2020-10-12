@@ -13,4 +13,5 @@ public interface LeisureMapper {
 	public Integer insertLeisure(LeisureDTO dto);
 	public List<LeisureDTO> selectByLeisure(LeisureDTO leisuredto);
 	public Integer leisureDel(Integer leisureNum);
+	public Integer getLeisureCount();
 }
