@@ -47,4 +47,26 @@ public class LeisureController {
 		leisureService.deleteLeisure(leisureNum);
 		return "redirect:/leisure/leisureList";
 	}
+	
+	//발권등록, 조회페이지
+	@RequestMapping(value="ticketBuy", method = RequestMethod.GET)
+	public String ticketBuy() {
+		return "thymeleaf/leisure/ticketBuy";
+	}
+	@RequestMapping(value="ticketList", method = RequestMethod.GET)
+	public String ticketList() {
+		return "thymeleaf/leisure/ticketList";
+	}
+
+	//대여물품 등록, 물품 조회
+	@RequestMapping(value="stuffList", method = RequestMethod.GET)
+	public String stuffList() {
+		return "thymeleaf/leisure/stuffList";
+	}
+	
+	//물품 대여자 조회
+	@RequestMapping(value="lendList", method = RequestMethod.GET)
+	public String lendList() {
+		return "thymeleaf/leisure/lendList";
+	}
 }

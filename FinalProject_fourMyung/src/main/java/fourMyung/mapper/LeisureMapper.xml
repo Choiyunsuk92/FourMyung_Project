@@ -4,7 +4,7 @@
 <mapper namespace="fourMyung.mapper.LeisureMapper" >
 <insert id="insertLeisure" parameterType="fourMyung.domain.leisure.LeisureDTO">
 	insert into l_lsr_list ( leisure_num, leisure_name, leisure_age, leisure_time, leisure_price )
-		values(1111,#{leisureName},#{leisureAge},#{leisureTime},#{leisurePrice})
+		values(NUM_SEQ.nextval,#{leisureName},#{leisureAge},#{leisureTime},#{leisurePrice})
 </insert>
 
 <resultMap type="fourMyung.domain.leisure.LeisureDTO" id="baseLeisure" >
@@ -29,4 +29,8 @@
 		leisure_num = #{leisureNum}
 	</where>
 </delete>
+
+<select id="getLeisureCount" resultType="int">
+		select count(*) from l_lsr_list
+</select>
 </mapper>

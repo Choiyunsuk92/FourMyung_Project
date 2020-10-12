@@ -27,12 +27,14 @@ thead tr{
 </head>
 
 <body>
-	<div id="header">
-		<header th:include="thymeleaf/include/header.html"></header>
-	</div>
+	<header>
+		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+		<div class="leisureMenu"
+			th:include="thymeleaf/leisure/leisure_top.html"></div>
+	</header>
 
 	<table width="70%">
-		<caption style="font-size: 20px; font-weight: bold; text-align: left">예약자리스트
+		<caption style="font-size: 20px; font-weight: bold; text-align: left">발권번호 조회
 			<input type="text" placeholder="발권번호 입력">
 			<button>검색</button>
 			<button>전체보기</button>

@@ -4,7 +4,8 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <title>CSS Project2</title>
 <style type="text/css">
@@ -27,8 +28,8 @@ table {
 }
 
 .sub_visual_reser2 {
-	background:
-		url("../../img/leisure/sb_reservation2.jpg") no-repeat center top;
+	background: url("../../img/leisure/sb_reservation2.jpg") no-repeat
+		center top;
 }
 
 .sub_visual {
@@ -42,15 +43,19 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, form, fieldset, p,
 	margin: 0;
 	padding: 0;
 }
-h2, h5{
+
+h2, h5 {
 	line-height: 50px;
 }
+
 div {
 	display: block;
 }
-.card{
-line-height: 30px;
+
+.card {
+	line-height: 30px;
 }
+
 .leftcolumn {
 	margin: 0 auto;
 	width: 70%;
@@ -68,7 +73,8 @@ line-height: 30px;
 	display: table;
 	clear: both;
 }
-.info_list{
+
+.info_list {
 	font-size: 13px;
 }
 </style>
@@ -87,23 +93,40 @@ line-height: 30px;
 					minDate : 0
 				});
 	});
+	
+	function change(num1, num2, num3){
+		var num = Number(eval("document.getElementById('count"+num1+"').value"));
+		if(num >= 0){
+			num += num2;
+			if(num < 0) num = 0;
+		}
+		document.getElementById('count'+num1).value = num;
+		document.getElementById('price'+num1).innerHTML = num * num3;
+		var total = 0;
+		for(var i = 1 ; i <= [[${count}]]; i++){
+			//alert(document.getElementById('price'+i).innerHTML);
+			total +=  Number(document.getElementById('price'+i).innerHTML);
+		}
+		document.getElementById("total").innerHTML = total;
+	}
 </script>
 </head>
 
 <body>
 	<form th:action='@{/reserv/reservation_3}' method="post">
-	<header>
-		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
-		<div class="leisureMenu"
-			th:include="thymeleaf/leisure/leisure_top.html"></div>
-	</header>
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+			<div class="leisureMenu"
+				th:include="thymeleaf/leisure/leisure_top.html"></div>
+		</header>
 
 
-	<div class="contents">
-		<div class="sub_visual_reser2">
-			<strong><img
-				th:src="@{/static/img/leisure/loc_tit_reservation.png}" style="width: 100%;"></strong>
-			<!-- 			<span class="width_line"></span>
+		<div class="contents">
+			<div class="sub_visual_reser2">
+				<strong><img
+					th:src="@{/static/img/leisure/loc_tit_reservation.png}"
+					style="width: 100%;"></strong>
+				<!-- 			<span class="width_line"></span>
 			<div class="location">
 				<span class="home"></span>
 				<span class="line"></span>
@@ -111,69 +134,76 @@ line-height: 30px;
 				<span class="line"></span>
 				<span class="txt">워터킹덤 예약</span>
 			</div> -->
-		</div>
-		<div>
-			<h1 align="center">워터파크 예약</h1>
-			<img th:src="@{/static/img/leisure/reser_hotel_step02.png}" style="display: block; margin: 0px auto;">
-		</div>
-		<div class="leftcolumn">
-			<div class="card">
-				<h2>워터파크 예약 정보</h2>
-				<table>
-					<tr>
-						<td>이용날짜</td>
-						<td><input type="text" id="testDatepicker"></td>
-					</tr>
-					<tr>
-						<td>이용권종류</td>
-						<td>대상</td>
-						<td>이용권가격</td>
-						<td>수량</td>
-						<td>결제가격</td>
-					</tr>
-					<tr>
-						<td>종일권</td>
-						<td>대인</td>
-						<td>55000</td>
-						<td>1</td>
-						<td>55000</td>
-					</tr>
-					<tr>
-						<td colspan=1>이용요금</td>
-						<td colspan=3 style="text-align: right">50000원</td>
-					</tr>
-					<tr>
-						<td colspan=4 align="right">
-							<input type="submit" value="다음">&nbsp;
-							<input type="button" value="취소">
-						</td>
-					</tr>
-				</table>
-				<h4 class="title">유의사항</h4>
-				<div class=" box_type box_type2">
-					<div class="box_inner info_box">
-						<ul class="info_list">
-							<li>예약 및 결제 : ~ 이용전일 오후 5시까지 결제완료 해주셔야 예약이 완료됩니다. <br>
-								( 무통장입금기한을 넘기면 예약이 자동취소처리 됩니다.)
-							</li>
-							<li>취소 및 환불규정<br> <font color="red"> - 이용전일 22시
-									이후 취소시 10% 위약금이 발생됩니다.<br>
-							</font> - 결제 완료 후 예약 변경(이용인원/이용일 변경 등)은 불가하므로 전체 취소 후 다시 예약해 주시기 바랍니다.
-							</li>
-							<li>사전 온라인 예약을 못하신 경우 오션파크 매표소에서 정규 티켓을 구매 하시기 바랍니다.</li>
-							<li>전 상품은 온라인 예약하신 분들만 이용 가능합니다.</li>
-							<li>오션어드벤처는 락카 사용료를 별도로 부과하지 않습니다.</li>
-							<li>장애인,경로자 및 국가유공자 할인은 현장할인 받으셔야 합니다.(예약후 중복할인 불가)</li>
-						</ul>
+			</div>
+			<div>
+				<h1 align="center">워터파크 예약</h1>
+				<img th:src="@{/static/img/leisure/reser_hotel_step02.png}"
+					style="display: block; margin: 0px auto;">
+			</div>
+			<div class="leftcolumn">
+				<div class="card">
+					<h2>워터파크 예약 정보</h2>
+					<table>
+						<tr>
+							<td>이용날짜</td>
+							<td><input type="text" id="testDatepicker"></td>
+						</tr>
+						<tr>
+							<td>이용권종류</td>
+							<td>대상</td>
+							<td>수량</td>
+							<td>이용권가격  </td>
+						</tr>
+						<form th:action='@{/leisure/leisureDel}' method='POST' id="frm" name="frm">
+						<input type="hidden" th:value=${count}>
+						<th:block th:each="aaaa , cnt: ${list}">
+								<tr>
+									<input type="hidden" th:value="${aaaa.leisureNum}" name="leisureNum">
+									<td>[[${aaaa.leisureTime}]]</td>
+									<td>[[${aaaa.leisureAge}]]</td>
+									<td><a th:href="@{'javascript:change(' + ${cnt.count} + ',1,'+ ${aaaa.leisurePrice}+');'}">▲</a>
+										<input type="text" th:id="@{'count'+${cnt.count}}" th:name="@{'count'+${cnt.count}}" value="0" size="1">
+										<a th:href="@{'javascript:change(' + ${cnt.count} + ',-1, '+ ${aaaa.leisurePrice} + ');'}">▼</a>
+									</td>
+									<!-- aaaa.leisurePrice -->
+									<td><span th:id = "@{'price'+${cnt.count}}">0</span></td>
+								</tr>
+						</th:block>
+						</form>
+						<tr>
+							<td colspan=1>이용요금</td>
+							<td colspan=3 style="text-align: right"><span id = "total">0</span>원</td>
+						</tr>
+						<tr>
+							<td colspan=4 align="right"><input type="submit" value="다음">&nbsp;
+								<input type="button" value="취소"></td>
+						</tr>
+					</table>
+					<h4 class="title">유의사항</h4>
+					<div class=" box_type box_type2">
+						<div class="box_inner info_box">
+							<ul class="info_list">
+								<li>예약 및 결제 : ~ 이용전일 오후 5시까지 결제완료 해주셔야 예약이 완료됩니다. <br>
+									( 무통장입금기한을 넘기면 예약이 자동취소처리 됩니다.)
+								</li>
+								<li>취소 및 환불규정<br> <font color="red"> - 이용전일 22시
+										이후 취소시 10% 위약금이 발생됩니다.<br>
+								</font> - 결제 완료 후 예약 변경(이용인원/이용일 변경 등)은 불가하므로 전체 취소 후 다시 예약해 주시기 바랍니다.
+								</li>
+								<li>사전 온라인 예약을 못하신 경우 오션파크 매표소에서 정규 티켓을 구매 하시기 바랍니다.</li>
+								<li>전 상품은 온라인 예약하신 분들만 이용 가능합니다.</li>
+								<li>오션어드벤처는 락카 사용료를 별도로 부과하지 않습니다.</li>
+								<li>장애인,경로자 및 국가유공자 할인은 현장할인 받으셔야 합니다.(예약후 중복할인 불가)</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="footer">
-		<footer th:include="thymeleaf/include/footer.html"></footer>
-	</div>
+		<div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+		</div>
 	</form>
 </body>
 </html>
