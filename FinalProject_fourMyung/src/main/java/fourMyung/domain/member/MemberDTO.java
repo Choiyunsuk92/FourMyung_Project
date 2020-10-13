@@ -22,5 +22,6 @@ public class MemberDTO implements Serializable {
 	String userAddr;
 	String userGender;
 	Timestamp joinDt;
+	Timestamp sysModDt;
 	String joinOk;
 }

@@ -4,13 +4,13 @@
 <mapper namespace="fourMyung.mapper.MemberMapper" >
 <sql id="basecolumn">
 	MEM_DIV_CD, USER_ID, USER_PASS, USER_NM, USER_BIRTH, 
-	USER_EMAIL, USER_PH, USER_ADDR, USER_GENDER, JOIN_DT, JOIN_OK  
+	USER_EMAIL, USER_PH, USER_ADDR, USER_GENDER, JOIN_DT, SYS_MDF_DT, JOIN_OK  
 </sql>
 
 <insert id="insertMember" parameterType="fourMyung.domain.member.MemberDTO">
 	insert into c_member ( <include refid="basecolumn" />  )
 		values(#{memDivCd}, #{userId}, #{userPass}, #{userNm}, #{userBirth},
-		#{userEmail}, #{userPh}, #{userAddr}, #{userGender}, sysdate, null)
+		#{userEmail}, #{userPh}, #{userAddr}, #{userGender}, sysdate, null, null)
 </insert>
 
 <update id="joinOkUpdate" parameterType="fourMyung.domain.member.MemberDTO">
@@ -32,6 +32,7 @@
 		<arg column="USER_ADDR" javaType="string" />
 		<arg column="USER_GENDER" javaType="string" />
 		<arg column="JOIN_DT" javaType="java.sql.Timestamp" />
+		<arg column="SYS_MDF_DT" javaType="java.sql.Timestamp" />
 		<arg column="JOIN_OK" javaType="string" />
 	</constructor>
 </resultMap>
