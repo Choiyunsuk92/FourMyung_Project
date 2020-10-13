@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fourMyung.Command.LeisureCommand;
+import fourMyung.Command.RentalCommand;
 import fourMyung.leisure.service.LeisureService;
+import fourMyung.leisure.service.ResntalService;
 
 
 @Controller
@@ -18,6 +20,8 @@ import fourMyung.leisure.service.LeisureService;
 public class LeisureController {
 	@Autowired
 	LeisureService leisureService;
+	@Autowired
+	ResntalService rentalService;
 	
 	@RequestMapping(value="leisureMain", method = RequestMethod.GET)
 	public String leisureMain() {
@@ -59,9 +63,24 @@ public class LeisureController {
 	}
 
 	//대여물품 등록, 물품 조회
-	@RequestMapping(value="stuffList", method = RequestMethod.GET)
-	public String stuffList() {
-		return "thymeleaf/leisure/stuffList";
+	@RequestMapping(value="rentalGoodsList", method = RequestMethod.GET)
+	public String rentalList(Model model)throws Exception {
+		rentalService.selectByRental(model);
+		return "thymeleaf/leisure/rentalGoodsList";
+	}
+	@RequestMapping(value="goodsOk", method = RequestMethod.POST)
+	public String rentalOk(@Validated RentalCommand rentalCommand, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			System.out.println("error");
+			return "redirect:/leisure/rentalGoodsList";
+		}
+		rentalService.insertGoods(rentalCommand,model);
+		return "redirect:/leisure/rentalGoodsList";
+	}
+	@RequestMapping(value="goodsDel", method = RequestMethod.POST)
+	public String goodsDel(@RequestParam(value="goodsNum")String goodsNum) {
+		rentalService.deleteGoods(goodsNum);
+		return "redirect:/leisure/rentalGoodsList";
 	}
 	
 	//물품 대여자 조회

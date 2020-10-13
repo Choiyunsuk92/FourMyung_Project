@@ -32,7 +32,9 @@ thead tr{
 		<div class="leisureMenu"
 			th:include="thymeleaf/leisure/leisure_top.html"></div>
 	</header>
-
+	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm'
+		id="frm" >
+		<!-- th:object="${leisureCommand}" -->
 	<table width="70%">
 		<caption style="font-size: 20px; font-weight: bold; text-align: left">대여자 리스트
 			<input type="text" placeholder="발권번호 입력">

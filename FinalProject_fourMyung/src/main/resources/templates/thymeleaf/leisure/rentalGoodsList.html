@@ -39,8 +39,8 @@ tbody tr:nth-child(odd) {
 		<div class="leisureMenu"
 			th:include="thymeleaf/leisure/leisure_top.html"></div>
 	</header>
-	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm'
-		id="frm" th:object="${leisureCommand}">
+	<form th:action='@{/leisure/goodsOk}' method='POST' name='frm'
+		id="frm" th:object="${rentalCommand}">
 		<table width="70%">
 			<caption style="font-size: 20px; font-weight: bold; text-align: left">물품등록</caption>
 			<thead>
@@ -48,27 +48,23 @@ tbody tr:nth-child(odd) {
 					<td width="24%">물품이름</td>
 					<td width="24%">연령대</td>
 					<td width="24%">수량</td>
-					<td width="24%">이용금액</td>
+					<td width="24%">대여금액</td>
 					<td width="4%"></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type='text' name='stuffName' id='stuffName'
-						class='stuffName' size='15' maxlength='10' autofocus="autofocus" /></td>
-					<td><select name='stuffAge' id='stuffAge'>
+					<td><input type='text' name='goodsName' id='goodsName'
+						class='goodsName' size='15' maxlength='10' autofocus="autofocus" /></td>
+					<td><select name='goodsAge' id='goodsAge'>
 							<option value='' selected>-- 선택 --</option>
 							<option value='adult'>대인</option>
 							<option value='child'>소인</option>
 					</select></td>
-					<td><select name='stuffCount' id='stuffCount'>
-							<option value='' selected>-- 선택 --</option>
-							<option value='allDay'>종일권</option>
-							<option value='AM'>오전권</option>
-							<option value='PM'>오후권</option>
-					</select></td>
-					<td><input type='text' name='stuffPrice' id='stuffPrice'
-						class='stuffPrice' size='15' maxlength='10'
+					<td><input type='text' name='goodsAmount' id='goodsAmount'
+						class='goodsAmount' size='15' maxlength='10' autofocus="autofocus" /></td>
+					<td><input type='text' name='goodsPrice' id='goodsPrice'
+						class='goodsPrice' size='15' maxlength='10'
 						autofocus="autofocus" /></td>
 					<td><input type="submit" value="추가"></td>
 				</tr>
@@ -80,27 +76,27 @@ tbody tr:nth-child(odd) {
 		<caption style="font-size: 20px; font-weight: bold; text-align: left">레저목록</caption>
 		<thead>
 			<tr>
-				<td width='24%'>레저이름</td>
+				<td width='24%'>물품이름</td>
 				<td width='24%'>연령대</td>
-				<td width='24%'>이용시간</td>
-				<td width='24%'>이용금액</td>
+				<td width='24%'>수량</td>
+				<td width='24%'>대여금액</td>
 				<td width='4%'></td>
 
 			</tr>
 		</thead>
 		<tbody>
-			<th:block th:each="aaaa : ${list}">
-				<form th:action='@{/leisure/leisureDel}' method='POST' id="frm">
+ 			<th:block th:each="aaaa : ${list}">
+				<form th:action='@{/leisure/goodsDel}' method='POST' id="frm">
 				<tr>
-					<input type="hidden" th:value="${aaaa.leisureNum}" name="leisureNum">
-					<td>[[${aaaa.leisureName}]]</td>
-					<td>[[${aaaa.leisureAge}]]</td>
-					<td>[[${aaaa.leisureTime}]]</td>
-					<td>[[${aaaa.leisurePrice}]]</td>
+					<input type="hidden" th:value="${aaaa.goodsNum}" name="goodsNum">
+					<td>[[${aaaa.goodsName}]]</td>
+					<td>[[${aaaa.goodsAge}]]</td>
+					<td>[[${aaaa.goodsAmount}]]</td>
+					<td>[[${aaaa.goodsPrice}]]</td>
 					<td><input type="submit" value="삭제"></td>
 				</tr>
 				</form>
-			</th:block>
+			</th:block> 
 		</tbody>
 	</table>
 	<div class="footer">

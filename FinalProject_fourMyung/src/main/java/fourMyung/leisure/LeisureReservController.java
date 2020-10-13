@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fourMyung.leisure.service.LeisureReservService;
 import fourMyung.leisure.service.LeisureService;
 
 @Controller
@@ -13,6 +14,8 @@ import fourMyung.leisure.service.LeisureService;
 public class LeisureReservController {
 	@Autowired
 	LeisureService leisureService;
+	@Autowired
+	LeisureReservService leisureReservService;
 	
 	//레저 예약, 예약확인, 예약취소, 예약조회 페이지
 	//관리자 - 레저 예약자 조회
@@ -33,11 +36,11 @@ public class LeisureReservController {
 	@RequestMapping(value="reservation_2", method = RequestMethod.POST)
 	public String reservation_2(Model model) {
 		leisureService.selectByLeisure(model);
-		return "thymeleaf/leisure/leisureReserv_2";
-		
+		return "thymeleaf/leisure/leisureReserv_2";	
 	}
-	@RequestMapping(value="reservation_3")
+	@RequestMapping(value="reservation_3", method = RequestMethod.POST)
 	public String reservation_3() {
+		leisureReservService.memberInfo();
 		return "thymeleaf/leisure/leisureReserv_3";
 	}
 	@RequestMapping(value="reservation_4")

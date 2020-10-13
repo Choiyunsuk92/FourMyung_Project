@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fourMyung.mapper.RentalMapper" >
+<insert id="insertRental" parameterType="fourMyung.domain.leisure.RentalDTO">
+	insert into l_Goods ( goods_num, goods_name, goods_price, goods_age, goods_amount)
+		values(NUM_SEQ.nextval,#{goodsName},#{goodsPrice},#{goodsAge},#{goodsAmount})
+</insert>
+
+<resultMap type="fourMyung.domain.leisure.RentalDTO" id="baserental" >
+	<constructor>
+		<idArg column="goods_num" javaType="string" />
+		<arg column="goods_name" javaType="string" />
+		<arg column="goods_price" javaType="int" />
+		<arg column="goods_age" javaType="string" />
+		<arg column="goods_amount" javaType="int"/>
+	</constructor>
+</resultMap>
+
+<select id="selectByRental" parameterType="fourMyung.domain.leisure.RentalDTO" resultMap="baserental"> 
+	select goods_num, goods_name, goods_price, goods_age, goods_amount
+	from l_goods
+	order by goods_num desc
+</select>
+
+<delete id="goodsDel" parameterType="int">
+	delete from l_goods
+	<where>
+		goods_num = #{goodsNum}
+	</where>
+</delete>
+</mapper>
