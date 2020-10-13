@@ -18,6 +18,13 @@
 			<a href="#">아름다운 소통</a>
 			<a href="#">그룹소식</a>
 			<a href="#">채용</a>
+			<span th:if="${session.authInfo == null}">
+			<a href="../login">Login</a>
+			<a href="../mem/regist">JoinUs</a>
+			</span>
+			<span th:if="${session.authInfo != null}">
+			<a href="../logout">Logout</a>
+			</span>
 		</div>
 	</div>
 	<div class="contents">

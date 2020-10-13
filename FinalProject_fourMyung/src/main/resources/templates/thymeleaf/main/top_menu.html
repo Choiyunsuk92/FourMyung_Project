@@ -16,8 +16,15 @@
 					<li><a href="#">푸드등록</a></li>
 				</ul>
 			</li>
-			<li><a href="../mem/login">LOGIN</a></li>
-			<li><a href="#">JOIN US</a></li>
+			<span th:if="${session.authInfo == null}">
+				<li><a href="../login">LOGIN</a></li>
+			</span>
+			<span th:if="${session.authInfo == null}">
+				<li><a href="../mem/regist">JOIN US</a></li>
+			</span>
+			<span th:if="${session.authInfo != null}">
+				<li><a href="../logout">LOGOUT</a></li>
+			</span>
 			<li><a href="#">MEMBERSHIP</a></li>
 		</ul>
 	</div>
