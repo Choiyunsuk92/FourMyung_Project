@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/payPage.css">
+<title>Insert title here</title>
+</head>
+<body>
+<header>
+	<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+</header>
+<div class="container">
+	<div class="payDiv_1">
+		<div class="payDiv_h2">
+			<h2>예약 확인</h2>
+		</div>
+		<div class="payDiv_img">
+		</div>
+	</div>
+<form>
+	<table>
+		<tr>
+			<th colspan="2">예약정보</th>
+		</tr>
+		<tr style="border-top: 3px solid #a3b3c7;">
+			<td>이용일시</td>
+			<td><span>2020.10.29</span> ~ <span>2020.10.29</span></td>
+		</tr>
+		<tr>
+			<td>상품명</td>
+			<td><span>호텔</span> . <span>디럭스 오션뷰</span></td>
+		</tr>
+		<tr>
+			<td>요금</td>
+			<td><span>199,000</span>원</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<th colspan="2">이용자정보</th>
+		</tr>
+		<tr style="border-top: 3px solid #a3b3c7;">
+			<td>이용자명</td>
+			<td>최연석</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td>
+				<span><input type="email"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>휴대폰번호</td>
+			<td><span>010-9426-3961</span></td>
+		</tr>
+		<tr>
+			<td>결제방법</td>
+			<td>
+				<ul>
+					<li><input type="radio" name="payType"> 신용카드</li>
+					<li><input type="radio" name="payType"> 실시간계좌이체</li>
+					<li><input type="radio" name="payType"> 카카오페이</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<div class="divPay">
+		<div class="divPay_1"><input type="submit" value="결제" class="divPay_1_submit"></div>
+		<div class="divPay_2"><input type="button" class="divPay_1_cncl"> <a href="#">취소</a></div>
+	</div>
+</form>
+</div>
+</body>
+</html>
