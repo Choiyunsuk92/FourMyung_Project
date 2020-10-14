@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fourMyung.Command.LeisureCommand;
+import fourMyung.Command.LeisureTicketCommand;
 import fourMyung.Command.RentalCommand;
 import fourMyung.leisure.service.LeisureService;
 import fourMyung.leisure.service.ResntalService;

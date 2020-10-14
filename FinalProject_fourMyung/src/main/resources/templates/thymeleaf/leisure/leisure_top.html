@@ -23,7 +23,11 @@
 				<li><a href="">공지사항</a></li>
 				<li><a href="">고객의 소리</a></li>
 				<li><a href="">자주 묻는 질문</a></li>
-				<li><a href="../leisure/manageMain">관리하기</a></li>
+				<span th:if="${session.authInfo != null}">
+					
+						<li><a href="../leisure/manageMain">관리하기</a></li>
+					
+				</span>
 			</ul></li>
 	</ul>
 </div>

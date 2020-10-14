@@ -80,7 +80,7 @@ div {
 </head>
 
 <body>
-	<form th:action='@{/reserv/reservation_4}' method="post">
+	<form th:action='@{/reserv/reservation_4}' method="post" th:object="${reservCommand2}">
 	<header>
 		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
 		<div class="leisureMenu"
@@ -107,30 +107,6 @@ div {
 		</div>
 		<div class="leftcolumn">
 			<div class="card">
-<!-- 				<h2>예약정보</h2><br/>
-			<table>
-				<tr>
-					<td>이용일시</td>
-					<td>2020-09-10</td>
-				</tr>
-				<tr>
-					<td>이용권종</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>대여물품</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>결제금액</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>합계</td>
-					<td></td>
-				</tr>
-			</table><br/> -->
-			
 			<h2>이용자정보</h2><br/>
 			<table>
 				<tr>
@@ -139,23 +115,25 @@ div {
 				</tr>
 				<tr>
 					<td>이용자명</td>
-					<td></td>
+					<td>[[${session.authInfo.userNm}]]</td>
 				</tr>
 				<tr>
 					<td>성별</td>
-					<td></td>
+					<td>[[${session.authInfo.userGender}]]</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td></td>
+					<td>[[${session.authInfo.userBirth}]]</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td></td>
+					<!-- [[${session.authInfo.userEmail}]] -->
+					<td><input type="text" id="userEmail" name="userEmail" ></td>
 				</tr>
 				<tr>
 					<td>휴대번호</td>
-					<td></td>
+					<!-- [[${session.authInfo.userPh}]] -->
+					<td><input type="text" id="userPh" name="userPh" ></td>
 				</tr>
 				<tr>
 					<td>수령장소</td>
