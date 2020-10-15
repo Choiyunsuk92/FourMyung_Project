@@ -37,7 +37,7 @@ public class LoginService {
 		}else {
 			dto = lists.get(0);
 			if(passwordEncoder.matches(loginCommand.getUserPass(), dto.getUserPass())) {
-				authInfo = new AuthInfo(dto.getUserId(), dto.getUserPass(), dto.getUserEmail(), dto.getUserNm());
+				authInfo = new AuthInfo(dto.getUserId(), dto.getUserPass(), dto.getUserEmail(), dto.getUserNm(), dto.getUserGender(), dto.getUserPh(), dto.getUserBirth());
 				session.setAttribute("authInfo", authInfo);
 				location = "redirect:/";
 			}else {

@@ -117,25 +117,63 @@ div {
 				<div class="card">
 					<h2>예약정보</h2>
 					<br />
-					<table>
+					<table style="width: 50%">
 						<tr>
 							<td>이용날짜</td>
-							<td></td>
+							<td>[[${session.useDate}]]</td>
 						</tr>
 						<tr>
-							<td>이용권종류</td>
-							<td>대상</td>
-							<td>이용권가격</td>
-							<td>예약인원</td>
-							<td>결제가격</td>
+							<td width="20%">이용권종류</td><!-- leisureTime -->
+							<td width="20%">대상</td><!-- leisureAge -->
+							<td width="20%">이용권가격</td><!-- leisurePrice -->
+							<td width="20%">예약인원</td><!-- count -->
+							<td width="20%">결제가격</td><!-- total -->
 						</tr>
 						<tr>
-							<td>종일권</td>
-							<td>대인</td>
-							<td>55000</td>
-							<td>1</td>
-							<td>55000</td>
-						</tr>
+							<td>
+								<table>
+									<th:block th:each="leisure , cnt: ${list}">
+										<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<td>[[${leisure.leisureTime}]]</td>							
+										</tr>
+									</th:block>
+								</table>
+							</td>
+							<td>
+								<table>
+									<th:block th:each="leisure , cnt: ${list}">
+										<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<td>[[${leisure.leisureAge}]]</td>									
+										</tr>
+									</th:block>
+								</table>
+							</td>
+							<td>
+								<table>
+									<th:block th:each="leisure , cnt: ${list}">
+										<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<td>[[${leisure.leisurePrice}]]</td>									
+										</tr>
+									</th:block>
+								</table>
+							</td>
+							<td>
+								<table >
+									<th:block th:each="listCnt , cnt : ${session.reservCommand.listCnt}">
+										<tr th:if="${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<td>[[${listCnt}]]</td>									
+										</tr>
+									</th:block>
+								</table>
+							</td>
+							<td>
+								<table>
+										<tr>
+											<td></td>									
+										</tr>
+								</table>
+							</td>
+						</td>
 					</table>
 					<br />
 
@@ -148,23 +186,23 @@ div {
 						</tr>
 						<tr>
 							<td>이용자명</td>
-							<td></td>
+							<td>[[${session.authInfo.userNm}]]</td>
 						</tr>
 						<tr>
 							<td>성별</td>
-							<td></td>
+							<td>[[${session.authInfo.userGender}]]</td>
 						</tr>
 						<tr>
 							<td>생년월일</td>
-							<td></td>
+							<td>[[${session.authInfo.userBirth}]]</td>
 						</tr>
 						<tr>
 							<td>이메일</td>
-							<td></td>
+							<td>[[${session.userEmail}]]</td>
 						</tr>
 						<tr>
 							<td>휴대번호</td>
-							<td></td>
+							<td>[[${session.userPh}]]</td>
 						</tr>
 						<tr>
 							<td>수령장소</td>
