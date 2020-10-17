@@ -34,18 +34,20 @@ $(document).ready(function(){
 		<div class="login_div">
 			<div><input type="text" name="userId" id="userId" placeholder="아아디">
 				<font size="2", color="red">
+					<br/>
 					<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
 					<span th:text="${valid_userId}" th:classappend="${valid_userId != null}? 'has-error'"></span>
 				</font>
 			</div>
 			<div><input type="password" name="userPass" id="userPass" placeholder="비밀번호"><i class="fas fa-eye"></i>
 				<font size="2", color="red">
+					<br/>
 					<span th:if="${#fields.hasErrors('userPass')}" th:errors="*{userPass}"></span>
 					<span th:text="${valid_userPass}" th:classappend="${valid_userPass != null}? 'has-error'"></span>
 				</font>
 			</div>
 			<input type="submit" value="로그인">
-			<a href="../mem/regist">회원가입</a>
+			<input type="button" value="회원가입" onClick="location.href='../mem/regist'">
 		</div>
 		<div class="login_modify"></div>
 	</div>

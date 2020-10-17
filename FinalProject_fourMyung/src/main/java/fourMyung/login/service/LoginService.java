@@ -26,9 +26,8 @@ public class LoginService {
 	public String loginOk(LoginCommand loginCommand, HttpSession session, Model model)throws Exception {
 		String location = "";
 		LoginDTO dto = loginMapper.login(loginCommand.getUserId());
-		dto.setUserId(loginCommand.getUserId());
 		
-		if(dto==null) {
+		if(dto == null) {
 			model.addAttribute("valid_userId", "아이디가 존재하지않습니다.");
 			location = "thymeleaf/login/login";
 		}else {
