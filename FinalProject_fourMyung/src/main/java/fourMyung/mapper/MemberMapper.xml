@@ -41,7 +41,6 @@
 	select <include refid="basecolumn" /> 
 	FROM C_MEMBER 
 	WHERE USER_ID = #{userId}
-
 </select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package fourMyung.leisure.service;
 
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +16,6 @@ import org.springframework.ui.Model;
 import fourMyung.Command.AuthInfo;
 import fourMyung.Command.ReservCommand;
 import fourMyung.Command.ReservCommand2;
-import fourMyung.domain.member.MemberDTO;
 
 @Service
 @Component

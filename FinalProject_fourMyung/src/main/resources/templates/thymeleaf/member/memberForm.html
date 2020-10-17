@@ -15,8 +15,7 @@
 		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
 	</header>
 <div id='memberTab'>
-<fieldset>
-	<legend>회원가입 정보</legend>
+
 <table width = '600' align = 'center' border = '1' >
 	<caption><strong>회원 가입</strong></caption>
 	<colgroup>
@@ -32,18 +31,19 @@
 	</tr>
 	</tfoot>
 	<tbody>
-	<tr>
+<!-- 	<tr>
 		<th >회원 유형</th>	
 		<td>
 		 &nbsp;&nbsp;&nbsp;&nbsp; 
-		<input type='radio' name='memDivCd' id='memDivCd' value='1'  /> 회원 &nbsp;&nbsp;&nbsp;&nbsp; 
+		<input type='radio' name='memDivCd' id='memDivCd' value='1' checked /> 회원 &nbsp;&nbsp;&nbsp;&nbsp; 
 		<input type='radio' name='memDivCd' id='memDivCd' value='2'  />	관리자
 		<span th:if="${#fields.hasErrors('memDivCd')}" th:errors="*{memDivCd}" ></span></td>
-	</tr>
+	</tr> -->
 	<tr>
 		<th colspan= '2'>사용자 ID와 비밀번호 입력</th>
 	</tr>
 	<tr>
+		<input type='hidden' name='memDivCd' id='memDivCd' value='1' />
 		<th ><label for='userId'>사용자 ID</label></th>
 		<td ><input type='text' name='userId' id='userId' th:field="*{userId}" 
 			class='userId' size='15' maxlength='10' autofocus="autofocus" />
@@ -103,10 +103,15 @@
 		placeholder='123-123-1234 ,123-1234-1234' size= '26' maxlength='13' />
 		<span th:if="${#fields.hasErrors('userPh')}" th:errors="*{userPh}" ></span></td>
 	</tr>
+	 
 	</tbody>
 </table>
-<fieldset>
+
 </div>
 </form>
+
+<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
 </body>
 </html>

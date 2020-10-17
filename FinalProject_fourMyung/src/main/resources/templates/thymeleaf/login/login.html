@@ -4,6 +4,18 @@
 <link rel="stylesheet" href="../static/css/login/login.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+$(document).ready(function(){
+    $("#check1").ready(function(){
+        if($("#check1").is(":checked")){
+            alert("체크");
+        }
+        else{
+            alert("체크 해제");
+        }
+    });
+});
+</script>
 </head>
 <body>
 <form th:action="@{/loginOk}" name="frm" id="frm" method="post" th:object="${loginCommand}">
@@ -39,5 +51,6 @@
 	</div>
 </div>
 </form>
+<footer th:include="thymeleaf/include/footer.html"></footer>
 </body>
 </html>

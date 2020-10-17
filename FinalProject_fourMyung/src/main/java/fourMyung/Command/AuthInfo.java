@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AuthInfo {
+	private String memDivCd;
 	private String userId;
 	private String userPass;
 	private String userEmail;
@@ -16,6 +17,5 @@ public class AuthInfo {
 	private String userPh;
 	private Timestamp userBirth;
 	
-//	private String memDivCd;
 	
 }
