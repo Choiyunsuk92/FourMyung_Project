@@ -17,7 +17,7 @@
 		<div class="payDiv_img">
 		</div>
 	</div>
-<form th:action="@{/pay/payInfo}" method="post" name="frm" th:object="${payCommand}">
+<form th:action="@{/pay/kakaoPay}" method="post" name="frm" th:object="${payCommand}">
 	<table>
 		<tr>
 			<th colspan="2">예약정보</th>
@@ -58,9 +58,8 @@
 			<td>결제방법</td>
 			<td>
 				<ul>
-					<li><input type="radio" name="payType"> 신용카드</li>
-					<li><input type="radio" name="payType"> 실시간계좌이체</li>
-					<li><input type="radio" name="payType"> 카카오페이</li>
+					<li><input type="radio" name="payType" value="BT"> 실시간계좌이체</li>
+					<li><input type="radio" name="payType" value="KP"> 카카오페이</li>
 				</ul>
 			</td>
 		</tr>
@@ -71,12 +70,13 @@
 		<input type="text" name="check_adult"  th:value="${hotelResInfo.check_adult}">
 		<input type="text" name="check_child"  th:value="${hotelResInfo.check_child}">
 		<input type="text" name="price"  th:value="${hotelResInfo.price}">
-		<input type="text" name="roomNm"  th:value="${hotelResInfo.roomNm}">
+		<input type="text" name="prodNm"  th:value="${hotelResInfo.roomNm}">
 		<input type="text" name="roomOfNum"  th:value="${hotelResInfo.roomOfNum}">
 		<input type="text" name="userNm"  th:value="${hotelResInfo.userNm}">
 		<input type="text" name="userPh"  th:value="${hotelResInfo.userPh}">
 		<input type="text" name="addReq"  th:value="${hotelResInfo.addReq}">
 		<input type="text" name="roomDivCd"  th:value="${hotelResInfo.divCd}">
+		<input type="text" name="divCd"  value="H">
 	</div>
 	<div class="divPay">
 		<div class="divPay_1"><input type="submit" value="결제" class="divPay_1_submit"></div>
