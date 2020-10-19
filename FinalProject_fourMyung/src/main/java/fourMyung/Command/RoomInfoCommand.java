@@ -22,4 +22,5 @@ public class RoomInfoCommand {
 	String bedInfo; // 침대구성
 	String offerSvc; // 제공서비스
 	MultipartFile [] roomImg; // 룸이미지
+	String etc;
 }
