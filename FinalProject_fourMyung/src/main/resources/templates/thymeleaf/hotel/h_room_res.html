@@ -16,7 +16,7 @@
 			</div>
 		</div>
 </header>
-<form th:action="@{/hotel/RoomReservation}" method="post" name='RoomReservation' id="RoomReservation" th:object="${hotelRoomCommand}">
+<form th:action="@{/hotel/RoomReservation}" method="post" name='RoomReservation' id="RoomReservation" th:object="${hotelResCommand}">
 <div class="roomContent">
 	<div class="roomSel">
 		<div class="resInfo">
@@ -30,11 +30,11 @@
 					<div>총 인원수</div>
 				</div>
 				<div class="res_check_2">
-					<div>2020-12-11(금)</div>
-					<div>2020-12-12(토)</div>
+					<div><span th:text="${roomResInfo.checkInDt}"></span></div>
+					<div><span th:text="${roomResInfo.checkOutDt}"></span></div>
 					<div>1</div>
-					<div>1</div>
-					<div>성인: 2 소아 : 0</div>
+					<div><span th:text="${roomResInfo.roomOfNum}"></span></div>
+					<div>성인: <span th:text="${roomResInfo.check_adult}"></span>소아 : <span th:text="${roomResInfo.check_child}"></span></div>
 				</div>
 			</div>
 		</div>
@@ -46,20 +46,20 @@
 				</div>
 				<div class="info_1">
 					<h4>객실</h4>
-					<span>성인 : 2</span>
-					<span>소아 : 0</span>
+					<span>성인 : <span th:text="${roomResInfo.check_adult}"></span></span>
+					<span>소아 : <span th:text="${roomResInfo.check_child}"></span></span>
 				</div>
 				<div class="room_name">
-					디럭스 더블 저층룸
+					<span th:text="${roomResInfo.roomNm}"></span>
 				</div>
 				<div class="room_Select">
-					<div>2020-12-11(금)</div>
-					<div>₩528,000</div>
+					<div><span th:text="${roomResInfo.checkInDt}"></span></div>
+					<div >₩<span th:text="${roomResInfo.price}"></span></div>
 				</div>
 			</div>
 			<div class="rel_price">
 				<div>TOTAL</div>
-				<div>528,000원</div>
+				<div><span th:text="${roomResInfo.price}"></span>원</div>
 			</div>
 		</div>
 	</div>
@@ -81,9 +81,9 @@
 			<div class="res_div_head">투숙객 정보 입력</div>
 			<div class="resInput">
 				<ul>
-					<li><div class="div_first"><div class="span_first">성함</div> <input type="text"></div></li>
-					<li><div class="div_first"><div class="span_first">휴대전화 번호</div><input type="text"></div></li>
-					<li><div class="div_first"><div class="span_first" style="padding:20px;">추가 요청(선택)</div><input type="text"></div></li>
+					<li><div class="div_first"><div class="span_first">성함</div> <input type="text" name="userNm" required aria-required="true"></div></li>
+					<li><div class="div_first"><div class="span_first">휴대전화 번호</div><input type="text" name="userPh" required aria-required="true"></div></li>
+					<li><div class="div_first"><div class="span_first" style="padding:20px;">추가 요청(선택)</div><textarea name="addReq"></textarea></div></li>
 				</ul>
 			</div>
 			<div class="res_text1" style="color:red; font-weight: 800;">체크인 시간은 오후3시부터 입니다.</div>
@@ -100,6 +100,16 @@
 		<div class="submit_div">
 			<input type="submit" value="예약하기">
 		</div>
+	</div>
+	<div class="resInfo_hidden" style="display: none;">
+		<input type="text" name="checkInDt" th:value="${roomResInfo.checkInDt}">
+		<input type="text" name="checkOutDt" th:value="${roomResInfo.checkOutDt}">
+		<input type="text" name="roomOfNum" th:value="${roomResInfo.roomOfNum}">
+		<input type="text" name="adult" th:value="${roomResInfo.check_adult}">
+		<input type="text" name="child" th:value="${roomResInfo.check_child}">
+		<input type="text" name="price" th:value="${roomResInfo.price}">
+		<input type="text" name="divCd" value="H">
+		<input type="text" name="roomNm" th:value="${roomResInfo.roomNm}">
 	</div>
 </div>
 </form>

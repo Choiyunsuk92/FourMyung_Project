@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/payPage.css">
+<title>Insert title here</title>
+</head>
+<body>
+<header>
+	<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+</header>
+<div class="container">
+	<div class="payDiv_1">
+		<div class="payDiv_h2">
+			<h2>예약 확인</h2>
+		</div>
+		<div class="payDiv_img">
+		</div>
+	</div>
+<form th:action="@{/pay/kakaoPay}" method="post" name="frm" th:object="${payCommand}">
+	<table>
+		<tr>
+			<th colspan="2">예약정보</th>
+		</tr>
+		<tr style="border-top: 3px solid #a3b3c7;">
+			<td>이용일시</td>
+			<td><span th:text="${hotelResInfo.checkInDt}"></span> ~ <span th:text="${hotelResInfo.checkOutDt}"></span></td>
+		</tr>
+		<tr>
+			<td>상품명</td>
+			<td><span>호텔</span> . <span th:text="${hotelResInfo.roomNm}"></span></td>
+		</tr>
+		<tr>
+			<td>요금</td>
+			<td><span th:text="${hotelResInfo.price}"></span>원</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<th colspan="2">이용자정보</th>
+		</tr>
+		<tr style="border-top: 3px solid #a3b3c7;">
+			<td>이용자명</td>
+			<td th:text="${hotelResInfo.userNm}"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td>
+				<span><input type="email"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>휴대폰번호</td>
+			<td><span th:text="${hotelResInfo.userPh}"></span></td>
+		</tr>
+		<tr>
+			<td>결제방법</td>
+			<td>
+				<ul>
+					<li><input type="radio" name="payType" value="BT"> 실시간계좌이체</li>
+					<li><input type="radio" name="payType" value="KP"> 카카오페이</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<div style="display: none;">
+		<input type="text" name="checkInDt" th:value="${hotelResInfo.checkInDt}">
+		<input type="text" name="checkOutDt"  th:value="${hotelResInfo.checkOutDt}">
+		<input type="text" name="check_adult"  th:value="${hotelResInfo.check_adult}">
+		<input type="text" name="check_child"  th:value="${hotelResInfo.check_child}">
+		<input type="text" name="price"  th:value="${hotelResInfo.price}">
+		<input type="text" name="prodNm"  th:value="${hotelResInfo.roomNm}">
+		<input type="text" name="roomOfNum"  th:value="${hotelResInfo.roomOfNum}">
+		<input type="text" name="userNm"  th:value="${hotelResInfo.userNm}">
+		<input type="text" name="userPh"  th:value="${hotelResInfo.userPh}">
+		<input type="text" name="addReq"  th:value="${hotelResInfo.addReq}">
+		<input type="text" name="roomDivCd"  th:value="${hotelResInfo.divCd}">
+		<input type="text" name="divCd"  value="H">
+	</div>
+	<div class="divPay">
+		<div class="divPay_1"><input type="submit" value="결제" class="divPay_1_submit"></div>
+		<div class="divPay_2"><input type="button" class="divPay_1_cncl"> <a href="#">취소</a></div>
+	</div>
+</form>
+</div>
+</body>
+</html>

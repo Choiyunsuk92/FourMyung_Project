@@ -3,6 +3,9 @@ package fourMyung.pay.service;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -28,7 +31,7 @@ public class KakaoPayService {
 	private KaKaoPayReadyCommand kaKaoPayReadyCommand;
 	private KakaoPayApprovalCommand kakaoPayApprovalCommand;
 	
-	public String kakaoPayReady(PayCommand paycommand) {
+	public String kakaoPayReady(PayCommand paycommand, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -53,6 +56,8 @@ public class KakaoPayService {
 		
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String,String>>(params, headers);
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("resInfo", paycommand);
 		try {
 			kaKaoPayReadyCommand = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KaKaoPayReadyCommand.class);
 			log.info(" "+ kaKaoPayReadyCommand);
@@ -68,10 +73,13 @@ public class KakaoPayService {
 		return "/pay";
 	}
 	
-	public KakaoPayApprovalCommand kakaoPayInfo(String pg_token, PayCommand payCommand) {
+	public KakaoPayApprovalCommand kakaoPayInfo(String pg_token, HttpServletRequest request) {
 		log.info("KakaoPayInfoVO............................................");
 		RestTemplate restTemplate = new RestTemplate();
-		
+		System.out.println("========================");
+		HttpSession session = request.getSession();
+		System.out.println("command" + session.getAttribute("resInfo"));
+		System.out.println("========================");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK "+"b88f652672b752d6e8e297d1c39fa3e0");
 		headers.add("Accept", "application/json;charset=UTF-8");
@@ -83,8 +91,7 @@ public class KakaoPayService {
 		params.add("partner_order_id", "1002");
 		params.add("partner_user_id", "FourMyung");
 		params.add("pg_token", pg_token);
-		params.add("total_amount", payCommand.getPrice());
-		
+		params.add("total_amount", "0");
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String,String>>(params, headers);
 		
 		try {

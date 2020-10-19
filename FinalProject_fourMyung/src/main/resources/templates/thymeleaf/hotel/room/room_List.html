@@ -22,12 +22,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>1</td>
-			<td>301</td>
-			<td>Deluxe Double Lower Floor Room</td>
-			<td>회장님</td>
-			<td>2017.10.01</td>
+		<tr th:each="list : ${lists}">
+			<td th:text="${listStat.count}"></td>
+			<td th:text="${list.roomNum}"></td>
+			<td th:text="${list.roomNm}"></td>
+			<td th:text="${list.empNm}"></td>
+			<td th:text="${#dates.format(list.sysCretDt, 'yyyy-mm-dd')}"></td>
 		</tr>
 	</tbody>
 </table>

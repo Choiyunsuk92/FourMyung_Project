@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fourMyung.Command.HotelResCommand;
 import fourMyung.Command.HotelRoomCommand;
+import fourMyung.hotel.service.HotelFinalResService;
+import fourMyung.hotel.service.RoomProReservationService;
+import fourMyung.hotel.service.RoomReservationService;
 import fourMyung.hotel.service.RoomSearchService;
 
 @Controller
@@ -15,6 +18,12 @@ import fourMyung.hotel.service.RoomSearchService;
 public class HotelController {
 	@Autowired
 	RoomSearchService rommSearchService;
+	@Autowired
+	RoomReservationService roomReservationService;
+	@Autowired
+	RoomProReservationService roomProReservationService;
+	@Autowired
+	HotelFinalResService hotelFinalResService;
 	@RequestMapping("hotelMain")
 	public String hotelMain() {
 		
@@ -30,8 +39,23 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value="RoomSelect", method = RequestMethod.POST)
-	public String RoomReservation(HotelResCommand hotelResCommand, Model model) {
+	public String RoomReservation(HotelResCommand hotelResCommand, Model model) throws Exception{
 		
-		return "thymeleaf/regist/hotelList";
+		roomReservationService.roomResInfo(hotelResCommand, model);
+		
+		return "thymeleaf/hotel/h_room_res";
 	}
+	
+	@RequestMapping(value="RoomReservation", method =RequestMethod.POST)
+	public String RoomProReservation(HotelResCommand hotelResCommand, Model model) throws Exception{
+		hotelFinalResService.infoComm(hotelResCommand, model);
+		//roomProReservationService.hotelResInsert(hotelResCommand, model);
+		return "thymeleaf/main/h_payPage";
+	}
+	@RequestMapping(value="HotelResInfo")
+	public String HotelResInfo() {
+		
+		return "";
+	}
+	
 }

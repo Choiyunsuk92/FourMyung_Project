@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../static/css/hotel/roomSel.css">
+<script src="../static/jquery/jquery.js"></script>
+<script type="text/javascript" src="../static/js/hotel/roomSelect.js"></script>
+<script type="text/javascript">
+function roomSelBtnClick(roomNm, price, people){
+	$("#totalRoomNm").text(roomNm);
+	$("#totalRoomNm1").val(roomNm);
+	var roomOfNumber = $("#roomOfNumber option:selected").val();
+	var totalPirce = price * roomOfNumber;
+	$("#totalPrice").text(totalPirce);
+	$("#totalPrice1").val(totalPirce);
+	$("#roomOfNum").val(roomOfNumber);
+	// 인원에 따른 select box 생성
+	people++;
+	var i;
+	for(i=1; i<people; i++){
+		$("#totalPeople").append("<option value="+i+">"+i+"</option>");
+	}
+	$("#totalPeople").val("2").prop("selected", "selected");
+	$("#selRoom").css("display", "flex");
+}
+</script>
 </head>
 <body>
 <header>
@@ -24,8 +45,10 @@
 		<div class="resInfo">
 			<div><h2>예약정보</h2></div>
 			<div><h3>숙박일정</h3></div>
-			<div><h3>도착</h3><input type="date" class="chek_In_Date" name="chek_In_Date"></div>
-			<div><h3>출발</h3><input type="date" class="chek_Out_Date" name="chek_Out_Date"></div>
+			<div><h3>도착</h3><input type="date" class="chek_In_Date" id="checkDateIn" th:value="${resInfoCom.chek_In_Date}" required aria-required="true"></div>
+			<div><h3>출발</h3><input type="date" class="chek_Out_Date" id="checkDateOut" th:value="${resInfoCom.chek_Out_Date}" required aria-required="true"></div>
+			<div style="display: none;"><h3>도착</h3><input type="text" name="chek_In_Date" id="r_chek_In_Date" th:value="${resInfoCom.chek_In_Date}"></div>
+			<div style="display: none;"><h3>출발</h3><input type="text" name="chek_Out_Date" id="r_chek_Out_Date" th:value="${resInfoCom.chek_Out_Date}"></div>
 			<div class="guestInfo">
 				<p>GUEST</p>
 				<div><p>성인</p>
@@ -49,15 +72,17 @@
 		</div>
 	</form>
 	<!-- 객실예약 -->
-	<form th:action="@{/hotel/RoomSelect}" method="post" name='RoomSelect' id="RoomSelect" th:object="${hotelRoomCommand}">
-		<div class="selRoom">
+	<form th:action="@{/hotel/RoomSelect}" method="post" name='RoomSelect' id="RoomSelect" th:object="${hotelResCommand}">
+		<div class="selRoom" id="selRoom" style="display: none;">
 			<div><h2>선택한 객실</h2></div>
 			<div class="selRoom_detail">
-				<span>디럭스 더블 저층룸</span>
-				<span>196,000원</span>
+				<span id="totalRoomNm"></span>
 			</div>
-			<div style="display: none;"><h3>도착</h3><input type="date" class="chek_In_Date" name="chek_In_Date"></div>
-			<div style="display: none;"><h3>출발</h3><input type="date" class="chek_Out_Date" name="chek_Out_Date"></div>
+			<div style="display: none;"><h3>도착</h3><input type="text" class="chek_In_Date" name="checkInDt" id="h_chek_In_Date" th:value="${resInfoCom.chek_In_Date}"></div>
+			<div style="display: none;"><h3>출발</h3><input type="text" class="chek_Out_Date" name="checkOutDt" id="h_chek_Out_Date" th:value="${resInfoCom.chek_Out_Date}"></div>
+			<div style="display: none;"><h3>객실수</h3><input type="text" id="roomOfNum" name="roomOfNum"></div>
+			<input type="hidden" name="price" id="totalPrice1">
+			<input type="hidden" name="roomNm" id="totalRoomNm1" >
 			<div class="person_Info">
 				<div class="info_1">
 					<h4>성인</h4>
@@ -66,13 +91,11 @@
 				<div class="room_Select">
 					<div>객실</div>
 					<div>
-						<select>
-							<option>1</option>
-							<option>2</option>
+						<select name="check_adult" id="totalPeople">
 						</select>
 					</div>
 					<div>
-						<select>
+						<select name="check_child">
 							<option>0</option>
 						</select>
 					</div>
@@ -81,37 +104,37 @@
 			<div class="div_submit"><input type="submit" value="예약하기"></div>
 			<div class="rel_price">
 				<div><h3>총 금액</h3></div>
-				<div><h3>196,000</h3><h3>원</h3></div>
+				<div><h3><span id="totalPrice"></span></h3><h3>원</h3></div>
 			</div>
 		</div>
 	</form>
 	</div>
 	<div class="roomDeatilInfo">
 		<div class="resRoom">
-			<div class="resultRoom">
-				<div><h2>디럭스 더블 저층룸</h2></div>
+			<div class="resultRoom" th:each="roomRel : ${roomRel}">
+				<div><h2><span  th:text="${roomRel.roomNm}"></span></h2></div>
 				<div class="detail_Info">
-					<div><input type="image" src="../static/img/room/drux_double_low.JPG"></div>
+					<div><input type="image" th:src="@{'/static/upload/hotel/' + ${roomRel.roomImg}}"></div>
 					<div>
-						<p>여유로운 혼자만의 여행 혹은 커플여행객을 위한 객실로 더블베드로 구성되어 있습니다.전 객실 테라스에서 푸르른 파인뷰 or 레이크뷰 전망을 감상할 수 있습니다.</p>
+						<p th:text="${roomRel.etc}"></p>
 						<ul class="ul_room_Detail_Info">
-							<li>기준인원(성인): 2인</li>
-							<li>크기: 27㎡</li>
-							<li>퀸 1개</li>
+							<li>기준인원(성인): <span th:text=${roomRel.roomTo}></span></li>
+							<li>크기: <span th:text=${roomRel.roomSize}></span></li>
+							<li><span th:text=${roomRel.bedInfo}></span></li>
 							<li>부가 혜택</li>
 						</ul>
 						<div class="detail_Info_3">
 							<span><a href="#">상세 정보 보기</a></span>
-							<span><h2>132,000</h2>원</span>
+							<span><h2 th:text="${roomRel.price}"></h2>원</span>
 						</div>
 						<div class="detail_Info_4">
-							<select>
+							<select id="roomOfNumber">
 								<option>객실수</option>
 								<option value="1" selected="selected">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 							</select>
-							<input type="submit" value="선택">
+							<input type="button" class="roomSelectBtn" value="선택" th:onclick="@{'roomSelBtnClick(\''+${roomRel.roomNm} +'\',\''+${roomRel.price}+'\' ,\''+${roomRel.roomTo}+'\')'}">
 						</div>
 					</div>
 				</div>
