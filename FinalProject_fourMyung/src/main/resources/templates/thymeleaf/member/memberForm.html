@@ -48,7 +48,7 @@
 		<td ><input type='text' name='userId' id='userId' th:field="*{userId}" 
 			class='userId' size='15' maxlength='10' autofocus="autofocus" />
 			<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
-		<span th:text="${duplicate_userId}"></span>
+			<span th:text="${duplicate_userId}"></span>
 		</td>
 	</tr>
 	<tr>

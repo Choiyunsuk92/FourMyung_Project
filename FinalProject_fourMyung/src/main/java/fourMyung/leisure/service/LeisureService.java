@@ -48,17 +48,30 @@ public class LeisureService {
 		leisureMapper.leisureDel(leisureNum);
 	}
 
-	public void leisureCheck(Model model)throws Exception {
+	public void leisureCheck(Model model, HttpSession session)throws Exception {
 		int count = leisureMapper.getLeisureCount();
 		LeisureDTO dto = new LeisureDTO();
 		List<LeisureDTO> list = leisureMapper.selectByLeisure(dto);
 		System.out.println(list.size());
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
-
-//		LeisureTicketDTO dto = new LeisureTicketDTO();
-//		session.setAttribute("leisureNum", leisureTicketCommand.getLeisureNum());
-//		session.setAttribute("", value);
+		try {
+			Integer totalPrice = 0;
+			ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
+			int i = 0;
+	
+				for( String  leisure : reservCommand.getListLeisure() ) {
+					for(LeisureDTO leisureDTO : list) {
+						if(leisure.equals(leisureDTO.getLeisureNum().toString())) {
+							totalPrice += leisureDTO.getLeisurePrice() * Integer.parseInt(reservCommand.getListCnt().get(i));
+							break;
+						}
+					}
+					i++;
+				}
+				model.addAttribute("totalPrice", totalPrice);
+				session.setAttribute("totalPrice", totalPrice);
+		}catch(Exception e) {}
 
 	}
 }

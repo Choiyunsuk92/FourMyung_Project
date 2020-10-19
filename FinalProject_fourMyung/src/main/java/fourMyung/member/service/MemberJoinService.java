@@ -46,7 +46,11 @@ public class MemberJoinService {
 		dto.setUserAddr(memberCommand.getUserAddr());
 		dto.setUserPh(memberCommand.getUserPh());
 		result = memberMapper.insertMember(dto);
-		if(result != null) {
+		System.out.println(result);
+		if(result == null) {
+			System.out.println("메롱");
+			model.addAttribute("NoUseId", "사용중인 아이디 입니다. ");
+		}else {
 			SmsSend ss = new SmsSend();
 			try {
 				mailAction.sendMail(dto.getUserEmail(), dto.getUserId());
@@ -55,8 +59,6 @@ public class MemberJoinService {
 				ss.smsSend(dto.getUserPh(), dto.getUserNm()+"님 회원가입을 축하합니다. "+ "그러나 1588-0000 으로 문의 바랍니다.");
 				e.printStackTrace();
 			}
-		}else {
-			model.addAttribute("duplicate_userId", "사용중인 아이디 입니다. ");
 		}
 		return result;
 	}

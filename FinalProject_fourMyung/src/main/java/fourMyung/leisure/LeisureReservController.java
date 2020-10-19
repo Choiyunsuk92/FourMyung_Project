@@ -40,8 +40,8 @@ public class LeisureReservController {
 		return "thymeleaf/leisure/leisureReserv_1";
 	}
 	@RequestMapping(value="reservation_2", method = RequestMethod.POST)
-	public String reservation_2(Model model)throws Exception {
-		leisureService.leisureCheck(model);
+	public String reservation_2(Model model,HttpSession session)throws Exception {
+		leisureService.leisureCheck(model, session);
 		return "thymeleaf/leisure/leisureReserv_2";	
 	}
 	@RequestMapping(value="reservation_3")
@@ -52,7 +52,13 @@ public class LeisureReservController {
 	@RequestMapping(value="reservation_4")
 	public String reservation_4(HttpSession session, ReservCommand2 reservCommand2, Model model)throws Exception {
 		leisureReservService.memberCheck(session, reservCommand2, model);
-		leisureService.leisureCheck(model);
+		leisureService.leisureCheck(model, session);
 		return "thymeleaf/leisure/leisureReserv_4";
+	}
+	@RequestMapping(value="reservation_5")
+	public String reservation_5(HttpSession session) {
+		leisureReservService.insertTicketNum(session);
+//		leisure
+		return "thymeleaf/leisure/leisureReserv_5";
 	}
 }

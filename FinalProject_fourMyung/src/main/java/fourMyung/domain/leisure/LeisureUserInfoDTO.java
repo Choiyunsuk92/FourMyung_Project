@@ -1,8 +1,5 @@
 package fourMyung.domain.leisure;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeisureTicketDTO {
+public class LeisureUserInfoDTO {
+	String userId;
 	String ticketNum;
-	Integer totalPrice;
-	String phNum;
-	Date useDate;
-	Timestamp resDate;
 }

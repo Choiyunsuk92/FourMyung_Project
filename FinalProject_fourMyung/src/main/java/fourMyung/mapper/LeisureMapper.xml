@@ -33,4 +33,24 @@
 <select id="getLeisureCount" resultType="int">
 		select count(*) from l_lsr_list
 </select>
+
+<select id="selectTicketNum" resultType="string">
+	select num_seq.nextval from dual
+</select>
+
+<insert id="insertTicket" parameterType="fourMyung.domain.leisure.LeisureTicketDTO">
+	insert into L_TICKET (TICKET_NUM, TOTAL_PRICE, PH_NUM, USE_DATE, RES_DATE)
+	values(#{ticketNum}, #{totalPrice}, #{phNum}, #{useDate}, sysdate)
+</insert>
+
+<insert id="insertLeisureUser" parameterType="fourMyung.domain.leisure.LeisureUserInfoDTO">
+	insert into L_USER(USER_ID, TICKET_NUM)
+	values(#{userId}, #{ticketNum})
+</insert>
+
+<insert id="insertTicketDetail" parameterType="fourMyung.domain.leisure.LeisureTicketDetailDTO" >
+	insert into L_TICKET_DETAIL(TICKET_NUM, LEISURE_NUM, TICKET_QTY)
+	values(#{ticketNum}, #{leisureNum}, #{ticketQty})
+</insert>
+
 </mapper>

@@ -21,11 +21,10 @@ public class LoginService {
 	LoginMapper loginMapper;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	AuthInfo authInfo;
 	
 	public String loginOk(LoginCommand loginCommand, HttpSession session, Model model)throws Exception {
 		String location = "";
-		LoginDTO dto = loginMapper.login(loginCommand.getUserId());
+		AuthInfo dto = loginMapper.login(loginCommand.getUserId());
 		
 		if(dto == null) {
 			model.addAttribute("valid_userId", "아이디가 존재하지않습니다.");

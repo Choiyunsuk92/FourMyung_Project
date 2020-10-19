@@ -4,7 +4,7 @@
 <mapper namespace="fourMyung.mapper.LoginMapper" >
 
 <!-- fourMyung.domain.login.LoginDTO -->
-<resultMap type="fourMyung.domain.login.LoginDTO" id="baseLogin">
+<resultMap type="fourMyung.Command.AuthInfo" id="baseLogin">
 	<constructor>
 		<idArg column="user_Id" javaType="string"/>
 		<arg column="MEM_DIV_CD" javaType="string"/>
@@ -17,7 +17,7 @@
 	</constructor>
 </resultMap>
 
-<select id="login" parameterType="fourMyung.domain.login.LoginDTO" resultMap="baseLogin">
+<select id="login" parameterType="fourMyung.Command.AuthInfo" resultMap="baseLogin">
 	select user_id, user_pass, MEM_DIV_CD, USER_NM, USER_EMAIL, USER_GENDER, USER_BIRTH, USER_PH
 	from c_member
 	where user_id= #{userId}
@@ -25,7 +25,6 @@
 	select emp_id, emp_pass, mem_div_cd, EMP_NM, EMP_EMAIL, EMP_GENDER, EMP_BIRTH, EMP_PH
 	from m_employee
 	where emp_id = #{empId}
-
 </select>	
 
 </mapper>

@@ -113,14 +113,16 @@ div {
 				<img th:src="@{/static/img/leisure/reser_hotel_step04.png}"
 					style="display: block; margin: 0px auto;">
 			</div>
+			<th:block th:with="value1=0">
 			<div class="leftcolumn">
 				<div class="card">
 					<h2>예약정보</h2>
 					<br />
+					
 					<table style="width: 50%">
 						<tr>
 							<td>이용날짜</td>
-							<td>[[${session.useDate}]]</td>
+							<td>[[${session.reservCommand.useDate}]]</td>
 						</tr>
 						<tr>
 							<td width="20%">이용권종류</td><!-- leisureTime -->
@@ -168,9 +170,14 @@ div {
 							</td>
 							<td>
 								<table>
-										<tr>
-											<td></td>									
+								
+								<th:block th:each="listCnt , cnt : ${session.reservCommand.listCnt}">
+										<tr th:if="${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<td>
+												[[${listCnt} * ${list[cnt.index].leisurePrice}]]
+											</td>									
 										</tr>
+								</th:block>
 								</table>
 							</td>
 						</td>
@@ -216,9 +223,9 @@ div {
 						<tr>
 							<td>
 								무통장입금 &nbsp;&nbsp;<input type="radio" value="무통장입금" checked>
-							</td>
 							<td align="right">
-								결제금액 &nbsp;&nbsp;:0000 
+								결제금액 &nbsp;&nbsp;: [[${session.totalPrice}]]
+								
 							</td>
 						</tr>
 						<tr>
@@ -227,6 +234,7 @@ div {
 						</tr>
 					</table>
 				</div>
+				</th:block>
 			</div>
 		</div>
 

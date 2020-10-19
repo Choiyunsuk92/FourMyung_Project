@@ -1,5 +1,7 @@
 package fourMyung.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fourMyung.Command.AuthInfo;
 import fourMyung.Command.MemberCommand;
+import fourMyung.domain.login.LoginDTO;
+import fourMyung.member.service.MemberInfoService;
 import fourMyung.member.service.MemberJoinService;
 
 @Controller
@@ -18,6 +23,8 @@ import fourMyung.member.service.MemberJoinService;
 public class MemberController {
 	@Autowired
 	MemberJoinService memberJoinService;
+	@Autowired
+	MemberInfoService memberInfoService;
 	
 	@ModelAttribute
 	MemberCommand setMemberCommand() {
@@ -52,4 +59,14 @@ public class MemberController {
 			return "thymeleaf/member/fail";
 		}
 	}
+	@RequestMapping(value="mypage", method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model)throws Exception {
+		String userId = ((AuthInfo)session.getAttribute("authInfo")).getUserId();
+		memberInfoService.myInfo(userId, model);
+		return "thymeleaf/member/myInfo";
+	}
 }
+
+
+
+

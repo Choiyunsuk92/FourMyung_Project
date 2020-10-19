@@ -22,8 +22,13 @@
 			<a href="../login">Login</a>
 			<a href="../mem/regist">JoinUs</a>
 			</span>
-			<span th:if="${session.authInfo != null}">
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 1">
 			<a href="../logout">Logout</a>
+			<a href="../mem/mypage">MyPage</a>
+			</span>
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 2">
+			<a href="../logout">Logout</a>
+			<a href="../emp/mypage">MyPage</a>
 			</span>
 		</div>
 	</div>

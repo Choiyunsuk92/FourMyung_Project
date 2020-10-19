@@ -1,5 +1,6 @@
 package fourMyung.leisure.service;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -16,11 +18,17 @@ import org.springframework.ui.Model;
 import fourMyung.Command.AuthInfo;
 import fourMyung.Command.ReservCommand;
 import fourMyung.Command.ReservCommand2;
+import fourMyung.domain.leisure.LeisureTicketDTO;
+import fourMyung.domain.leisure.LeisureTicketDetailDTO;
+import fourMyung.domain.leisure.LeisureUserInfoDTO;
+import fourMyung.mapper.LeisureMapper;
 
 @Service
 @Component
 public class LeisureReservService {
 	AuthInfo authInfo;
+	@Autowired
+	LeisureMapper leisureMapper;
 	
 	public void ticketCheck(Model model, HttpSession session, HttpServletRequest request)throws Exception { 
 		List<String> listLeisure = new ArrayList<String>();
@@ -53,18 +61,55 @@ public class LeisureReservService {
 		  reservCommand.setListLeisure(listLeisure);
 		  reservCommand.setListCnt(listCnt);
 		  reservCommand.setUseDate(useDate);
-		  
 		  session.setAttribute("reservCommand", reservCommand);
-		  
-		  System.out.println("useDate : "+useDate);
-		  
 	}
 
 	public void memberCheck(HttpSession session, ReservCommand2 reservCommand2,  Model model) {
 		session.setAttribute("userEmail", reservCommand2.getUserEmail());
 		session.setAttribute("userPh", reservCommand2.getUserPh());
-		System.out.println("new_userEmail : "+reservCommand2.getUserEmail());
-		System.out.println("new_userph : "+reservCommand2.getUserPh());
 	}
-	 
+
+	public void insertTicketNum(HttpSession session) {
+		String num = leisureMapper.selectTicketNum();
+		
+		LeisureTicketDTO dto = new LeisureTicketDTO();
+		dto.setTicketNum(num);
+		dto.setTotalPrice((Integer)session.getAttribute("totalPrice"));
+		dto.setPhNum((String)session.getAttribute("userPh"));
+		
+		ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
+		System.out.println(reservCommand.getUseDate());
+//		Timestamp dddd = (Timestamp) reservCommand.getUseDate();
+		dto.setUseDate(reservCommand.getUseDate());
+		leisureMapper.insertTicket(dto);
+		
+		LeisureUserInfoDTO user = new LeisureUserInfoDTO();
+		user.setTicketNum(num);
+		user.setUserId(((AuthInfo)session.getAttribute("authInfo")).getUserId());
+		leisureMapper.insertLeisureUser(user);
+//		System.out.println(((AuthInfo)session.getAttribute("authInfo")).getUserId());
+		
+		System.out.println(reservCommand.getListCnt().get(0));
+		int i = 0;
+		for(String leisureNum : reservCommand.getListLeisure()) {
+			LeisureTicketDetailDTO detail = new LeisureTicketDetailDTO();
+			String qty =  reservCommand.getListCnt().get(i);
+			detail.setTicketNum(num);
+			System.out.println(num);
+			detail.setLeisureNum(leisureNum);
+			System.out.println(leisureNum);
+			detail.setTicketQty(Integer.parseInt(qty));
+			System.out.println(qty);
+			if(Integer.parseInt(qty) != 0) {
+				leisureMapper.insertTicketDetail(detail);
+			}
+			i++;
+		}
+		
+		session.removeAttribute("reservCommand");
+		session.removeAttribute("userEmail");
+		session.removeAttribute("userPh");
+		session.removeAttribute("totalPrice");
+//		detail.setUseDate((Timestamp)session.getAttribute("useDate"));
+	}
 }

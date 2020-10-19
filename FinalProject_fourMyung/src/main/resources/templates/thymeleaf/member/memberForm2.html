@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div#memberTab {
+	width: 610px;
+	margin: 0 auto;
+}
+</style>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+	<form th:action='@{/mem/registOk}' method='POST' name='frm' id="frm" th:object="${memberCommand}">
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+		</header>
+		<div id="header">
+			<div id="wrapper">
+				<div id="content">
+					<div>
+						<h3>
+							<label for="id">아이디</label>
+						</h3>
+						<span class="box int_id"> <input type="text" id="id" class="int" maxlength="20"> <span class="step_url">@naver.com</span> </span>
+						<span class="error_next_box"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
+</body>
+</html>
