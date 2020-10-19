@@ -5,7 +5,19 @@
 <link rel="stylesheet" href="../static/css/member/relSelect.css">
 <script src="https://kit.fontawesome.com/19c81546e5.js" crossorigin="anonymous"></script>
 <script src="../static/jquery/jquery.js"></script>
-<title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	document.getElementById('resDate').valueAsDate = new Date();
+	
+	// 취소요청 버튼 클릭
+	$("#cnclBtn").click(function(){
+		if(confirm("정말로 예약을 취소하시겠습니까?")){
+			$("#cnclBtn").submit();
+		};
+	});
+})
+</script>
+<title></title>
 </head>
 <body>
 <header>

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.m_content{
+	margin: 80px 15px;
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}
+.m_header{
+	background: #1565c0;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 1000;
+	text-align: center;
+	border-radius: 5px;
+	padding: 10px 0px;
+}
+.m_ul_div{
+	margin-top: 20px;
+}
+.m_ul li{
+	list-style: none;
+	padding: 7px;
+	font-size: 14px;
+	font-weight: 600;
+}
+a{
+	text-decoration: none;
+	color: #000000;
+}
+a:hover {
+	color: #0097a7;
+}
+.resSubMenu{
+	display : none;
+	margin-top: 10px;
+	border-top: 1px solid #e7e7e7;
+}
+.resSubMenu li{
+	list-style: inside;
+}
+.resSubMenu li a{
+	color: #666;
+	font-size: 12px;
+}
+.dropMenu:hover .resSubMenu{
+	display: block;
+}
+.m_contact{
+	background: #fff;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 5px;
+	border: 1px solid #e7e7e7;
+	padding: 10px 0px;
+	margin-top: 20px;
+}
+.m_contact div{
+	margin: 6px 0;
+}
+.centerNum{
+	color: #55bfe8;
+}

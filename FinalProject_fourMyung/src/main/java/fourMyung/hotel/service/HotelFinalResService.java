@@ -12,7 +12,7 @@ public class HotelFinalResService {
 
 	public void infoComm(HotelResCommand hotelResCommand, Model model) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("roomClass: ::::"+ hotelResCommand.getRoomClass());
 		model.addAttribute("hotelResInfo", hotelResCommand);
 	}
 

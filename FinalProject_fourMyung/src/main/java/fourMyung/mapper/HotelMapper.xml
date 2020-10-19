@@ -2,36 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fourMyung.mapper.HotelMapper">
-
-<select id="roomSearch">
-	SELECT *
+<sql id="roomColumn">
+ROOM_SEQ, ROOM_NUM, ROOM_NM, ROOM_CLASS, PRICE,ROOM_TO, ROOM_SIZE, BED_INFO, ROOM_RES_YN, OFFER_SVC, EMP_NUM, 
+EMP_NM, SYS_CRET_DT, SYS_MDF_DT, ROOM_IMG_ORG, ROOM_IMG_STORE, FILE_SIZE, ETC, REPLACE(ROOM_IMG_STORE, '`', '') AS TMP_ROOM_IMG
+</sql>
+<sql id="resColumn">
+RES_NUM, MEM_NUM, ROOM_NUM, SRVC_NUM, USER_ID, USER_NM ,USER_PH,
+RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD,SYS_CRET_DT, SYS_MDF_DT, ADD_REQ, PAY_TYPE, PRICE, ROOM_OF_NUM
+</sql>
+<resultMap type="fourMyung.domain.hotel.RoomDTO" id="roomResMap">
+	<id column="ROOM_SEQ" jdbcType="VARCHAR" property="roomSeq"/>
+	<result column="ROOM_NUM" jdbcType="VARCHAR" property="roomNum"/>
+	<result column="ROOM_NM" jdbcType="VARCHAR" property="roomNm"/>
+	<result column="ROOM_CLASS" jdbcType="VARCHAR" property="roomClass"/>
+	<result column="PRICE" jdbcType="VARCHAR" property="price"/>
+	<result column="ROOM_TO" jdbcType="VARCHAR" property="roomTo"/>
+	<result column="ROOM_SIZE" jdbcType="VARCHAR" property="roomSize"/>
+	<result column="BED_INFO" jdbcType="VARCHAR" property="bedInfo"/>
+	<result column="ROOM_RES_YN" jdbcType="VARCHAR" property="roomResYn"/>
+	<result column="OFFER_SVC" jdbcType="VARCHAR" property="offerSvc"/>
+	<result column="EMP_NUM" jdbcType="VARCHAR" property="empNum"/>
+	<result column="EMP_NM" jdbcType="VARCHAR" property="empNm"/>
+	<result column="SYS_CRET_DT" jdbcType="DATE" property="sysCretDt"/>
+	<result column="ROOM_IMG_ORG" jdbcType="VARCHAR" property="originalFileName"/>
+	<result column="ROOM_IMG_STORE" jdbcType="VARCHAR" property="storeFileName"/>
+	<result column="FILE_SIZE" jdbcType="VARCHAR" property="fileSize"/>
+	<result column="ETC" jdbcType="VARCHAR" property="etc"/>
+	<result column="TMP_ROOM_IMG" jdbcType="VARCHAR" property="roomImg"/>
+</resultMap>
+<select id="roomSearch" resultMap="roomResMap">
+	SELECT <include refid="roomColumn"/> 
 	  FROM H_HTL_ROOM
+	WHERE ROOM_RES_YN = 'Y'
 </select>
 
-<insert id="roomInsert">
+<insert id="roomInsert" parameterType="fourMyung.domain.hotel.RoomDTO">
 INSERT INTO H_HTL_ROOM(
-ROOM_SEQ,
-ROOM_NUM,
-ROOM_NM,
-ROOM_CLASS,
-PRICE,
-ROOM_TO,
-ROOM_SIZE,
-BED_INFO,
-ROOM_RES_YN,
-OFFER_SVC,
-EMP_NUM,
-EMP_NM,
-SYS_CRET_DT,
-SYS_MDF_DT,
-ROOM_IMG_ORG,
-ROOM_IMG_STORE,
-FILE_SIZE
+ <include refid="roomColumn"/> 
 ) 
 VALUES(
 H_ROOM_SEQ.NEXTVAL,
 #{roomNum},
-#{rooNm},
+#{roomNm},
 #{roomClass},
 #{price},
 #{roomTo},
@@ -45,7 +57,56 @@ SYSDATE,
 NULL,
 #{originalFileName},
 #{storeFileName},
-#{fileSize}
+#{fileSize},
+#{etc},
+#{roomOfNum}
 )
 </insert>
+<select id="roomListSelect" resultMap="roomResMap">
+	SELECT <include refid="roomColumn"/>
+	  FROM H_HTL_ROOM
+</select>
+
+<insert id="hotelResInsert">
+INSERT INTO H_HTL_RES(
+<include refid="resColumn"/>
+) VALUES(
+H_RES_SEQ.NEXTVAL,
+1,
+(SELECT ROOM_NUM FROM H_HTL_ROOM WHERE ROOM_CLASS = #{roomDivCd} AND ROOM_RES_YN = 'Y' AND ROWNUM =1),
+1,
+'TEST',
+#{userNm},
+#{userPh},
+#{checkInDt},
+#{checkOutDt},
+#{check_adult},
+#{check_child},
+#{roomDivCd},
+SYSDATE,
+NULL,
+#{addReq},
+#{payType},
+#{price},
+#{roomOfNum}
+)
+</insert>
+<update id="roomResYnUpdate">
+UPDATE H_HTL_ROOM
+   SET ROOM_RES_YN = 'Y'
+ WHERE ROOM_NUM = (SELECT ROOM_NUM 
+					 FROM H_HTL_RES 
+					WHERE USER_ID = 'TEST'
+					  AND RES_CHK_IN_DT = #{checkInDt})
+</update>
+
+<select id="resInfoSelect" resultType="fourMyung.domain.hotel.HotelResInfoDTO">
+	SELECT <include refid="resColumn"/>,
+			DECODE(PAY_TYPE, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE_HANGLE
+	  FROM H_HTL_RES
+	 WHERE USER_ID = 'TEST'
+	   AND USER_NM = #{userNm}
+	   AND RES_CHK_IN_DT = #{checkInDt}
+	   AND RES_CHK_OUT_DT = #{checkOutDt}
+</select>
 </mapper>

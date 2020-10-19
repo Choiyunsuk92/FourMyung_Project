@@ -104,7 +104,7 @@ select{
 .detail_Info_3 span h2{
 	display: inline-block;
 }
-.detail_Info_4 input[type="submit"]{
+.detail_Info_4 input[type="button"]{
 	padding: 6px 30px;
 	background: #ffffff;
 }

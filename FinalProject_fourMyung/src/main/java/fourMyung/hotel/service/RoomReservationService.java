@@ -18,11 +18,12 @@ public class RoomReservationService {
 		// TODO Auto-generated method stub
 		System.out.println("=============================");
 		System.out.println(hotelResCommand.getCheckInDt());
-		System.out.println();
+		System.out.println(hotelResCommand.getCheck_adult());
+		System.out.println(hotelResCommand.getRoomClass());
 		System.out.println("=============================");
-		String form = "2020-10-29";
-		SimpleDateFormat trans = new SimpleDateFormat("yyyy-mm-dd");
-		Date to = trans.parse(form);
+//		String form = "2020-10-29";
+//		SimpleDateFormat trans = new SimpleDateFormat("yyyy-mm-dd");
+//		Date to = trans.parse(form);
 		model.addAttribute("roomResInfo", hotelResCommand);
 	}
 

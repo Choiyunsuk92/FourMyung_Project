@@ -1,5 +1,7 @@
 package fourMyung.hotel;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fourMyung.Command.HotelResCommand;
 import fourMyung.Command.HotelRoomCommand;
 import fourMyung.hotel.service.HotelFinalResService;
+import fourMyung.hotel.service.HotelResInfoInsertService;
 import fourMyung.hotel.service.RoomProReservationService;
 import fourMyung.hotel.service.RoomReservationService;
 import fourMyung.hotel.service.RoomSearchService;
@@ -24,6 +27,8 @@ public class HotelController {
 	RoomProReservationService roomProReservationService;
 	@Autowired
 	HotelFinalResService hotelFinalResService;
+	@Autowired
+	HotelResInfoInsertService HotelResInfoInsertService;
 	@RequestMapping("hotelMain")
 	public String hotelMain() {
 		
@@ -50,12 +55,12 @@ public class HotelController {
 	public String RoomProReservation(HotelResCommand hotelResCommand, Model model) throws Exception{
 		hotelFinalResService.infoComm(hotelResCommand, model);
 		//roomProReservationService.hotelResInsert(hotelResCommand, model);
-		return "thymeleaf/main/h_payPage";
+		return "thymeleaf/hotel/h_payPage";
 	}
 	@RequestMapping(value="HotelResInfo")
-	public String HotelResInfo() {
-		
-		return "";
+	public String HotelResInfo(HttpServletRequest request, Model model) throws Exception{
+		HotelResInfoInsertService.resInfoInsert(request, model);
+		return "thymeleaf/hotel/h_paySucces";
 	}
 	
 }
