@@ -107,6 +107,7 @@ public class LeisureReservService {
 			i++;
 		}
 		
+		
 		session.removeAttribute("reservCommand");
 		session.removeAttribute("userEmail");
 		session.removeAttribute("userPh");

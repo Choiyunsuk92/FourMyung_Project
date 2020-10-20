@@ -8,6 +8,5 @@ import fourMyung.domain.pay.PayDTO;
 @Component
 @Repository(value="fourMyung.mapper.PayMapper")
 public interface PayMapper {
-
 	public Integer payInfoInsert(PayDTO dto) throws Exception;
 }

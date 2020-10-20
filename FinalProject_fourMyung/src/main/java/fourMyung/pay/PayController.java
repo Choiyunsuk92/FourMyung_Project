@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fourMyung.Command.AuthInfo;
 import fourMyung.Command.PayCommand;
 import fourMyung.hotel.service.HotelResInsertService;
 import fourMyung.pay.service.KaKaoPaySuccesService;
 import fourMyung.pay.service.KakaoPayService;
+import fourMyung.pay.service.PaymentInfogService;
 import lombok.extern.java.Log;
 
 @Controller
