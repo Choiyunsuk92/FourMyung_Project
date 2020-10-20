@@ -3,30 +3,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fourMyung.mapper.PayMapper">
 <sql id="payColumn">
-PAY_NUM
-,PAY_TYPE
-,PAY_DETAIL
-,PAY_PRICE
-,CARD_NUM
-,PAY_DATE
+ PAY_NUM, PAY_TYPE, PAY_DETAIL, PAY_PRICE, CARD_NUM, PAY_DATE, USER_ID, STTUS_DIV_CD 
 </sql>
 
 <insert id="payInfoInsert">
 INSERT INTO C_PAYMENT
 (
-PAY_NUM
-,PAY_TYPE
-,PAY_DETAIL
-,PAY_PRICE
-,CARD_NUM
-,PAY_DATE
+<include refid="payColumn"/>
 ) VALUES(
 C_PAY_NUM.NEXTVAL,
 #{payType},
 #{payDetail},
 #{payPrice},
 #{cardNum},
-SYSDATE
+SYSDATE,
+#{userId},
+#{sttusDivCd}
+)
+</insert>
+
+<insert id="hotelPayInsert">
+INSERT INTO H_HTL_PAYMENT(
+PAY_NUM,
+RES_NUM
+) VALUES(
+(SELECT MAX(TO_NUMBER(PAY_NUM)) FROM C_PAYMENT WHERE USER_ID = #{userId}),
+(SELECT MAX(TO_NUMBER(RES_NUM)) FROM H_HTL_RES WHERE USER_ID = #{userId})
 )
 </insert>
 </mapper>
