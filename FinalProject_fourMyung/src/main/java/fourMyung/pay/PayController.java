@@ -44,6 +44,14 @@ public class PayController {
 		HttpSession session = request.getSession();
 		PayCommand paycommand = (PayCommand) session.getAttribute("resInfo");
 		String location = "";
+		
+		try {
+			paymentInfoService.payInsert(paycommand);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if(paycommand.getDivCd().equals("H")) {
 			// 호텔 예약 서비스 호출
 			location = "redirect:/hotel/HotelResInfo";

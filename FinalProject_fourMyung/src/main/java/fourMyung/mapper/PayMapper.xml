@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fourMyung.mapper.PayMapper">
+<sql id="payColumn">
+PAY_NUM
+,PAY_TYPE
+,PAY_DETAIL
+,PAY_PRICE
+,CARD_NUM
+,PAY_DATE
+</sql>
+
+<insert id="payInfoInsert">
+INSERT INTO C_PAYMENT
+(
+PAY_NUM
+,PAY_TYPE
+,PAY_DETAIL
+,PAY_PRICE
+,CARD_NUM
+,PAY_DATE
+) VALUES(
+C_PAY_NUM.NEXTVAL,
+#{payType},
+#{payDetail},
+#{payPrice},
+#{cardNum},
+SYSDATE
+)
+</insert>
+</mapper>

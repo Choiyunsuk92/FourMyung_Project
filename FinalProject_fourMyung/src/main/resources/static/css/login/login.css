@@ -5,6 +5,7 @@
 	background: url("../../img/login/loginImg_1.jpg");
 	display: flex;
 	justify-content: center;
+	background-size: 100% 100%;
 }
 
 .login{
