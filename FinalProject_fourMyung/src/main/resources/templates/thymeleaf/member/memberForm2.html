@@ -1,40 +1,125 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-div#memberTab {
-	width: 610px;
-	margin: 0 auto;
-}
-</style>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
-</head>
-<body>
-	<form th:action='@{/mem/registOk}' method='POST' name='frm' id="frm" th:object="${memberCommand}">
-		<header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>내명 : 회원가입</title>
+        <link rel="stylesheet" href="../static/css/member/new_main.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+    </head>
+    <body>
+    <form th:action='@{/mem/registOk}' method='POST' name='frm' id="frm"  th:object="${memberCommand}">
+        <!-- header -->
+        <header>
 			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
 		</header>
-		<div id="header">
-			<div id="wrapper">
-				<div id="content">
-					<div>
-						<h3>
-							<label for="id">아이디</label>
-						</h3>
-						<span class="box int_id"> <input type="text" id="id" class="int" maxlength="20"> <span class="step_url">@naver.com</span> </span>
-						<span class="error_next_box"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-	<div class="footer">
-		<footer th:include="thymeleaf/include/footer.html"></footer>
-	</div>
-</body>
+        <div id="caption"><h2><strong>회원 가입</strong></h2></div>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- content-->
+            <div id="content">
+                <!-- ID -->
+                <input type='hidden' name='memDivCd' id='memDivCd' value='1' />
+                <div>
+                    <h3 class="join_title">
+                        <label for="userId">아이디</label>
+                    </h3>
+                    <span class="box int_id">
+                        <input type='text' name='userId' id='userId' th:field="*{userId}" class='int' size='15' maxlength='10' autofocus="autofocus" />
+                    </span>
+                    <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+					<span th:text="${duplicate_userId}"></span>
+                </div>
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="userPass">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type='password' name='userPass' id='userPass' class='int' th:field="*{userPass}" size='15' maxlength='12'/>
+                        <span id="alertTxt">사용불가</span>
+                        <img src="../static/img/main/m_icon_pass.png" class="pswdImg">
+                    </span>
+					<span th:if="${#fields.hasErrors('userPass')}" th:errors="*{userPass}"></span>
+                </div>
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="userPwCon">비밀번호 재확인</label></h3>
+                    <span class="box int_pass_check">
+                        <input type='password' name='userPwCon' id='userPwCon' class='int' th:field="*{userPwCon}" size='15' maxlength='12'/>
+                        <img src="../static/img/main/m_icon_pass.png" class="pswdImg">
+                    </span>
+					<span th:if="${#fields.hasErrors('userPwCon')}" th:errors="*{userPwCon}" ></span>
+		   			<span th:text="${valid_userPwCon}"></span>
+                </div>
+                <!-- NAME -->
+                <div>
+                    <h3 class="join_title"><label for="userNm">이름</label></h3>
+                    <span class="box int_name">
+						<input type ='text' name='userNm' id='userNm' class="int" th:field="*{userNm}" size='15' maxlength='12'>
+                    </span>
+                    <span th:if="${#fields.hasErrors('userNm')}" th:errors="*{userNm}" ></span>
+                </div>
+                <!-- BIRTH -->
+                <div>
+                    <h3 class="join_title"><label for="userBirth">생년월일</label></h3>
+                    <span class="box int_birth">
+						<input type='datetime-local' name='userBirth' id='userBirth' class='int' th:field="*{userBirth}" placeholder='1999-12-12'>
+                    </span>
+                    <span th:if="${#fields.hasErrors('userBirth')}"  th:errors="*{userBirth}" ></span>
+                </div>
+
+                <!-- GENDER -->
+                <div>
+                    <h3 class="join_title"><label for="userGender">성별</label></h3>
+                    <span class="box gender_code">
+					<input type='radio' name='userGender' id='userGender' value='M'  /> 남자 &nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type='radio' name='userGender' id='userGender' value='F'  />	여자                         
+                    </span>
+                    <span th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}" ></span>
+                </div>
+
+                <!-- EMAIL -->
+                <div>
+                    <h3 class="join_title"><label for="userEmail">본인확인 이메일<span class="optional">(선택)</span></label></h3>
+                    <span class="box int_email">
+                        <input type='email' name='userEmail' id='userEmail' class='int' th:field="*{userEmail}"/>
+                    </span>
+                    <span th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" ></span>   
+                </div>
+
+                <!-- MOBILE -->
+                <div>
+                    <h3 class="join_title"><label for="userAddr">휴대전화</label></h3>
+                    <span class="box int_addr">
+                        <input type='text' name='userAddr' id ='userAddr' class='int' th:field="*{userAddr}" />
+                    </span>
+                    <span th:if="${#fields.hasErrors('userAddr')}" th:errors="*{userAddr}" ></span>  
+                </div>
+
+                <!-- MOBILE -->
+                <div>
+                    <h3 class="join_title"><label for="userPh">휴대전화</label></h3>
+                    <span class="box int_mobile">
+                        <input type='text' name='userPh' id ='userPh' class='int' th:field="*{userPh}" placeholder='123-123-1234 ,123-1234-1234' size= '26' maxlength='13' />
+                    </span>
+                    <span th:if="${#fields.hasErrors('userPh')}" th:errors="*{userPh}" ></span>
+                </div>
+
+
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                	<input type="submit" value="가입하기" id="btnJoin">
+                </div>
+
+            </div> 
+            <!-- content-->
+
+        </div> 
+        <!-- wrapper -->
+        
+    </form>
+    
+    </body>
+<!--     <div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div> -->
 </html>

@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class MemberDTO implements Serializable {
-	String memDivCd;
 	String userId;
+	String memDivCd;
 	String userPass; 
 	String userNm;
 	Timestamp userBirth;

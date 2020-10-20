@@ -20,16 +20,16 @@ $(function(){
 </script>
 </head>
 <body>
-이름 : <span th:text="${member.userNm }"></span><br />
-아이디 : <span th:text="${member.userId }"></span><br />
-이메일  : <span th:text="${member.userEmail }"></span><br />
-생년월일  : <span th:text="${#dates.format(member.userBirth, 'yyyy-MM-dd')}"></span><br />
-성별 : <span th:if="${member.userGender == 'M'}">남자</span>
-	 <span th:if="${member.userGender == 'F'}">여자</span>	
+이름 : <span th:text="${memberCommand.userNm }"></span><br />
+아이디 : <span th:text="${memberCommand.userId }"></span><br />
+이메일  : <span th:text="${memberCommand.userEmail }"></span><br />
+생년월일  : <span th:text="${#dates.format(memberCommand.userBirth, 'yyyy-MM-dd')}"></span><br />
+성별 : <span th:if="${memberCommand.userGender == 'M'}">남자</span>
+	 <span th:if="${memberCommand.userGender == 'F'}">여자</span>	
 	 <br />
-연락처 1 : <span th:text="${member.userPh }"></span><br />
-등록일 : <span th:text="${member.joinDt }"></span><br />
-주소  : <span th:text="${member.userAddr }"></span><br />
+연락처 : <span th:text="${memberCommand.userPh }"></span><br />
+등록일 : <span th:text="${memberCommand.joinDt }"></span><br />
+주소  : <span th:text="${memberCommand.userAddr }"></span><br />
 <input type="button" name="modify" id ="modify" value="수   정" >
 <input type="button" name="pwModify" id ="pwModify" value="비밀번호" >
 <input type="button" value="취  소" onclick = "javascript:history.back();" />

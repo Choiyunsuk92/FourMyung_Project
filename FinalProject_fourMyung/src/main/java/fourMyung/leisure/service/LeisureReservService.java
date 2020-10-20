@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import fourMyung.Command.AuthInfo;
+import fourMyung.Command.PayCommand;
 import fourMyung.Command.ReservCommand;
 import fourMyung.Command.ReservCommand2;
 import fourMyung.domain.leisure.LeisureTicketDTO;
@@ -69,7 +70,7 @@ public class LeisureReservService {
 		session.setAttribute("userPh", reservCommand2.getUserPh());
 	}
 
-	public void insertTicketNum(HttpSession session) {
+	public void insertTicketNum(String payType, HttpServletRequest request, HttpSession session) {
 		String num = leisureMapper.selectTicketNum();
 		
 		LeisureTicketDTO dto = new LeisureTicketDTO();
@@ -78,16 +79,14 @@ public class LeisureReservService {
 		dto.setPhNum((String)session.getAttribute("userPh"));
 		
 		ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
-		System.out.println(reservCommand.getUseDate());
-//		Timestamp dddd = (Timestamp) reservCommand.getUseDate();
 		dto.setUseDate(reservCommand.getUseDate());
+		dto.setPayType(payType);
 		leisureMapper.insertTicket(dto);
 		
 		LeisureUserInfoDTO user = new LeisureUserInfoDTO();
 		user.setTicketNum(num);
 		user.setUserId(((AuthInfo)session.getAttribute("authInfo")).getUserId());
 		leisureMapper.insertLeisureUser(user);
-//		System.out.println(((AuthInfo)session.getAttribute("authInfo")).getUserId());
 		
 		System.out.println(reservCommand.getListCnt().get(0));
 		int i = 0;
@@ -110,6 +109,5 @@ public class LeisureReservService {
 		session.removeAttribute("userEmail");
 		session.removeAttribute("userPh");
 		session.removeAttribute("totalPrice");
-//		detail.setUseDate((Timestamp)session.getAttribute("useDate"));
 	}
 }

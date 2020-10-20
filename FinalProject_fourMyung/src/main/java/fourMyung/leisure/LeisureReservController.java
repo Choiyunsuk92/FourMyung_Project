@@ -8,9 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import fourMyung.Command.LeisureCommand;
-import fourMyung.Command.LeisureTicketCommand;
 import fourMyung.Command.ReservCommand2;
 import fourMyung.leisure.service.LeisureReservService;
 import fourMyung.leisure.service.LeisureService;
@@ -56,9 +55,8 @@ public class LeisureReservController {
 		return "thymeleaf/leisure/leisureReserv_4";
 	}
 	@RequestMapping(value="reservation_5")
-	public String reservation_5(HttpSession session) {
-		leisureReservService.insertTicketNum(session);
-//		leisure
+	public String reservation_5(@RequestParam("payType")String payType, HttpServletRequest request, HttpSession session) {
+		leisureReservService.insertTicketNum(payType, request, session);
 		return "thymeleaf/leisure/leisureReserv_5";
 	}
 }

@@ -39,8 +39,8 @@
 </select>
 
 <insert id="insertTicket" parameterType="fourMyung.domain.leisure.LeisureTicketDTO">
-	insert into L_TICKET (TICKET_NUM, TOTAL_PRICE, PH_NUM, USE_DATE, RES_DATE)
-	values(#{ticketNum}, #{totalPrice}, #{phNum}, #{useDate}, sysdate)
+	insert into L_TICKET (TICKET_NUM, TOTAL_PRICE, PH_NUM, USE_DATE, RES_DATE, PAY_TYPE)
+	values(#{ticketNum}, #{totalPrice}, #{phNum}, #{useDate}, sysdate, #{payType})
 </insert>
 
 <insert id="insertLeisureUser" parameterType="fourMyung.domain.leisure.LeisureUserInfoDTO">

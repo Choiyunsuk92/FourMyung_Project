@@ -39,8 +39,7 @@ tbody tr:nth-child(odd) {
 		<div class="leisureMenu"
 			th:include="thymeleaf/leisure/leisure_top.html"></div>
 	</header>
-	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm'
-		id="frm" th:object="${leisureCommand}">
+	<form th:action='@{/leisure/leisureOk}' method='POST' name='frm' id="frm" th:object="${leisureCommand}">
 		<table width="70%">
 			<caption style="font-size: 20px; font-weight: bold; text-align: left">레저등록</caption>
 			<thead>

@@ -49,11 +49,9 @@ public class PayController {
 			location = "redirect:/hotel/HotelResInfo";
 		}else {
 			// 레저 예약 서비스 호출
-			location ="";
+			location ="redirect:/reserv/reservation_5";
 		}
-		
 		return location;
-		
 	}
 	
 	@RequestMapping(value="kakaoPaySucces", method = RequestMethod.POST)

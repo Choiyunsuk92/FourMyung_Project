@@ -8,13 +8,13 @@ public class PayCommand {
 	String checkOutDt;
 	String check_adult;
 	String check_child;
-	String price;
-	String prodNm;
+	String price;		
+	String prodNm;		
 	String roomOfNum;
-	String userNm;
-	String userPh;
+	String userNm;		
+	String userPh;		
 	String addReq;
 	String roomDivCd;
 	String payType;
-	String divCd;
+	String divCd;		
 }

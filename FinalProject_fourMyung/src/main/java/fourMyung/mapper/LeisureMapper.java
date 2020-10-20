@@ -18,7 +18,7 @@ public interface LeisureMapper {
 	public Integer leisureDel(Integer leisureNum);
 	public Integer getLeisureCount();
 	public String selectTicketNum();
-	public void insertTicket(LeisureTicketDTO dto);				//xml에서 반환값이 없으므로 void
+	public Integer insertTicket(LeisureTicketDTO dto);				//xml에서 반환값이 없으므로 void
 	public void insertLeisureUser(LeisureUserInfoDTO user);
 	public Integer insertTicketDetail(LeisureTicketDetailDTO dto);
 }

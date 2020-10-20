@@ -38,9 +38,73 @@
 </resultMap>
 
 <select id="selectByMember" parameterType="fourMyung.domain.member.MemberDTO" resultMap="baseMember">
-	select <include refid="basecolumn" /> 
-	FROM C_MEMBER 
-	WHERE USER_ID = #{userId}
+	select *
+	from(select <include refid="basecolumn" /> 	
+		 from c_member
+	 		  <where>
+			  	<if test="userId != null and joinOk != null ">
+					user_id = #{userId} 
+				</if>
+				<if test="userId != null and joinOk == null">
+					user_id = #{userId} and join_ok is not null
+				</if>
+			  </where>
+		  order by join_dt desc)
 </select>
 
+<update id="memberUpdate" parameterType="fourMyung.domain.member.MemberDTO">
+	update c_member
+	<trim prefix="set" suffixOverrides=",">
+		<if test="userEmail != null">user_email = #{userEmail},</if>
+		<if test="userAddr != null">user_addr = #{userAddr},</if>
+		<if test="userPh !=null"> user_ph = #{userPh},</if>
+	</trim>
+	<where>
+		user_Id = #{userId}
+	</where>	
+</update>
+
+<update id="pwChange" parameterType="fourMyung.domain.member.PwChangeDTO">
+	update c_member 
+	set user_pass = #{newPw}
+	where user_id = #{userId}
+</update>
+
+<delete id="myInfoDel" parameterType="string">
+	delete from c_member 
+	<where>
+		user_id = #{userId}
+	</where> 
+</delete>
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

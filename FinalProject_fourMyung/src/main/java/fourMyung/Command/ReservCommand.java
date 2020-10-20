@@ -13,4 +13,5 @@ public class ReservCommand {
 	List<String> listLeisure;
 	List<String> listCnt;
 	Date useDate;	
+	String payType;
 }

@@ -18,7 +18,9 @@ public class MemberInfoService {
 		MemberDTO dto = new MemberDTO();
 		dto.setUserId(userId);
 		dto = memberMapper.selectByMember(dto).get(0);
-		model.addAttribute("member", dto);
+		model.addAttribute("memberCommand", dto);
+		System.out.println("00000000000000000000000");
+		System.out.println(dto);
 		return dto;
 	}
 }

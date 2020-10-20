@@ -1,6 +1,5 @@
 package fourMyung.domain.leisure;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +14,6 @@ public class LeisureTicketDTO {
 	Integer totalPrice;
 	String phNum;
 	Date useDate;
-	Timestamp resDate;
+	Date resDate;
+	String payType;
 }
