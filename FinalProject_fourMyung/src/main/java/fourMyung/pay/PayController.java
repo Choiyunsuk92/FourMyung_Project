@@ -25,7 +25,7 @@ public class PayController {
 	@Autowired
 	KaKaoPaySuccesService kaKaoPaySuccesService;
 	@Autowired
-	HotelResInsertService hotelResInsertService;
+	PaymentInfogService paymentInfoService;
 	
 	@RequestMapping(value="kakaoPay", method = RequestMethod.POST)
 	public String kakaoPay(PayCommand payCommand, HttpServletRequest request) {
