@@ -55,8 +55,8 @@ public class LeisureReservController {
 		return "thymeleaf/leisure/leisureReserv_4";
 	}
 	@RequestMapping(value="reservation_5")
-	public String reservation_5(@RequestParam("payType")String payType, HttpServletRequest request, HttpSession session) {
-		leisureReservService.insertTicketNum(payType, request, session);
+	public String reservation_5(HttpServletRequest request, HttpSession session) {
+		leisureReservService.insertTicketNum(request, session);
 		return "thymeleaf/leisure/leisureReserv_5";
 	}
 }

@@ -70,8 +70,10 @@ public class LeisureReservService {
 		session.setAttribute("userPh", reservCommand2.getUserPh());
 	}
 
-	public void insertTicketNum(String payType, HttpServletRequest request, HttpSession session) {
+	public void insertTicketNum( HttpServletRequest request, HttpSession session) {
 		String num = leisureMapper.selectTicketNum();
+		
+		PayCommand payCommand = (PayCommand) session.getAttribute("resInfo");
 		
 		LeisureTicketDTO dto = new LeisureTicketDTO();
 		dto.setTicketNum(num);
@@ -80,7 +82,7 @@ public class LeisureReservService {
 		
 		ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
 		dto.setUseDate(reservCommand.getUseDate());
-		dto.setPayType(payType);
+		dto.setPayType(payCommand.getPayType());
 		leisureMapper.insertTicket(dto);
 		
 		LeisureUserInfoDTO user = new LeisureUserInfoDTO();
