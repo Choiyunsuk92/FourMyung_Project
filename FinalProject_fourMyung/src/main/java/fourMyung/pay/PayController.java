@@ -43,14 +43,15 @@ public class PayController {
 		// 결제 이후 예약정보 세팅
 		HttpSession session = request.getSession();
 		PayCommand paycommand = (PayCommand) session.getAttribute("resInfo");
-		String location = "";
-		
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		String userId = authInfo.getUserId();
 		try {
-			paymentInfoService.payInsert(paycommand);
+			paymentInfoService.payInsert(paycommand, userId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String location = "";
 		
 		if(paycommand.getDivCd().equals("H")) {
 			// 호텔 예약 서비스 호출

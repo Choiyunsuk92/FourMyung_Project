@@ -10,4 +10,6 @@ public class PayDTO {
 	String payPrice;
 	String cardNum;
 	String payDate;
+	String userId;
+	String sttusDivCd;
 }
