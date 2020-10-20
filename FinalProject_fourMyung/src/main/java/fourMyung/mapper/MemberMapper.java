@@ -17,4 +17,5 @@ public interface MemberMapper {
 	public Integer memberUpdate(MemberDTO member)throws Exception;
 	public Integer pwChange(PwChangeDTO dto)throws Exception;
 	public Integer myInfoDel(String userId)throws Exception;
+	public List<HotelResInfoDTO> myPageHotel(String userId) throws Exception;
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fourMyung.member.service.MyPageSelectService;
 
 @Controller
-@RequestMapping("mem")
+@RequestMapping("my")
 public class MyPageController {
 	@Autowired
 	MyPageSelectService myPageSelectService;
@@ -20,5 +20,15 @@ public class MyPageController {
 		
 		myPageSelectService.reservationTxn(request, model);
 		return "thymeleaf/member/MyPage";
+	}
+	@RequestMapping("myRoomSttus")
+	public String MyRoomSttus() {
+		
+		return "thymeleaf/hotel/h_resSelect";
+	}
+	@RequestMapping("mySports")
+	public String mySports() {
+		
+		return "thymeleaf/leisure/r_resSelect";
 	}
 }
