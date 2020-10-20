@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import fourMyung.Command.AuthInfo;
 import fourMyung.Command.PayCommand;
 import fourMyung.domain.hotel.HotelResDTO;
 import fourMyung.mapper.HotelMapper;
+import fourMyung.mapper.PayMapper;
 import lombok.extern.java.Log;
 
 @Component
@@ -24,12 +26,14 @@ public class HotelResInfoInsertService {
 	@Autowired
 	HotelMapper hotelMapper;
 	@Autowired
+	PayMapper payMapper;
+	@Autowired
 	ResInfoSelectService resInfoSelectService;
 	public void resInfoInsert(HttpServletRequest request, Model model) throws Exception{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		PayCommand payCommand = (PayCommand) session.getAttribute("resInfo");
-		
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		HotelResDTO resDTO = new HotelResDTO();
 		
 		SimpleDateFormat trans = new SimpleDateFormat("yyyy-mm-dd");
@@ -53,7 +57,12 @@ public class HotelResInfoInsertService {
 		
 		Integer res = hotelMapper.hotelResInsert(resDTO);
 		System.out.println(res+"건의 예약정보가 입력되었습니다.");
+		
+		Integer i = payMapper.hotelPayInsert("TEST");
+		System.out.println(i+"건의 호텔 결제 정보가 입력되었습니다.");
+		
 		if(res != null) {
+			System.out.println("예약여부 업데이트!!!!");
 			// 예약정보 입력 후 객실예약여부 Y/N 업데이트
 			hotelMapper.roomResYnUpdate(resDTO);
 			// 예약성공 화면에 출력하기 위해 예약정보 조회
