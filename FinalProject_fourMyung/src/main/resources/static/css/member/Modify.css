@@ -1,0 +1,57 @@
+@charset "UTF-8";
+table {
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+}
+
+table thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+table tbody th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+table tfoot {
+	left: 100%;
+}
+
+table td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+table {
+	margin: 0 auto;
+	width: 700px;
+	padding: 20px;
+}
+
+.btn_area {
+    margin: 30px 0 91px;
+}
+
+.btnJoin {
+    width: 100px;
+    height:35px;
+    padding: 10px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #8080ff;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}

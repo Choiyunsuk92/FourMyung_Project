@@ -6,12 +6,16 @@
  PAY_NUM, PAY_TYPE, PAY_DETAIL, PAY_PRICE, CARD_NUM, PAY_DATE, USER_ID, STTUS_DIV_CD 
 </sql>
 
+<select id="selectPayNum" resultType="string">
+	SELECT C_PAY_NUM.NEXTVAL FROM DUAL
+</select>
+
 <insert id="payInfoInsert">
 INSERT INTO C_PAYMENT
 (
 <include refid="payColumn"/>
 ) VALUES(
-C_PAY_NUM.NEXTVAL,
+#{payNum},
 #{payType},
 #{payDetail},
 #{payPrice},
@@ -31,4 +35,16 @@ RES_NUM
 (SELECT MAX(TO_NUMBER(RES_NUM)) FROM H_HTL_RES WHERE USER_ID = #{userId})
 )
 </insert>
+
+
+
+<insert id="leisurePayInsert">
+INSERT INTO L_LEI_PAYMENT(PAY_NUM,TICKET_NUM) 
+VALUES(
+		(SELECT MAX(TO_NUMBER(PAY_NUM)) FROM C_PAYMENT WHERE USER_ID = #{userId}),
+		(SELECT MAX(TO_NUMBER(TICKET_NUM)) FROM L_USER WHERE USER_ID = #{userId})
+		)
+</insert>
+
+
 </mapper>

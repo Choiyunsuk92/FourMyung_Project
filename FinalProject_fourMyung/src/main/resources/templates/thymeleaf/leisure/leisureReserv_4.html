@@ -51,8 +51,7 @@
 								<td>
 									<table>
 										<th:block th:each="leisure , cnt: ${list}">
-											<tr
-												th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
 												<td>[[${leisure.leisureTime}]]</td>
 											</tr>
 										</th:block>
@@ -61,8 +60,7 @@
 								<td>
 									<table>
 										<th:block th:each="leisure , cnt: ${list}">
-											<tr
-												th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
 												<td>[[${leisure.leisureAge}]]</td>
 											</tr>
 										</th:block>
@@ -71,8 +69,7 @@
 								<td>
 									<table>
 										<th:block th:each="leisure , cnt: ${list}">
-											<tr
-												th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
+											<tr th:if="${session.reservCommand.listLeisure[cnt.index]} == ${leisure.leisureNum} and ${session.reservCommand.listCnt[cnt.index]} != '0'">
 												<td>[[${leisure.leisurePrice}]]</td>
 											</tr>
 										</th:block>
@@ -80,10 +77,8 @@
 								</td>
 								<td>
 									<table>
-										<th:block
-											th:each="listCnt , cnt : ${session.reservCommand.listCnt}">
-											<tr
-												th:if="${session.reservCommand.listCnt[cnt.index]} != '0'">
+										<th:block th:each="listCnt , cnt : ${session.reservCommand.listCnt}">
+											<tr th:if="${session.reservCommand.listCnt[cnt.index]} != '0'">
 												<td>[[${listCnt}]]</td>
 											</tr>
 										</th:block>

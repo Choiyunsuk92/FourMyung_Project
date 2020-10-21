@@ -1,34 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" 
-	src="http://code.jquery.com/jquery-latest.js" ></script>
-<script type="text/javascript">
-$(function(){
-	$("#sbm").click(function(){
-		$("#frm").submit();
-	});
-});
-</script>
-
+<title>내명파크</title>
+<link rel="stylesheet" href="../static/css/member/Modify.css">
 </head>
+
 <body>
-<form th:action ="@{/mem/pwModifyPro}" method="post" name="frm" id="frm" 
-	th:object="${changePwCommand}"> 
-	현재비밀번호 : <input type="password" name = "userPass" id ="pw" />
-				<span th:text="${valid_pass}"> </span>
-				<span th:if="${#fields.hasErrors('userPass')}" th:errors="*{userPass}" ></span> 
-				<br />
-	새 비밀번호 : <input type="password" name = "newPw" id ="newPw" />
-	           <span th:if="${#fields.hasErrors('newPw')}" th:errors="*{newPw}" ></span>
-	           <br />
-	새 비밀번호 확인 : <input type="password" name = "newPwOk" id ="reNewPw" />
-	            <span th:if="${#fields.hasErrors('newPwOk')}" th:errors="*{newPwOk}" ></span>
-	            <span th:text="${valid_newPw}"> </span>
-	            <br />
-	<input type="button" value = "비밀번호변경" id ="sbm"/>
-</form>	             
+	<form th:action ="@{/mem/pwModifyPro}" method="post" name="frm" id="frm" th:object="${changePwCommand}"> 
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+			<div class="leisureMenu" th:include="thymeleaf/leisure/leisure_top.html"></div>
+		</header>
+
+		<table class="charge">
+			<thead>
+				<caption style="font-size: 20px; font-weight: bold; text-align: center;">비밀번호 수정</caption>
+			</thead>
+			<tbody>
+				<table>
+				<tr>
+					<th scope="row">현재 비밀번호</th>
+					<td><input type="password" name = "userPass" id ="pw" />
+						<span th:text="${valid_pass}"> </span>
+						<span th:if="${#fields.hasErrors('userPass')}" th:errors="*{userPass}" ></span>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">새 비밀번호</th>
+					<td><input type="password" name = "newPw" id ="newPw" />
+	          			<span th:if="${#fields.hasErrors('newPw')}" th:errors="*{newPw}" ></span>
+	          		</td>
+				</tr>
+				<tr>
+					<th scope="row">새 비밀번호 확인</th>
+					<td><input type="password" name = "newPwOk" id ="reNewPw" />
+	           	 		<span th:if="${#fields.hasErrors('newPwOk')}" th:errors="*{newPwOk}" ></span>
+	            		<span th:text="${valid_newPw}"> </span>
+					</td>
+				</tr>
+				<tr class="btn_area">
+					<th colspan=2 align="right">
+						<input type="submit" value="비밀번호변경" class="btnJoin"/>
+					</th>
+				</tr>
+				</table>
+			</tbody>
+		</table>
+		<br />
+		<div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+		</div>
+	</form>
 </body>
 </html>

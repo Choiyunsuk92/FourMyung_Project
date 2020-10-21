@@ -41,11 +41,21 @@ h2, h5{
 div {
 	display: block;
 }
-.btn_wrap_ty1 {
-    display: block;
-    width: 406px;
-    margin: 0 auto;
-    overflow: hidden;
+.btn_area {
+    margin: 30px 0 91px;
+}
+
+.btnJoin {
+    width: 100px;
+    height:35px;
+    padding: 10px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #8080ff;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
 .leftcolumn {
 	margin: 0 auto;

@@ -53,4 +53,30 @@
 	values(#{ticketNum}, #{leisureNum}, #{ticketQty})
 </insert>
 
+<resultMap type="fourMyung.domain.leisure.ReservListDTO" id="baseTicket" >
+	<constructor>
+		<idArg column="ticket_num" javaType="String" />
+		<arg column="leisure_num" javaType="string" />
+		<arg column="ticket_qty" javaType="int" />
+		<arg column="use_date" javaType="date" />
+		<arg column="user_id" javaType="string" />
+	</constructor>
+</resultMap>
+
+<select id="selectByTicket" parameterType="fourMyung.domain.leisure.ReservListDTO" resultMap="baseTicket">
+	select d.ticket_num as ticket_num, d.leisure_num as leisure_num, d.ticket_qty as ticket_qty, t.use_date as use_date, u.user_id as user_id
+	from l_ticket_detail d
+	inner join l_user u
+	on d.ticket_num = u.ticket_num
+	inner join l_ticket t
+	on d.ticket_num = t.ticket_num
+	order by d.ticket_num
+</select>
 </mapper>
+
+
+
+
+
+
+

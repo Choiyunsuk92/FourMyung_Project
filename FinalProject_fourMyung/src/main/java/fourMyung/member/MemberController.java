@@ -79,9 +79,9 @@ public class MemberController {
 		memberInfoService.myInfo(userId, model);
 		return "thymeleaf/member/myInfo/myInfo";
 	}
-	@RequestMapping("memberPw")
-	public String memberPw() {
-		return "thymeleaf/member/myInfo/myPwCon";
+	@RequestMapping(value="mypagePw")
+	public String mypagePwOk() {
+		return "thymeleaf/member/myInfo/pwModify";
 	}
 	@RequestMapping(value="mypagePwOk", method = RequestMethod.POST)
 	public String mypagePwOk(HttpSession session, Model model, @RequestParam(value="userPass")String userPass)throws Exception {
@@ -90,8 +90,8 @@ public class MemberController {
 		if(passwordEncoder.matches(userPass, dto.getUserPass())) {
 			return "thymeleaf/member/myInfo/myInfoModify";
 		}else {
-			model.addAttribute("valid_Pass", "비밀번호가 일치하지않습니다. ");
-			return "thymeleaf/member/myInfo/myPwCon";
+			model.addAttribute("valid_Pass", "비밀번호를 확인하세요. ");
+			return "thymeleaf/member/myInfo/pwModify";
 		}
 	}
 	@RequestMapping(value = "myInfoModifyPro", method = RequestMethod.POST)

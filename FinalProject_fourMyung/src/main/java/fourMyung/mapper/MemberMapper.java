@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import fourMyung.domain.hotel.HotelResInfoDTO;
 import fourMyung.domain.member.MemberDTO;
 import fourMyung.domain.member.PwChangeDTO;
 

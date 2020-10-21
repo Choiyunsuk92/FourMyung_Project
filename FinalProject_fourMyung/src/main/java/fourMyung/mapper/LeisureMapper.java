@@ -9,6 +9,7 @@ import fourMyung.domain.leisure.LeisureDTO;
 import fourMyung.domain.leisure.LeisureTicketDTO;
 import fourMyung.domain.leisure.LeisureTicketDetailDTO;
 import fourMyung.domain.leisure.LeisureUserInfoDTO;
+import fourMyung.domain.leisure.ReservListDTO;
 
 @Component
 @Repository(value = "fourMyung.mapper.LeisureMapper")
@@ -21,4 +22,5 @@ public interface LeisureMapper {
 	public Integer insertTicket(LeisureTicketDTO dto);				//xml에서 반환값이 없으므로 void
 	public void insertLeisureUser(LeisureUserInfoDTO user);
 	public Integer insertTicketDetail(LeisureTicketDetailDTO dto);
+	public List<ReservListDTO> selectByTicket();
 }

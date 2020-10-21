@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import fourMyung.Command.ReservCommand2;
+import fourMyung.leisure.service.LeisureReservMemberService;
 import fourMyung.leisure.service.LeisureReservService;
 import fourMyung.leisure.service.LeisureService;
 
@@ -21,13 +21,9 @@ public class LeisureReservController {
 	LeisureService leisureService;
 	@Autowired
 	LeisureReservService leisureReservService;
+	@Autowired
+	LeisureReservMemberService leisureReservMemberService;
 	
-	//레저 예약, 예약확인, 예약취소, 예약조회 페이지
-	//관리자 - 레저 예약자 조회
-	@RequestMapping(value="reservList", method = RequestMethod.GET)
-	public String reservList() {
-		return "thymeleaf/leisure/reservList";
-	}
 	
 	//레저 예약
 	@RequestMapping(value="reservation_1", method = RequestMethod.GET)
@@ -55,8 +51,17 @@ public class LeisureReservController {
 		return "thymeleaf/leisure/leisureReserv_4";
 	}
 	@RequestMapping(value="reservation_5")
-	public String reservation_5(HttpServletRequest request, HttpSession session) {
+	public String reservation_5(HttpServletRequest request, HttpSession session)throws Exception {
 		leisureReservService.insertTicketNum(request, session);
 		return "thymeleaf/leisure/leisureReserv_5";
+	}
+
+	
+	//레저 예약, 예약확인, 예약취소, 예약조회 페이지
+	//관리자 - 레저 예약자 조회
+	@RequestMapping(value="reservList", method = RequestMethod.GET)
+	public String reservList(Model model) {
+		leisureReservMemberService.reservList(model);
+		return "thymeleaf/leisure/reservList";
 	}
 }

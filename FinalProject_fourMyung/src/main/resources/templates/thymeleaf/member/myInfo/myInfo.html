@@ -1,15 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" 
-	src="http://code.jquery.com/jquery-latest.js" ></script>
+<title>내명파크</title>
+<link rel="stylesheet" href="../static/css/member/Modify.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 <script type="text/javascript">
 $(function(){
-	$("#modify").click(function(){
-		location.href="memberPw"
-	});
 	$("#memDel").click(function(){
 		location.href="myInfoDel"
 	});
@@ -19,20 +15,69 @@ $(function(){
 });
 </script>
 </head>
+
 <body>
-이름 : <span th:text="${memberCommand.userNm }"></span><br />
-아이디 : <span th:text="${memberCommand.userId }"></span><br />
-이메일  : <span th:text="${memberCommand.userEmail }"></span><br />
-생년월일  : <span th:text="${#dates.format(memberCommand.userBirth, 'yyyy-MM-dd')}"></span><br />
-성별 : <span th:if="${memberCommand.userGender == 'M'}">남자</span>
-	 <span th:if="${memberCommand.userGender == 'F'}">여자</span>	
-	 <br />
-연락처 : <span th:text="${memberCommand.userPh }"></span><br />
-등록일 : <span th:text="${memberCommand.joinDt }"></span><br />
-주소  : <span th:text="${memberCommand.userAddr }"></span><br />
-<input type="button" name="modify" id ="modify" value="수   정" >
-<input type="button" name="pwModify" id ="pwModify" value="비밀번호" >
-<input type="button" value="취  소" onclick = "javascript:history.back();" />
-<input type="button" value="탈퇴" id ="memDel"/>
+	<form th:action="@{/mem/mypagePw}" method="post" name="frm" >
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+			<div class="leisureMenu" th:include="thymeleaf/leisure/leisure_top.html"></div>
+		</header>
+
+		<table class="charge">
+			<thead>
+				<caption style="font-size: 20px; font-weight: bold; text-align: center;">회원정보</caption>
+			</thead>
+			<tbody>
+				<table>
+				<tr>
+					<th scope="row">회원 이름</th>
+					<td><span th:text="${memberCommand.userNm }"></span></td>
+				</tr>
+				<tr>
+					<th scope="row">회원 아이디</th>
+					<td><span th:text="${memberCommand.userId }"></span></td>
+				</tr>
+<!-- 				<tr>
+					<th scope="row">비밀번호</th>
+					<td><input type="password" name = "userPass" id = "pw" style="border: none;"/>
+						<span th:text="${valid_Pass}" style="font-size: 4px; color: red;"></span>
+					</td>
+				</tr> -->
+				<tr>
+					<th scope="row">성별</th>
+					<td><span th:if="${memberCommand.userGender == 'M'}">남자</span>
+						<span th:if="${memberCommand.userGender == 'F'}">여자</span></td>
+				</tr>
+				<tr>
+					<th scope="row">생년월일</th>
+					<td><span th:text="${memberCommand.userBirth }"></span></td>
+				</tr>
+				<tr>
+					<th scope="row">연락처</th>
+					<td><span th:text="${memberCommand.userPh }"></span></td>
+				</tr>
+				<tr>
+					<th scope="row">등록일</th>
+					<td><span th:text="${memberCommand.joinDt }"></span></td>
+				</tr>
+				<tr>
+					<th scope="row">주소</th>
+					<td><span th:text="${memberCommand.userAddr }"></span></td>
+				</tr>
+				<tr class="btn_area">
+					<th colspan=2 align="right">
+						<input type="submit" class="btnJoin" value="수   정" >
+						<input type="button" name="pwModify" id ="pwModify"  class="btnJoin" value="비밀번호" >
+						<input type="button" value="탈퇴" id ="memDel"  class="btnJoin"/>
+					</th>
+				</tr>
+				</table>
+			</tbody>
+		</table>
+		<br />
+		<div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+		</div>
+	</form>
 </body>
 </html>

@@ -1,16 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>pwModify.jsp</title>
+<title>내명파크</title>
+<link rel="stylesheet" href="../static/css/member/Modify.css">
 </head>
-<body>
 
-<form th:action="@{/myInfo/memberPwForm}" method="post" name="frm" >
-	비밀번호 : <input type="password" name = "userPass" id = "pw" />
-	<span th:text="${valid_Pass}"> </span><br />
-	<br />
-	<input type="submit" value="확인" />
-</form>
+<body>
+	<form th:action="@{/mem/mypagePwOk}" method="post" name="frm"> 
+		<header>
+			<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+			<div class="leisureMenu" th:include="thymeleaf/leisure/leisure_top.html"></div>
+		</header>
+
+		<table class="charge">
+			<thead>
+				<caption style="font-size: 20px; font-weight: bold; text-align: center;">비밀번호 확인</caption>
+			</thead>
+			<tbody>
+				<table>
+				<tr>
+					<th scope="row">현재 비밀번호</th>
+					<td><input type="password" name = "userPass" id = "pw" />
+						<span th:text="${valid_Pass}"> </span>
+					</td>
+				</tr>
+				<tr class="btn_area">
+					<th colspan=2 align="right">
+						<input type="submit" value="확인" class="btnJoin"/>
+					</th>
+				</tr>
+				</table>
+			</tbody>
+		</table>
+		<br />
+		<div class="footer">
+			<footer th:include="thymeleaf/include/footer.html"></footer>
+		</div>
+	</form>
 </body>
 </html>

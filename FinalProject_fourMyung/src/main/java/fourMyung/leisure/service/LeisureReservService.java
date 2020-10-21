@@ -23,6 +23,7 @@ import fourMyung.domain.leisure.LeisureTicketDTO;
 import fourMyung.domain.leisure.LeisureTicketDetailDTO;
 import fourMyung.domain.leisure.LeisureUserInfoDTO;
 import fourMyung.mapper.LeisureMapper;
+import fourMyung.mapper.PayMapper;
 
 @Service
 @Component
@@ -30,6 +31,8 @@ public class LeisureReservService {
 	AuthInfo authInfo;
 	@Autowired
 	LeisureMapper leisureMapper;
+	@Autowired
+	PayMapper payMapper;
 	
 	public void ticketCheck(Model model, HttpSession session, HttpServletRequest request)throws Exception { 
 		List<String> listLeisure = new ArrayList<String>();
@@ -70,9 +73,10 @@ public class LeisureReservService {
 		session.setAttribute("userPh", reservCommand2.getUserPh());
 	}
 
-	public void insertTicketNum( HttpServletRequest request, HttpSession session) {
+	public void insertTicketNum( HttpServletRequest request, HttpSession session)throws Exception {
 		String num = leisureMapper.selectTicketNum();
-		
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		String userId = authInfo.getUserId();
 		PayCommand payCommand = (PayCommand) session.getAttribute("resInfo");
 		
 		LeisureTicketDTO dto = new LeisureTicketDTO();
@@ -82,6 +86,7 @@ public class LeisureReservService {
 		
 		ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
 		dto.setUseDate(reservCommand.getUseDate());
+		System.out.println(reservCommand.getUseDate());
 		dto.setPayType(payCommand.getPayType());
 		leisureMapper.insertTicket(dto);
 		
@@ -96,17 +101,15 @@ public class LeisureReservService {
 			LeisureTicketDetailDTO detail = new LeisureTicketDetailDTO();
 			String qty =  reservCommand.getListCnt().get(i);
 			detail.setTicketNum(num);
-			System.out.println(num);
 			detail.setLeisureNum(leisureNum);
-			System.out.println(leisureNum);
 			detail.setTicketQty(Integer.parseInt(qty));
-			System.out.println(qty);
 			if(Integer.parseInt(qty) != 0) {
 				leisureMapper.insertTicketDetail(detail);
 			}
 			i++;
 		}
 		
+		int j = payMapper.leisurePayInsert(userId);
 		
 		session.removeAttribute("reservCommand");
 		session.removeAttribute("userEmail");

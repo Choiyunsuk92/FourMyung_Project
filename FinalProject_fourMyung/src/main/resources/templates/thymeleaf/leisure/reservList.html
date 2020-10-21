@@ -42,30 +42,20 @@ thead tr{
 			</caption>
 		<thead>
 			<tr>
-				<td width="25%">아이디</td>
-				<td width="25%">이름</td>
-				<td width="25%">이용일자</td>
-				<td width="25%">레저번호</td>
+				<td width="20%">발권번호</td>
+				<td width="20%">아이디</td>
+				<td width="20%">이용일자</td>
+				<td width="20%">레저번호</td>
+				<td width="20%">수량</td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
+			<tr th:each="ticketNum : ${list}">
+				<td>[[${ticketNum.ticketNum}]]</td>
+				<td>[[${ticketNum.userId}]]</td>
+				<td>[[${ticketNum.useDate}]]</td>
+				<td>[[${ticketNum.leisureNum}]]</td>
+				<td>[[${ticketNum.ticketQty}]]</td>
 			</tr>
 		</tbody>
 	</table>
