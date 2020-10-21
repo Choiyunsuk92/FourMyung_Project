@@ -39,7 +39,7 @@ public class RoomRegistService {
 		String originalTotal ="";
 		String storeTotal = "";
 		String fileSizeTotal = "";
-		String path = "C:\\Users\\사용자\\git\\FourMyung_Project\\FinalProject_fourMyung\\src\\main\\resources\\static\\upload\\hotel";
+		String path = "C:\\Users\\사용자\\git\\repository\\FinalProject_fourMyung\\src\\main\\resources\\static\\upload\\hotel";
 		
 		for(MultipartFile mf : roomInfoCommand.getRoomImg()) {
 			String original = mf.getOriginalFilename(); // 전송된 파일명
@@ -52,6 +52,7 @@ public class RoomRegistService {
 			// 파일을 저장하기 위해 파일 객체 생성
 			File file = new File(path + "/" + store);
 			try {
+				System.out.println("파일전송");
 				mf.transferTo(file);
 			}catch (Exception e) {
 				// TODO: handle exception

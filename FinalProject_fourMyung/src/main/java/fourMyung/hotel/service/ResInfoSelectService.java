@@ -20,7 +20,6 @@ public class ResInfoSelectService {
 		
 		HotelResInfoDTO resultDto = hotelMapper.resInfoSelect(hotelResDTO);
 		resultDto.setROOM_NM(hotelResDTO.getRoomNm());
-		
 		model.addAttribute("resResult", resultDto);
 	}
 

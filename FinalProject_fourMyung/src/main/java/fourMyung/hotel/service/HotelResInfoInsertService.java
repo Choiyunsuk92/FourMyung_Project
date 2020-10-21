@@ -34,6 +34,7 @@ public class HotelResInfoInsertService {
 		HttpSession session = request.getSession();
 		PayCommand payCommand = (PayCommand) session.getAttribute("resInfo");
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		String userId = authInfo.getUserId();
 		HotelResDTO resDTO = new HotelResDTO();
 		
 		SimpleDateFormat trans = new SimpleDateFormat("yyyy-mm-dd");
@@ -52,13 +53,15 @@ public class HotelResInfoInsertService {
 		resDTO.setUserNm(payCommand.getUserNm());
 		resDTO.setUserPh(payCommand.getUserPh());
 		resDTO.setPayType(payCommand.getPayType());
+		resDTO.setUserId(userId);
+		resDTO.setRoomNum(payCommand.getRoomNum());
 		
 		log.info("resDTO : "+ resDTO);
 		
 		Integer res = hotelMapper.hotelResInsert(resDTO);
 		System.out.println(res+"건의 예약정보가 입력되었습니다.");
 		
-		Integer i = payMapper.hotelPayInsert("TEST");
+		Integer i = payMapper.hotelPayInsert(userId);
 		System.out.println(i+"건의 호텔 결제 정보가 입력되었습니다.");
 		
 		if(res != null) {

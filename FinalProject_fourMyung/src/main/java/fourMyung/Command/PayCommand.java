@@ -16,5 +16,6 @@ public class PayCommand {
 	String addReq;
 	String roomDivCd;
 	String payType;
-	String divCd;		
+	String divCd;	
+	String roomNum;
 }

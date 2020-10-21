@@ -4,11 +4,11 @@
 <mapper namespace="fourMyung.mapper.HotelMapper">
 <sql id="roomColumn">
 ROOM_SEQ, ROOM_NUM, ROOM_NM, ROOM_CLASS, PRICE,ROOM_TO, ROOM_SIZE, BED_INFO, ROOM_RES_YN, OFFER_SVC, EMP_NUM, 
-EMP_NM, SYS_CRET_DT, SYS_MDF_DT, ROOM_IMG_ORG, ROOM_IMG_STORE, FILE_SIZE, ETC, REPLACE(ROOM_IMG_STORE, '`', '') AS TMP_ROOM_IMG
+EMP_NM, SYS_CRET_DT, SYS_MDF_DT, ROOM_IMG_ORG, ROOM_IMG_STORE, FILE_SIZE, ETC
 </sql>
 <sql id="resColumn">
-RES_NUM, MEM_NUM, ROOM_NUM, SRVC_NUM, USER_ID, USER_NM ,USER_PH,
-RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD,SYS_CRET_DT, SYS_MDF_DT, ADD_REQ, PAY_TYPE, PRICE, ROOM_OF_NUM
+RES_NUM, MEM_NUM, ROOM_NUM, USER_ID, USER_NM ,USER_PH,
+RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD,SYS_CRET_DT, SYS_MDF_DT, ADD_REQ, ROOM_OF_NUM
 </sql>
 <resultMap type="fourMyung.domain.hotel.RoomDTO" id="roomResMap">
 	<id column="ROOM_SEQ" jdbcType="VARCHAR" property="roomSeq"/>
@@ -31,9 +31,10 @@ RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD,SYS_CRET_DT, SY
 	<result column="TMP_ROOM_IMG" jdbcType="VARCHAR" property="roomImg"/>
 </resultMap>
 <select id="roomSearch" resultMap="roomResMap">
-	SELECT <include refid="roomColumn"/> 
+	SELECT <include refid="roomColumn"/> , REPLACE(ROOM_IMG_STORE, '`', '') AS TMP_ROOM_IMG
 	  FROM H_HTL_ROOM
 	WHERE ROOM_RES_YN = 'Y'
+	ORDER BY ROOM_CLASS
 </select>
 
 <insert id="roomInsert" parameterType="fourMyung.domain.hotel.RoomDTO">
@@ -58,12 +59,11 @@ NULL,
 #{originalFileName},
 #{storeFileName},
 #{fileSize},
-#{etc},
-#{roomOfNum}
+#{etc}
 )
 </insert>
 <select id="roomListSelect" resultMap="roomResMap">
-	SELECT <include refid="roomColumn"/>
+	SELECT <include refid="roomColumn"/>, REPLACE(ROOM_IMG_STORE, '`', '') AS TMP_ROOM_IMG
 	  FROM H_HTL_ROOM
 </select>
 
@@ -74,8 +74,7 @@ INSERT INTO H_HTL_RES(
 H_RES_SEQ.NEXTVAL,
 1,
 (SELECT ROOM_NUM FROM H_HTL_ROOM WHERE ROOM_CLASS = #{roomDivCd} AND ROOM_RES_YN = 'Y' AND ROWNUM =1),
-1,
-'TEST',
+#{userId},
 #{userNm},
 #{userPh},
 #{checkInDt},
@@ -86,8 +85,6 @@ H_RES_SEQ.NEXTVAL,
 SYSDATE,
 NULL,
 #{addReq},
-#{payType},
-#{price},
 #{roomOfNum}
 )
 </insert>
@@ -97,16 +94,28 @@ UPDATE H_HTL_ROOM
  WHERE ROOM_NUM = (SELECT ROOM_NUM 
 					 FROM H_HTL_RES 
 					WHERE USER_ID = 'TEST'
-					  AND RES_CHK_IN_DT = #{checkInDt})
+					  AND RES_CHK_IN_DT = #{checkInDt}
+					  AND ROWNUM = 1)
 </update>
 
 <select id="resInfoSelect" resultType="fourMyung.domain.hotel.HotelResInfoDTO">
-	SELECT <include refid="resColumn"/>,
-			DECODE(PAY_TYPE, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE_HANGLE
-	  FROM H_HTL_RES
-	 WHERE USER_ID = 'TEST'
-	   AND USER_NM = #{userNm}
-	   AND RES_CHK_IN_DT = #{checkInDt}
-	   AND RES_CHK_OUT_DT = #{checkOutDt}
+SELECT 	A.RES_NUM	AS RES_NUM, 
+		A.ROOM_NUM	AS ROOM_NUM, 
+		A.USER_ID	AS USER_ID, 
+		A.RES_CHK_IN_DT	AS RES_CHK_IN_DT, 
+		A.USE_ADULT	AS USE_ADULT, 
+		A.USE_CHILD	AS USE_CHILD, 
+		A.ROOM_DIV_CD	AS ROOM_DIV_CD, 
+		B.PAY_NUM, 
+		B.PAY_TYPE, 
+		B.PAY_PRICE	AS PRICE, 
+		B.STTUS_DIV_CD,
+		DECODE(B.PAY_TYPE, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE_HANGLE
+  FROM H_HTL_RES A,
+       C_PAYMENT B
+ WHERE A.USER_ID = #{userId}
+   AND A.USER_ID = B.USER_ID
+   AND A.RES_NUM = ( SELECT MAX(TO_NUMBER(RES_NUM)) FROM h_htl_payment)
+   AND B.PAY_NUM = (SELECT MAX(TO_NUMBER(PAY_NUM)) FROM h_htl_payment )
 </select>
 </mapper>
