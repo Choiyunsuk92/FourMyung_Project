@@ -1,6 +1,5 @@
 package fourMyung.leisure.service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,9 +58,8 @@ public class LeisureReservService {
 		  }
 		  
 		  ReservCommand reservCommand = new ReservCommand();
-		  SimpleDateFormat ud = new SimpleDateFormat("yyyy-MM-dd");
-		  Date useDate = ud.parse(useDate1);
-		  
+		  SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		  Date useDate = date.parse(useDate1);
 		  reservCommand.setListLeisure(listLeisure);
 		  reservCommand.setListCnt(listCnt);
 		  reservCommand.setUseDate(useDate);
