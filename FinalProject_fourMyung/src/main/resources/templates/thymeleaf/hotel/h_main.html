@@ -21,14 +21,22 @@
 	<div class="content">
 		<div class="hotel_Res">
 			<ul>
-				<li><i class="far fa-check-circle"></i></li>
-				<li>CHECK AVAILBILITY</li>
+				<li class="text"> <i class="far fa-check-circle"></i></li>
+				<li class="text">CHECK AVAILBILITY</li>
 				<!-- <li><div class="chekIn">체크인 날짜<i class="far fa-calendar-alt"></i></div></li> -->
 				<li>
-					<input type="date" class="chek_In_Date" id="checkDateIn" data-placeholder="체크인 날짜" required aria-required="true">
+					<!-- <input type="date" class="chek_In_Date" id="checkDateIn" data-placeholder="체크인 날짜" required aria-required="true"> -->
+					<div class="form-date">
+						<input type="date"  id="checkDateIn" required aria-required="true">
+						<label for="inpDate">체크인 날짜</label>
+					</div>
 				</li>
 				<li>
-					<input type="date" class="chek_Out_Date" id="checkDateOut" data-placeholder="체크아웃 날짜" required aria-required="true">
+					<!-- <input type="date" class="chek_Out_Date" id="checkDateOut" data-placeholder="체크아웃 날짜" required aria-required="true"> -->
+					<div class="form-date">
+						<input type="date" id="checkDateOut" required aria-required="true">
+						<label for="inpDate">체크아웃 날짜</label>
+					</div>
 				</li>
 				<li>
 					<select class="check_adult" name="check_adult">
@@ -48,14 +56,16 @@
 						<option value="5">소아 5</option>
 					</select>
 				</li>
-				<li><input type="submit" class="check_search" value="조회"></li>
+				<li><input type="submit" class="check_search" value="검색"></li>
 			</ul>
 		</div>
 	</div>
 	<div style="display: none;"><h3>도착</h3><input type="text" class="chek_In_Date" name="chek_In_Date" id="r_chek_In_Date"></div>
 	<div style="display: none;"><h3>출발</h3><input type="text" class="chek_Out_Date" name="chek_Out_Date" id="r_chek_Out_Date"></div>
 	</form>
-	<div class="footer"></div>
+	<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
 </div>
 </body>
 </html>

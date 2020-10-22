@@ -6,16 +6,6 @@
 <script src="https://kit.fontawesome.com/19c81546e5.js" crossorigin="anonymous"></script>
 <script src="../static/jquery/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
-	document.getElementById('resDate').valueAsDate = new Date();
-	
-	// 취소요청 버튼 클릭
-	$("#cnclBtn").click(function(){
-		if(confirm("정말로 예약을 취소하시겠습니까?")){
-			$("#cnclBtn").submit();
-		};
-	});
-})
 </script>
 <title></title>
 </head>
@@ -43,7 +33,7 @@ $(function(){
 					<span class="span_cnclNum">0588-4888</span>
 				</div>
 				<div class="conBtn_div">
-					<input type="button" class="confimBtn"><a href="#">확인</a>
+					<input type="button" class="confimBtn"><a href="../my/MyPage">확인</a>
 				</div>
 			</div>
 		</div>

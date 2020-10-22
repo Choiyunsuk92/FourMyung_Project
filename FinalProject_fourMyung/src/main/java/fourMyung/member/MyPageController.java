@@ -22,8 +22,8 @@ public class MyPageController {
 		return "thymeleaf/member/MyPage";
 	}
 	@RequestMapping("myRoomSttus")
-	public String MyRoomSttus() {
-		
+	public String MyRoomSttus(HttpServletRequest request,Model model) throws Exception{
+		myPageSelectService.reservationTxn(request, model);
 		return "thymeleaf/hotel/h_resSelect";
 	}
 	@RequestMapping("mySports")

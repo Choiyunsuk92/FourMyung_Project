@@ -7,7 +7,7 @@
 <script src="../static/jquery/jquery.js"></script>
 <script type="text/javascript" src="../static/js/hotel/roomSelect.js"></script>
 <script type="text/javascript">
-function roomSelBtnClick(roomNm, price, people, roomClass){
+function roomSelBtnClick(roomNm, price, people, roomClass, roomNum){
 	$("#totalRoomNm").text(roomNm);
 	$("#totalRoomNm1").val(roomNm);
 	var roomOfNumber = $("#roomOfNumber option:selected").val();
@@ -16,6 +16,7 @@ function roomSelBtnClick(roomNm, price, people, roomClass){
 	$("#totalPrice1").val(totalPirce);
 	$("#roomOfNum").val(roomOfNumber);
 	$("#roomClass").val(roomClass);
+	$("#roomNum").val(roomNum);
 	// 인원에 따른 select box 생성
 	people++;
 	var i;
@@ -85,6 +86,7 @@ function roomSelBtnClick(roomNm, price, people, roomClass){
 			<input type="hidden" name="price" id="totalPrice1">
 			<input type="hidden" name="roomNm" id="totalRoomNm1" >
 			<input type="hidden" name="roomClass" id="roomClass" >
+			<input type="hidden" name="roomNum" id="roomNum" >
 			<div class="person_Info">
 				<div class="info_1">
 					<h4>성인</h4>
@@ -136,9 +138,10 @@ function roomSelBtnClick(roomNm, price, people, roomClass){
 								<option value="2">2</option>
 								<option value="3">3</option>
 							</select>
-							<input type="button" class="roomSelectBtn" value="선택" th:onclick="@{'roomSelBtnClick(\''+${roomRel.roomNm} +'\',\''+${roomRel.price}+'\' ,\''+${roomRel.roomTo}+'\' ,\''+${roomRel.roomClass}+'\')'}">
+							<input type="button" class="roomSelectBtn" value="선택" th:onclick="@{'roomSelBtnClick(\''+${roomRel.roomNm} +'\',\''+${roomRel.price}+'\' ,\''+${roomRel.roomTo}+'\' ,\''+${roomRel.roomClass}+'\' ,\''+${roomRel.roomNum}+'\')'}">
 						</div>
-						<div style="display: none;"><input type="text" id="rClass"value="${roomRel.roomClass}"></div>
+						<div style="display: none;"><input type="text" id="${roomRel.seq}"value="${roomRel.roomClass}"></div>
+						<div style="display: none;"><input type="text" id="rNum"value="${roomRel.roomNum}"></div>
 					</div>
 				</div>
 			</div>

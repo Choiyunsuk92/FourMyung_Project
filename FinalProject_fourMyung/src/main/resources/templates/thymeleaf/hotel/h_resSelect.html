@@ -9,13 +9,25 @@
 $(function(){
 	document.getElementById('resDate').valueAsDate = new Date();
 	
-	// 취소요청 버튼 클릭
-	$("#cnclBtn").click(function(){
-		if(confirm("정말로 예약을 취소하시겠습니까?")){
-			$("#cnclBtn").submit();
+	
+});
+
+function cnclBtnClick(id){
+		console.log(id);
+		// 취소요청 버튼 클릭
+		var cnclMent = "정말로 예약을 취소하시겠습니까? \n "+
+		"※ 취소 위약금 정책 ※ \n"+
+		"- 체크인 날짜 3일 전 오후 16시까지 위약금 없음.\n"+
+		"- 체크인 날짜 2일 전 오후 16시까지 1박의 30% 위약금 부과.\n"+
+		"- 체크인 날짜 1일 전 오후 16시까지 1박의 50% 위약금 부과.\n"+
+		"- 체크인 날짜 1일 전 오후 16시 이후 및 노쇼의 경우 100% 위약금 부과.";
+		// 취소요청 버튼 클릭
+		if(confirm(cnclMent)){
+			console.log("취소진행");
+			$('#frm'+id).submit();
 		};
-	});
-})
+		
+};
 </script>
 <title></title>
 </head>
@@ -50,7 +62,25 @@ $(function(){
 			</div>
 		</div>
 		<div class="roomResList">
-			<table>
+			<table th:if="${hotelListDTO.isEmpty()}">
+				<tr>
+					<td><h3>객실예약 현황</h3></td>
+				</tr>
+				<tr>
+					<th>객실명</th>
+					<th>이용일자</th>
+					<th>인원</th>
+					<th>가격</th>
+					<th>구매일자</th>
+					<th>결제방법</th>
+					<th>현재상태</th>
+					<th>취소</th>
+				</tr>
+				<tr>
+					<td colspan="8">객실 예약사항이 없습니다.</td>
+				</tr>
+			</table>
+			<table th:if="${!hotelListDTO.isEmpty()}">
 				<tr>
 					<td><h3>객실예약 현황</h3></td>
 				</tr>
@@ -65,23 +95,23 @@ $(function(){
 					<th>취소</th>
 				</tr>
 				<tr th:each="resInfo : ${hotelListDTO}">
-					<td><span th:text=${resInfo.ROOM_NM}></span></td>
-					<td><span th:text="${#dates.format(resInfo.SYS_CRET_DT, 'YYYY-MM-dd')}"></span></td>
-					<td>2</td>
-					<td><span th:text=${resInfo.PRICE}></span>원</td>
-					<td><span th:text="${#dates.format(resInfo.SYS_CRET_DT, 'YYYY-MM-dd')}"></span></td>
-					<td>카카오페이</td>
-					<td><span th:text=${resInfo.STTUS}></span></td>
-					<td><input type="button" class="cnclBtn" id="cnclBtn" value="취소신청"></td>
-				</tr>
-				<tr>
-					<td>디럭스더블저층</td>
-					<td>2020.11.28</td>
-					<td>2</td>
-					<td>225,000원</td>
-					<td>구매일자</td>
-					<td>카카오페이</td>
-					<td>결제완료</td>
+					<form th:action="@{/pay/Hcncl}" method="post" name="frm" th:id="'frm'+${resInfoStat.count}" th:object="${HotelCnclCommand}">
+						<td><span th:text=${resInfo.ROOM_NM}></span></td>
+						<td><span th:text="${#dates.format(resInfo.RES_CHK_IN_DT, 'YYYY-MM-dd')}"></span></td>
+						<td><span th:text=${resInfo.USE_ADULT}></span></td>
+						<td><span th:text=${resInfo.PRICE}></span>원</td>
+						<td><span th:text="${#dates.format(resInfo.SYS_CRET_DT, 'YYYY-MM-dd')}"></span></td>
+						<td><span th:text=${resInfo.PAY_TYPE}></span></td>
+						<td><span th:text=${resInfo.STTUS}></span></td>
+						<td th:switch="${resInfo.STTUS} ">
+							<input type="button" class="cnclBtn" th:id="'cnclBtn' + ${resInfoStat.count}" value="취소신청" th:onclick="@{'javascript:cnclBtnClick(\''+${resInfoStat.count}+'\');'}"  th:case="결제완료">
+							<span th:case="예약취소"></span>
+						</td>
+						<td style="display: none;">
+								<input type="hidden" name="resNum" th:value="${resInfo.RES_NUM}">
+								<input type="hidden" name="payNum" th:value="${resInfo.PAY_NUM}">
+						</td>
+					</form>
 				</tr>
 			</table>
 		</div>

@@ -16,7 +16,7 @@
 }
 .content{
 	width: 100%;
-	height: 10vh;
+	height: 85px;
 	background: #29434e;
 }
 .hotel_Res{
@@ -29,46 +29,42 @@
 	align-items: center;
 	height: 100%;
 }
-.hotel_Res ul li{
+.text{
 	font-size: 30px;
 	color: #d49466;
 }
 .check_search{
 	padding: 10px;
 	width: 100px;
+	background: #d49466;
+	color: #fff;
+	font-weight: 900;
+	font-size: 16px;
+	border: none;
 }
 select {
 	width: 100px;
 	padding: .8em .5em;
-	border: 1px solid #999;
+	border: 2px solid #d7d7d7;
 	font-family: inherit;
 	background: url('../../img/hotel/svg3.png') no-repeat 95% 50%;
-	border-radius: 0px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	color: #d7d7d7;
 }
 select::-ms-expand {
 	display: none;
-}
-.chek_In_Date{
-	position: relative;
-	left: 0;
-	right: 0;
-	opacity: 1;
-	padding: 10px 0px 10px 0px;
-	bottom: 5px;
 }
 .chek_Out_Date{
 	position: relative;
 	left: 0;
 	right: 0;
-	opacity: 1;
 	padding: 10px 0px 10px 0px;
 	bottom: 5px;
 }
 input[type="date"]::before {content:attr(data-placeholder); width:100%}
-input[type="date"]:valid::before {display: none}
+input[type="date"]:valid::before {display: none;}
 
 a{
 	text-decoration: none;
@@ -76,4 +72,26 @@ a{
 li{
 	list-style-type: none;
 	padding: 0 8px;
+}
+
+.form-date {position: relative;}
+.form-date input{ 
+	width: 100%;
+	height: 43px;
+	border: 2px solid #d7d7d7;
+	padding-left: 10px;
+	font-size: 14px; 
+	background: #29434e;
+	color: #d49466;
+}
+.form-date label {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	border: 0;
+	color: #d7d7d7;
+}
+.form-date input:focus ~ label,
+.form-date input:valid ~ label {
+	display: none;
 }

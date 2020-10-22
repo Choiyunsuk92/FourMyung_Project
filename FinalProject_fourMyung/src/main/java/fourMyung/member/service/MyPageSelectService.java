@@ -1,5 +1,6 @@
 package fourMyung.member.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 
 import fourMyung.Command.AuthInfo;
 import fourMyung.domain.hotel.HotelResInfoDTO;
+import fourMyung.domain.member.MyPageHotelDTO;
 import fourMyung.mapper.MemberMapper;
 
 @Component
@@ -24,11 +26,12 @@ public class MyPageSelectService {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		//AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		
-		//String userId = authInfo.getUserId();
+		String userId = authInfo.getUserId();
 		
-		List<HotelResInfoDTO> hotelListDTO = memberMapper.myPageHotel("TEST");
+		List<HotelResInfoDTO> hotelListDTO = memberMapper.myPageHotel(userId);
+		System.out.println("sysCredDt: "+ hotelListDTO.get(0).getSYS_CRET_DT());
 		
 		model.addAttribute("hotelListDTO", hotelListDTO);
 	}

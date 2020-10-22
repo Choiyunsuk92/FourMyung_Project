@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="static/css/mainStyle.css">
+<script src="https://kit.fontawesome.com/19c81546e5.js" crossorigin="anonymous"></script>
+<script src="static/jquery/jquery.js"></script>
+<script type="text/javascript" src="static/js/main/m_main.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<div class="navbar">
+		<div class="group_icon"><a href="#"><i class="fas fa-jedi"></i></a></div>
+		<div class="navbar_menu">
+			<a href="#">대명소노그룹 소개</a>
+			<a href="#">사업분야</a>
+			<a href="#">아름다운 소통</a>
+			<a href="#">그룹소식</a>
+			<a href="#">채용</a>
+			<span th:if="${session.authInfo == null}">
+			<a href="../login">Login</a>
+			<a href="../mem/regist">JoinUs</a>
+			</span>
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 1">
+			<a href="../logout">Logout</a>
+			<a href="../mem/myInfo">MyPage</a>
+			</span>
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 2">
+			<a href="../logout">Logout</a>
+			<a href="../emp/mypage">MyPage</a>
+			</span>
+		</div>
+	</div>
+	<div class="contents">
+		<input type="image" src="" class="mainImg" id="mainImg">
+		<div class="tapWrap">
+			<div class="selectTap">
+				<ul class="tapWrap_ul">
+					<li id="main_li1">HOTELS & RESORTS</li>
+					<li id="main_li2">SNOW & WATER PARK</li>
+					<li id="main_li3">FOOD DINING</li>
+				</ul>
+			</div>
+			<div class="content_select">
+					<div class="selContent_div_1">
+						<h2 class="selContent_h2" id="selContent_h2"></h2>
+						<p class="selContent_P1" id="selContent_P1"></p>
+						<h3 class="selContent_h3" id="selContent_h3"></h3>
+					</div>
+					<div class="selContent_div_btn">
+						<a href="#" class="webSiteMove" id="webSiteMove"></a>
+						<input type="image" class="webSiteBtn" id="webSiteBtn" src="static/img/main/siteBtn.JPG">
+					</div>
+					<div class="selContent_div_2">
+						<input type="image" class="sel_img" id="sel_img" src="">
+						<p class="selContent_P2" id="selContent_P2"></p>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<!-- <footer th:include="thymeleaf/include/footer.html"></footer> -->
+	</div>
+</div>
+
+</body>
+</html>

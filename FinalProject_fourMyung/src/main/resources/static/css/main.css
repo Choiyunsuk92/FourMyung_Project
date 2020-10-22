@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-weight: 300;
+	font-family: "Noto Sans KR", "Malgun Gothic", Dotum, sans-serif;
+	
+}
+body {
+	width: 100%;
+}
+a{
+	text-decoration: none;
+}
+.content{
+	height: 100vh;
+	background: url("../img/main/main_1.jpg");
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.head_ul{
+	display: flex;
+}
+.head_ul li{
+	list-style: none;
+	padding: 10px 35px;
+}
+.head_ul li a{
+	color: #373737;
+	font-size: 18px;
+}
+.head_ul li a:hover{
+	text-decoration:underline; 
+	color:#ff4646;
+}
+.head_ul li i{
+	font-size: 18px;
+	color: #ffc107;
+	margin-right: 4px; 
+}
+.link{
+	display: flex;
+}
+.Hlink,
+.Llink {
+	border: 2px solid #888888;
+	margin: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.Hlink a,
+.Llink a{
+	color: #fff;
+	font-size: 24px;
+	padding: 30px 130px;
+}
+
+.Hlink:hover{
+	border: 8px solid #fff;
+	cursor: pointer;
+}
+.Llink:hover{
+	border: 8px solid #fff;
+	cursor: pointer;
+}
+.Hlink:hover a{
+	font-size: 28px;
+	font-weight: 800;
+}
+.Llink:hover a{
+	font-size: 28px;
+	font-weight: 800;
+}
