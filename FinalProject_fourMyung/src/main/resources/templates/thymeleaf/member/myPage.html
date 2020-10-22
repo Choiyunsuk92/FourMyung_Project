@@ -86,7 +86,7 @@
 							<th>가격</th>
 							<th>결제방법</th>
 							<th>현재상태</th>
-						</tr> 
+						</tr>
 						<tr th:each="leisure : ${leisure}">
 							<td><span th:text="${#dates.format(leisure.USE_DATE, 'YYYY-MM-dd')}"></span></td>
 							<td><span th:text="${leisure.LEISURE_NAME}"></span></td>
@@ -103,5 +103,8 @@
 		<div class="myPageTapMenu" th:include="thymeleaf/member/myPageTap.html"></div>
 	</div>
 </div>
+<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
 </body>
 </html>
