@@ -30,13 +30,13 @@
 					<div class="card">
 						<h2>예약정보</h2>
 						<br />
-						<table style="width: 50%">
+						<table style="border: 1">
 							<tr>
 								<td>이용날짜</td>
-								<td><span th:text="${#dates.format(reservCommand.useDate},'yyyy-MM-dd')}" ></span></td>
+								<td></td>
 							</tr>
 							<tr>
-								<td width="20%">이용권종류</td>
+								<td width="20">이용권종류</td>
 								<!-- leisureTime -->
 								<td width="20%">대상</td>
 								<!-- leisureAge -->
@@ -96,7 +96,6 @@
 										</th:block>
 									</table>
 								</td>
-								</td>
 						</table>
 						<br />
 
@@ -129,7 +128,7 @@
 							</tr>
 							<tr>
 								<td>수령장소</td>
-								<td></td>
+								<td>내명워터 예약 발권소</td>
 							</tr>
 						</table>
 						<br />
@@ -151,9 +150,9 @@
 									<input type="text" name="userPh"  th:value="${session.authInfo.userPh}">
 									<input type="text" name="divCd"  value="L">
 								</div>
-								<div class="divPay">
-									<div class="divPay_1"><input type="submit" value="결제" class="divPay_1_submit"></div>
-									<div class="divPay_2"><input type="button" class="divPay_1_cncl"> <a href="#">취소</a></div>
+								<div class="btn_area" style="text-align: center;">
+									<input type="button" value="홈으로" class="btnJoin" onclick="location.href='../leisure/leisureMain'">
+									<input type="submit" id="bts" class="btnJoin" value="결제" >
 								</div>
 					</div>
 			</th:block>
