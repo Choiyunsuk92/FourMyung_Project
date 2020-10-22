@@ -6,11 +6,14 @@
 	MEM_DIV_CD, USER_ID, USER_PASS, USER_NM, USER_BIRTH, 
 	USER_EMAIL, USER_PH, USER_ADDR, USER_GENDER, JOIN_DT, SYS_MDF_DT, JOIN_OK  
 </sql>
-
+<sql id="resColumn">
+RES_NUM, MEM_NUM, ROOM_NUM, SRVC_NUM, USER_ID, USER_NM ,USER_PH,
+RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD, SYS_CRET_DT, SYS_MDF_DT, ADD_REQ, PAY_TYPE, PRICE, ROOM_OF_NUM
+</sql>
 <insert id="insertMember" parameterType="fourMyung.domain.member.MemberDTO">
 	insert into c_member ( <include refid="basecolumn" />  )
 		values(#{memDivCd}, #{userId}, #{userPass}, #{userNm}, #{userBirth},
-		#{userEmail}, #{userPh}, #{userAddr}, DECODE(#{userGender}, 'M', '남자', 'F', '여자'), sysdate, null, null)
+		#{userEmail}, #{userPh}, #{userAddr}, #{userGender}, sysdate, null, null)
 </insert>
 
 <update id="joinOkUpdate" parameterType="fourMyung.domain.member.MemberDTO">
@@ -38,86 +41,120 @@
 </resultMap>
 
 <select id="selectByMember" parameterType="fourMyung.domain.member.MemberDTO" resultMap="baseMember">
-	select *
-	from(select <include refid="basecolumn" /> 	
-		 from c_member
-	 		  <where>
-			  	<if test="userId != null and joinOk != null ">
-					user_id = #{userId} 
-				</if>
-				<if test="userId != null and joinOk == null">
-					user_id = #{userId} and join_ok is not null
-				</if>
-			  </where>
-		  order by join_dt desc)
+	select <include refid="basecolumn" /> 
+	FROM C_MEMBER 
+	WHERE USER_ID = #{userId}
 </select>
-
-<update id="memberUpdate" parameterType="fourMyung.domain.member.MemberDTO">
-	update c_member
-	<trim prefix="set" suffixOverrides=",">
-		<if test="userEmail != null">user_email = #{userEmail},</if>
-		<if test="userAddr != null">user_addr = #{userAddr},</if>
-		<if test="userPh !=null"> user_ph = #{userPh},</if>
-	</trim>
-	<where>
-		user_Id = #{userId}
-	</where>	
-</update>
-
-<update id="pwChange" parameterType="fourMyung.domain.member.PwChangeDTO">
-	update c_member 
-	set user_pass = #{newPw}
-	where user_id = #{userId}
-</update>
-
-<delete id="myInfoDel" parameterType="string">
-	delete from c_member 
-	<where>
-		user_id = #{userId}
-	</where> 
-</delete>
 <select id="myPageHotel" resultType="fourMyung.domain.hotel.HotelResInfoDTO">
-SELECT	A.RES_NUM AS RES_NUM, 
-		C.ROOM_NM AS ROOM_NM, 
-		B.PAY_PRICE AS PRICE, 
-		A.SYS_CRET_DT AS SYS_CRET_DT, 
-		DECODE(B.STTUS_DIV_CD, 'Y', '결제완료', 'C', '예약취소') AS STTUS
-  FROM	H_HTL_RES A,
-		C_PAYMENT B,
-		H_HTL_ROOM C
- WHERE A.USER_ID = B.USER_ID
-   AND A.ROOM_NUM = C.ROOM_NUM
- GROUP BY A.RES_NUM, C.ROOM_NM, B.PAY_PRICE, A.SYS_CRET_DT, B.STTUS_DIV_CD
- ORDER BY TO_NUMBER(A.RES_NUM) ASC
+SELECT	H.RES_NUM AS RES_NUM, 
+		C.PAY_NUM AS PAY_NUM,
+		H.ROOM_NUM AS ROOM_NUM,
+		G.ROOM_NM AS ROOM_NM,
+		H.SYS_CRET_DT AS SYS_CRET_DT,
+		H.RES_CHK_IN_DT AS RES_CHK_IN_DT,
+		TO_NUMBER(H.USE_ADULT) + TO_NUMBER(H.USE_CHILD) AS USE_ADULT,
+		C.PAY_PRICE AS PRICE,
+		DECODE(C.PAY_TYPE, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE,
+		DECODE(C.STTUS_DIV_CD, 'Y', '결제완료', 'N', '예약취소') AS STTUS
+  FROM	H_HTL_RES H,
+		C_PAYMENT C,
+		( SELECT B.PAY_NUM, B.RES_NUM
+			FROM H_HTL_RES A,
+				 H_HTL_PAYMENT B
+		   WHERE A.RES_NUM = B.RES_NUM
+			 AND A.USER_ID = #{userId}) D,
+		H_HTL_ROOM G
+ WHERE H.RES_NUM = D.RES_NUM
+   AND C.PAY_NUM = D.PAY_NUM
+   AND G.ROOM_NUM = H.ROOM_NUM
+ ORDER BY H.RES_CHK_IN_DT ASC
 </select>
 
+<select id="myPageLeisure" resultType="fourMyung.domain.member.MypageLeisureDTO">
+SELECT DISTINCT(z.ticket_num) AS TICKET_NUM,
+      z.total_price,
+      z.use_date,
+      z.res_date,
+      z.pay_type,
+      Z.LEISURE_NAME,
+      Z.STTUS_DIV_CD
+  FROM (
+SELECT a.ticket_num AS TICKET_NUM,
+       a.total_price AS TOTAL_PRICE,
+       a.use_date AS USE_DATE,
+       a.res_date AS RES_DATE,
+       DECODE(a.pay_type, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE,
+       c.leisure_name AS LEISURE_NAME,
+       c.leisure_age AS LEISURE_AGE,
+       b.ticket_qty AS TICKET_QTY,
+       DECODE(e.sttus_div_cd, 'Y', '결제완료', 'N', '예약취소') AS STTUS_DIV_CD
+  FROM  L_TICKET A,
+        L_TICKET_DETAIL B,
+        L_LSR_LIST C,
+        (SELECT ticket_num
+          FROM L_USER
+         WHERE USER_ID = #{userId}) D,
+        (select cp.pay_num, cp.sttus_div_cd, lp.ticket_num
+          from c_payment CP,
+               L_LEI_PAYMENT LP
+         WHERE cp.user_id = #{userId}
+           and cp.pay_num = lp.pay_num ) E
+ WHERE A.TICKET_NUM = D.TICKET_NUM
+   AND a.ticket_num = b.ticket_num
+   AND b.leisure_num = c.leisure_num
+   AND a.ticket_num = e.ticket_num  ) Z
+ ORDER BY Z.RES_DATE ASC
+</select>
+<select id="myPageLeisureDetail" resultType="fourMyung.domain.member.MypageLeisureDTO">
+SELECT a.ticket_num AS TICKET_NUM,
+       e.pay_num AS PAY_NUM,
+       a.total_price AS TOTAL_PRICE,
+       a.use_date AS USE_DATE,
+       a.res_date AS RES_DATE,
+       DECODE(a.pay_type, 'KP', '카카오페이', 'BT', '실시간계좌이체') AS PAY_TYPE,
+       c.leisure_name || ' '||
+       DECODE(c.leisure_age, 'adult', '어른', 'child', '어린이') || ':' ||
+       DECODE(c.LEISURE_TIME, 'PM', '오후', 'AM', '오전', 'allDay', '종일권') LEISURE_NAME,
+       b.ticket_qty AS TICKET_QTY,
+       DECODE(e.sttus_div_cd, 'Y', '결제완료', 'N', '예약취소') AS STTUS_DIV_CD
+  FROM  L_TICKET A,
+        L_TICKET_DETAIL B,
+        L_LSR_LIST C,
+        (SELECT ticket_num
+          FROM L_USER
+         WHERE USER_ID = #{userId}) D,
+        (select cp.pay_num, cp.sttus_div_cd, lp.ticket_num
+          from c_payment CP,
+               L_LEI_PAYMENT LP
+         WHERE cp.user_id = #{userId}
+           and cp.pay_num = lp.pay_num ) E
+ WHERE A.TICKET_NUM = D.TICKET_NUM
+   AND a.ticket_num = b.ticket_num
+   AND b.leisure_num = c.leisure_num
+   AND a.ticket_num = e.ticket_num
+ ORDER BY TO_NUMBER(E.PAY_NUM) ASC
+</select>
+
+<update id="hotelCncl">
+UPDATE C_PAYMENT
+   SET STTUS_DIV_CD = 'N'
+ WHERE PAY_NUM = ( SELECT PAY_NUM
+					 FROM H_HTL_PAYMENT A,
+					      H_HTL_RES B
+					WHERE A.RES_NUM = B.RES_NUM
+					  AND B.USER_ID = #{userId}
+					  AND B.RES_NUM = #{resNum})
+</update>
+
+<update id="leisureCncl">
+UPDATE C_PAYMENT
+   SET STTUS_DIV_CD = 'N'
+ WHERE PAY_NUM = (
+					SELECT	PAY_NUM
+					  FROM	L_LEI_PAYMENT A,
+							L_USER B
+					 WHERE A.TICKET_NUM = B.TICKET_NUM
+					   AND B.USER_ID = #{userId}
+					   AND b.ticket_num = #{ticketNum} )
+</update>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
