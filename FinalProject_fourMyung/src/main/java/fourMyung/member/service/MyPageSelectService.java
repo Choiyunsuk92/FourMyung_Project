@@ -33,7 +33,7 @@ public class MyPageSelectService {
 		memberInfoService.myInfo(userId, model);
 		
 		List<HotelResInfoDTO> hotelListDTO = memberMapper.myPageHotel(userId);
-		System.out.println("sysCredDt: "+ hotelListDTO.get(0).getSYS_CRET_DT());
+//		System.out.println("sysCredDt: "+ hotelListDTO.get(0).getSYS_CRET_DT());
 		
 		model.addAttribute("hotelListDTO", hotelListDTO);
 		
