@@ -33,7 +33,7 @@
 						<table style="width: 50%">
 							<tr>
 								<td>이용날짜</td>
-								<td>[[${session.reservCommand.useDate}]]</td>
+								<td><span th:text="${#dates.format(reservCommand.useDate},'yyyy-MM-dd')}" ></span></td>
 							</tr>
 							<tr>
 								<td width="20%">이용권종류</td>

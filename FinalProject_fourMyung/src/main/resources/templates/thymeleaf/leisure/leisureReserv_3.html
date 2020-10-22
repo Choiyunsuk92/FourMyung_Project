@@ -5,6 +5,22 @@
 <link rel="stylesheet" href="../static/css/leisure/reserv_top.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#bts").click(function(){
+		if($("#userEmail").val() == ""){
+			alert("예약 정보를 전송받을 이메일을 입력해주세요");
+			$("#userEmail").focus();
+			return false;
+		}
+		if($("#userPh").val() == ""){
+			alert("예약 정보를 전송받을 휴대폰 번호를 입력해주세요");
+			$("#userPh").focus();
+			return false;
+		}
+	});
+});
+</script>	
 <title>CSS Project2</title>
 </head>
 
@@ -51,27 +67,29 @@
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td>[[${session.authInfo.userBirth}]]</td>
+					<td>
+						<span th:text="${#strings.substring(session.authInfo.userBirth, 0, 10)}" ></span>
+					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<!-- [[${session.authInfo.userEmail}]] -->
-					<td><input type="text" id="userEmail" name="userEmail" ></td>
+					<td><input type="text" id="userEmail" name="userEmail" th:value = "${session.authInfo.userEmail }"></td>
 				</tr>
 				<tr>
 					<td>휴대번호</td>
 					<!-- [[${session.authInfo.userPh}]] -->
-					<td><input type="text" id="userPh" name="userPh" ></td>
+					<td><input type="text" id="userPh" name="userPh" th:value = "${session.authInfo.userPh }"></td>
 				</tr>
 				<tr>
 					<td>수령장소</td>
-					<td></td>
+					<td>내명워터 예약발매소</td>
 				</tr>
 				<tr>
 					<td colspan=2>
 						<div class="btn_area" style="text-align: center;">
 							<input type="button" value="홈으로" class="btnJoin" onclick="location.href='../leisure/leisureMain'">
-							<input type="submit" class="btnJoin" value="다음" >
+							<input type="submit" id="bts" class="btnJoin" value="다음" >
 						</div>
 					</td>
 				</tr>

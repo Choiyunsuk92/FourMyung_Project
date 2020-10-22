@@ -18,9 +18,11 @@
 </resultMap>
 
 <select id="selectByLeisure" parameterType="fourMyung.domain.leisure.LeisureDTO" resultMap="baseLeisure"> 
-	select leisure_num, leisure_name, leisure_age, leisure_time, leisure_price 
-	from l_lsr_list
-	order by leisure_num desc
+	select leisure_num, leisure_name, DECODE(l.leisure_age, 'child', '소인', 'adult', '대인') AS LEISURE_AGE, 
+										DECODE(l.leisure_time, 'allDay', '종일권', 'PM', '오후권', 'AM', '오전권') AS LEISURE_TIME, 
+				leisure_price 
+				from l_lsr_list l
+				order by leisure_num ASC
 </select>
 
 <delete id="leisureDel" parameterType="int">
@@ -64,7 +66,9 @@
 </resultMap>
 
 <select id="selectByTicket" parameterType="fourMyung.domain.leisure.ReservListDTO" resultMap="baseTicket">
-	select d.ticket_num as ticket_num, d.leisure_num as leisure_num, d.ticket_qty as ticket_qty, t.use_date as use_date, u.user_id as user_id
+	select d.ticket_num as ticket_num, 
+							DECODE(leisure_num, '1', '대인 - 종일권', '2', '대인 - 오전권', '3', '대인 - 오후권', '4', '소인 - 종일권', '5', '소인 - 오전권', '6', '소인 - 오후권') as leisure_num, 
+							d.ticket_qty as ticket_qty, t.use_date as use_date, u.user_id as user_id
 	from l_ticket_detail d
 	inner join l_user u
 	on d.ticket_num = u.ticket_num

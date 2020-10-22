@@ -14,6 +14,7 @@ public class AuthInfo {
 	private String userGender;
 	private String userBirth;
 	private String userPh;
+	private String joinOk;
 	
 	
 }

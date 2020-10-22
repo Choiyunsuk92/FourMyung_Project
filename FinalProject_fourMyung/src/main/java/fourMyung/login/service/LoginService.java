@@ -30,11 +30,15 @@ public class LoginService {
 			model.addAttribute("valid_userId", "아이디가 존재하지않습니다.");
 			location = "thymeleaf/login/login";
 		}else {
-			if(passwordEncoder.matches(loginCommand.getUserPass(), dto.getUserPass())) {
+			if(!passwordEncoder.matches(loginCommand.getUserPass(), dto.getUserPass())) {
+				model.addAttribute("valid_userPass", "비밀번호가 일치하지않습니다. ");
+				location = "thymeleaf/login/login";
+			}else {
 				session.setAttribute("authInfo", dto);
 				location = "redirect:/";
-			}else {
-				model.addAttribute("valid_userPass", "비밀번호가 일치하지않습니다. ");
+			}
+			if(dto.getJoinOk() == null) {
+				model.addAttribute("valid_joinOk", "메일 인증을 진행해주세요. ");
 				location = "thymeleaf/login/login";
 			}
 		}

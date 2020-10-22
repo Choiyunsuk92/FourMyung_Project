@@ -10,7 +10,7 @@
 <insert id="insertMember" parameterType="fourMyung.domain.member.MemberDTO">
 	insert into c_member ( <include refid="basecolumn" />  )
 		values(#{memDivCd}, #{userId}, #{userPass}, #{userNm}, #{userBirth},
-		#{userEmail}, #{userPh}, #{userAddr}, #{userGender}, sysdate, null, null)
+		#{userEmail}, #{userPh}, #{userAddr}, DECODE(#{userGender}, 'M', '남자', 'F', '여자'), sysdate, null, null)
 </insert>
 
 <update id="joinOkUpdate" parameterType="fourMyung.domain.member.MemberDTO">

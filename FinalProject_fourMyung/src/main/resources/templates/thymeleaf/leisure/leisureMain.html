@@ -36,9 +36,10 @@
 		slides[slideIndex - 1].style.display = "block";
 		dots[slideIndex - 1].className += " active";
 	}
+	
 </script>
 </head>
-<body>
+<body onload="currentSlide(1)">
 	<header>
 		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
 		<div class="leisureMenu" th:include="thymeleaf/leisure/leisure_top.html"></div>

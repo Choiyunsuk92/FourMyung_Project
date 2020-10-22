@@ -22,6 +22,15 @@
 		}
 		document.getElementById("total").innerHTML = total;
 	}
+	$(function(){
+		$("#bts").click(function(){
+			if($("#useDate").val() == ""){
+				alert("이용날짜를 선택해주세요");
+				$("#useDate").focus();
+				return false;
+			}
+		});
+	});
 </script>
 </head>
 
@@ -68,19 +77,19 @@
 										<a th:href="@{'javascript:change(' + ${cnt.count} + ',-1, '+ ${aaaa.leisurePrice} + ');'}">▼</a>
 									</td>
 									<!-- aaaa.leisurePrice -->
-									<td><span th:id = "@{'price'+${cnt.count}}">0</span></td>
+									<td><span th:id = "@{'price'+${cnt.count}}">0</span>원</td>
 								</tr>
 						</th:block>
 						</form>
 						<tr>
 							<td colspan=1>이용요금</td>
-							<td colspan=3 style="text-align: right"><span id = "total" name="total">0</span>원</td>
+							<td colspan=3 style="text-align: right"><span id = "total" name="total"></span>원</td>
 						</tr>
 						<tr>
 							<td colspan=4 align="right">
 								<div class="btn_area" style="text-align: center;">
 									<input type="button" value="홈으로" class="btnJoin" onclick="location.href='../leisure/leisureMain'">
-									<input type="submit" class="btnJoin" value="다음" >
+									<input type="submit" id="bts" class="btnJoin" value="다음" >
 								</div>
 							</td>
 						</tr>

@@ -16,8 +16,16 @@
 		<li>시설안내
 			<ul class="sub">
 				<li><a href="">실내워터파크</a></li>
-			</ul></li>
-		<li><a href="../reserv/reservation_1">예약하기</a></li>
+			</ul>
+		</li>
+		<li>
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 1">	
+				<a href="../reserv/reservation_1">예약하기</a>
+			</span>
+			<span th:if="${session.authInfo == null}">	
+				<a href="../login">예약하기</a>
+			</span>
+		</li>
 		<li>고객센터
 			<ul class="sub">
 				<li><a href="">공지사항</a></li>

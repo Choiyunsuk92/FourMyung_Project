@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import fourMyung.Command.AuthInfo;
+import fourMyung.Command.MemberCommand;
 import fourMyung.Command.PayCommand;
 import fourMyung.Command.ReservCommand;
 import fourMyung.Command.ReservCommand2;
@@ -63,12 +64,17 @@ public class LeisureReservService {
 		  reservCommand.setListLeisure(listLeisure);
 		  reservCommand.setListCnt(listCnt);
 		  reservCommand.setUseDate(useDate);
+//		  System.out.println(" 0000000000000 : "+reservCommand.getUseDate());
 		  session.setAttribute("reservCommand", reservCommand);
 	}
 
 	public void memberCheck(HttpSession session, ReservCommand2 reservCommand2,  Model model) {
 		session.setAttribute("userEmail", reservCommand2.getUserEmail());
 		session.setAttribute("userPh", reservCommand2.getUserPh());
+		
+//		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+//		ReservCommand reservCommand = new ReservCommand();
+//		Date useDate = date.parse(reservCommand.getUseDate());
 	}
 
 	public void insertTicketNum( HttpServletRequest request, HttpSession session)throws Exception {

@@ -14,15 +14,16 @@
 		<arg column="USER_GENDER" javaType="string"/>
 		<arg column="USER_BIRTH" javaType="string"/>
 		<arg column="USER_PH" javaType="string"/>
+		<arg column="JOIN_OK" javaType="string"/>
 	</constructor>
 </resultMap>
 
 <select id="login" parameterType="fourMyung.Command.AuthInfo" resultMap="baseLogin">
-	select user_id, user_pass, MEM_DIV_CD, USER_NM, USER_EMAIL, USER_GENDER, USER_BIRTH, USER_PH
+	select user_id, user_pass, MEM_DIV_CD, USER_NM, USER_EMAIL, USER_GENDER, USER_BIRTH, USER_PH, JOIN_OK
 	from c_member
 	where user_id= #{userId}
 	union 
-	select emp_id, emp_pass, mem_div_cd, EMP_NM, EMP_EMAIL, EMP_GENDER, EMP_BIRTH, EMP_PH
+	select emp_id, emp_pass, mem_div_cd, EMP_NM, EMP_EMAIL, EMP_GENDER, EMP_BIRTH, EMP_PH, JOIN_OK
 	from m_employee
 	where emp_id = #{empId}
 </select>	
