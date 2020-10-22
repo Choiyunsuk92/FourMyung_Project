@@ -9,13 +9,25 @@
 $(function(){
 	document.getElementById('resDate').valueAsDate = new Date();
 	
-	// 취소요청 버튼 클릭
-	$("#cnclBtn").click(function(){
-		if(confirm("정말로 예약을 취소하시겠습니까?")){
-			$("#cnclBtn").submit();
+	
+});
+
+function cnclBtnClick(id){
+		console.log(id);
+		// 취소요청 버튼 클릭
+		var cnclMent = "정말로 예약을 취소하시겠습니까? \n "+
+		"※ 취소 위약금 정책 ※ \n"+
+		"- 체크인 날짜 3일 전 오후 16시까지 위약금 없음.\n"+
+		"- 체크인 날짜 2일 전 오후 16시까지 1박의 30% 위약금 부과.\n"+
+		"- 체크인 날짜 1일 전 오후 16시까지 1박의 50% 위약금 부과.\n"+
+		"- 체크인 날짜 1일 전 오후 16시 이후 및 노쇼의 경우 100% 위약금 부과.";
+		// 취소요청 버튼 클릭
+		if(confirm(cnclMent)){
+			console.log("취소진행");
+			$('#frm'+id).submit();
 		};
-	});
-})
+		
+};
 </script>
 <title></title>
 </head>
@@ -50,14 +62,14 @@ $(function(){
 			</div>
 		</div>
 		<div class="roomResList">
-			<table>
+			<table th:if="${detailList.isEmpty()}">
 				<tr>
 					<td><h3>객실예약</h3></td>
 				</tr>
 				<tr>
-					<th>상품명</th>
 					<th>이용일자</th>
-					<th>인원</th>
+					<th>상품명</th>
+					<th>수량</th>
 					<th>가격</th>
 					<th>구매일자</th>
 					<th>결제방법</th>
@@ -65,14 +77,45 @@ $(function(){
 					<th>취소</th>
 				</tr>
 				<tr>
-					<td>디럭스더블저층</td>
-					<td>2020.11.28</td>
-					<td>2</td>
-					<td>225,000원</td>
-					<td>구매일자</td>
-					<td>결제방법</td>
-					<td>결제완료</td>
-					<td><input type="button" class="cnclBtn" id="cnclBtn" value="취소신청"></td>
+					<td colspan="8">레저 예약사항이 없습니다.</td>
+				</tr>
+			</table>
+			<table th:if="${!detailList.isEmpty()}">
+				<tr>
+					<td><h3>객실예약</h3></td>
+				</tr>
+				<tr>
+					<th>이용일자</th>
+					<th>결제번호</th>
+					<th>결제금액</th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>구매일자</th>
+					<th>결제방법</th>
+					<th>현재상태</th>
+					<th>취소</th>
+				</tr>
+				<tr th:each="list : ${detailList}">
+					<form th:action="@{/pay/Lcncl}" method="post" name="frm" th:id="'frm'+${listStat.count}" th:object="${LeisureCnclCommand}">
+						<td><span th:text="${#dates.format(list.USE_DATE, 'YYYY-MM-dd')}"></span></td>
+						<td><span th:text="${list.PAY_NUM}"></span></td>
+						<td><span th:text="${list.TOTAL_PRICE}"></span></td>
+						<td><span th:text="${list.LEISURE_NAME}"></span></td>
+						<td><span th:text="${list.TICKET_QTY}"></span></td>
+						<td><span th:text="${#dates.format(list.RES_DATE, 'YYYY-MM-dd')}"></span></td>
+						<td><span th:text="${list.PAY_TYPE}"></span></td>
+						<td><span th:text="${list.STTUS_DIV_CD}"></span></td>
+						<!-- <td><input type="button" class="cnclBtn" th:id="'cnclBtn_'+${listStat.count}" th:onclick="@{'cnclBtnClick(\''+${listStat.count} +'\')'}" value="취소신청"></td> -->
+						<td th:switch="${list.STTUS_DIV_CD}">
+							<input type="button" class="cnclBtn" th:id="'cnclBtn' + ${listStat.count}" value="취소신청" th:onclick="@{'javascript:cnclBtnClick(\''+${listStat.count}+'\');'}"  th:case="결제완료">
+							<span th:case="예약취소"></span>
+						</td>
+						<td style="display: none;">
+							<input type="hidden" name="payNum" th:value="${list.PAY_NUM}">
+							<input type="hidden" name="ticketNum" th:value="${list.TICKET_NUM}">
+							<input type="hidden" name="price" th:value="${list.TOTAL_PRICE}">
+						</td>
+					</form>
 				</tr>
 			</table>
 		</div>
