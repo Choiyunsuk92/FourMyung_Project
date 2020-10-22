@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../static/css/member/relSelect.css">
+<link rel="stylesheet" href="../static/css/member/myPage.css">
 <script src="https://kit.fontawesome.com/19c81546e5.js" crossorigin="anonymous"></script>
 <script src="../static/jquery/jquery.js"></script>
 <title>Insert title here</title>
@@ -15,54 +15,88 @@
 	<div class="content">
 		<div class="roomheader">
 			<div class="roomheader_1">
-				<div><i class="fas fa-home"></i> > MY페이지 > 예약조회 > 객실</div>
-				<div class="roomheader_h2"><h2>객실</h2></div>
+				<div><i class="fas fa-home"></i> > MY페이지 </div>
+				<div class="roomheader_h2"><h3>MY페이지</h3></div>
 			</div>
 			<div class="roomheader_2">
 			</div>
 		</div>
 		<div class="resMent">
-			<div><h3>예약확인 안내</h3></div>
-			<div>예약취소 및 환불 문의를 통해 유의사항을 확인하실 수 있습니다.</div>
+			<div>회원명: <span th:text="${memberCommand.userNm}"></span></div>
 		</div>
-		<div class="resSearch">
-			<div class="Search_01">Search</div>
-			<div class="resSearch_02">
-				<div>
-					<span>조회일자</span>
-					<input type="date" class="resDate" id="resDate">
+		<div class="content_1">
+			<div class="h_content">
+				<div class="content_div1">
+					<div class="h_ment"><h5>객실 예약 현황</h5></div>
+					<div class="h_img"></div>
 				</div>
-				<div>
-					<input type="button" class="searchBtn" value="조회" >
+				<div class="h_table">
+					<table th:if="${hotelListDTO.isEmpty()}">
+						<tr>
+							<th>예약일자</th>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>결제방법</th>
+							<th>현재상태</th>
+						</tr>
+						<tr>
+							<td colspan="5">객실 예약사항이 없습니다.</td>
+						</tr>
+					</table>
+					<table th:if="${!hotelListDTO.isEmpty()}">
+						<tr>
+							<th>예약일자</th>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>결제방법</th>
+							<th>현재상태</th>
+						</tr>
+						<tr th:each="resInfo : ${hotelListDTO}">
+							<td><span th:text="${#dates.format(resInfo.RES_CHK_IN_DT, 'YYYY-MM-dd')}"></span></td>
+							<td><span th:text=${resInfo.ROOM_NM}></span></td>
+							<td><span th:text=${resInfo.PRICE}></span>원</td>
+							<td><span th:text=${resInfo.PAY_TYPE}></span></td>
+							<td><span th:text=${resInfo.STTUS}></span></td>
+						</tr>
+					</table>
 				</div>
 			</div>
-		</div>
-		<div class="roomResList">
-			<table>
-				<tr>
-					<td><h3>객실예약</h3></td>
-				</tr>
-				<tr>
-					<th>객실명</th>
-					<th>이용일자</th>
-					<th>인원</th>
-					<th>가격</th>
-					<th>구매일자</th>
-					<th>결제방법</th>
-					<th>현재상태</th>
-					<th>취소</th>
-				</tr>
-				<tr>
-					<td>디럭스더블저층</td>
-					<td>2020.11.28</td>
-					<td>2</td>
-					<td>225,000원</td>
-					<td>구매일자</td>
-					<td>카카오페이</td>
-					<td>결제완료</td>
-					<td><input type="button" class="cnclBtn" id="cnclBtn" value="취소신청"></td>
-				</tr>
-			</table>
+			<div class="l_content">
+				<div class="content_div1">
+					<div class="l_ment"><h5>레저 예약 현황</h5></div>
+					<div class="l_img"></div>
+				</div>
+				<div class="l_table">
+					<table th:if="${leisure.isEmpty()}">
+						<tr>
+							<th>예약일자</th>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>결제방법</th>
+							<th>현재상태</th>
+						</tr>
+						<tr>
+							<td colspan="5">객실 예약사항이 없습니다.</td>
+						</tr>
+					</table>
+					<table th:if="${!leisure.isEmpty()}">
+						<tr>
+							<th>예약일자</th>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>결제방법</th>
+							<th>현재상태</th>
+						</tr>
+						<tr th:each="leisure : ${leisure}">
+							<td><span th:text="${#dates.format(leisure.USE_DATE, 'YYYY-MM-dd')}"></span></td>
+							<td><span th:text="${leisure.LEISURE_NAME}"></span></td>
+							<td><span th:text="${leisure.TOTAL_PRICE}"></span></td>
+							<td><span th:text="${leisure.PAY_TYPE}"></span></td>
+							<td><span th:text="${leisure.STTUS_DIV_CD}"></span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="myPageMenu">
