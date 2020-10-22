@@ -53,7 +53,7 @@ thead tr{
 			<tr th:each="ticketNum : ${list}">
 				<td>[[${ticketNum.ticketNum}]]</td>
 				<td>[[${ticketNum.userId}]]</td>
-				<td>[[${ticketNum.useDate}]]</td>
+				<td><span th:text="${#strings.substring(ticketNum.useDate, 0, 10)}" ></td>
 				<td>[[${ticketNum.leisureNum}]]</td>
 				<td>[[${ticketNum.ticketQty}]]</td>
 			</tr>
