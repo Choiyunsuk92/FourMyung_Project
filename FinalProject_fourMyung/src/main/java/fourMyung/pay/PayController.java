@@ -36,18 +36,17 @@ public class PayController {
 	@RequestMapping(value="kakaoPay", method = RequestMethod.POST)
 	public String kakaoPay(PayCommand payCommand, HttpServletRequest request) {
 		
-		//return "redirect:" + kakaoPayService.kakaoPayReady(payCommand, request);
 		HttpSession session = request.getSession();
 		session.setAttribute("resInfo", payCommand);
-		return "redirect:/pay/kakaoPaySucces";
+		return "redirect:" + kakaoPayService.kakaoPayReady(payCommand, request);
+		//return "redirect:/pay/kakaoPaySucces";
 	}
 	
 	@RequestMapping(value="kakaoPaySucces", method = RequestMethod.GET)
-	//public String kakaoPaySucces(@RequestParam("pg_token") String pg_token, Model model, HttpServletRequest request) {
-	public String kakaoPaySucces(Model model, HttpServletRequest request) {
-		//log.info("GET pg_token: " + pg_token);
+	public String kakaoPaySucces(@RequestParam("pg_token") String pg_token, Model model, HttpServletRequest request) {
+		log.info("GET pg_token: " + pg_token);
 		//결제 성공
-		//model.addAttribute("payInfo", kakaoPayService.kakaoPayInfo(pg_token));
+		model.addAttribute("payInfo", kakaoPayService.kakaoPayInfo(pg_token, request));
 		
 		// 결제 이후 예약정보 세팅
 		HttpSession session = request.getSession();
