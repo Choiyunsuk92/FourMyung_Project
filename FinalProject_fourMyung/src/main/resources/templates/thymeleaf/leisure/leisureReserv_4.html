@@ -116,7 +116,7 @@
 							</tr>
 							<tr>
 								<td>생년월일</td>
-								<td>[[${session.authInfo.userBirth}]]</td>
+								<td><span th:text="${#strings.substring(session.authInfo.userBirth, 0, 10)}" ></td>
 							</tr>
 							<tr>
 								<td>이메일</td>
