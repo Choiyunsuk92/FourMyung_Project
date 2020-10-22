@@ -5,7 +5,6 @@
 <sql id="payColumn">
  PAY_NUM, PAY_TYPE, PAY_DETAIL, PAY_PRICE, CARD_NUM, PAY_DATE, USER_ID, STTUS_DIV_CD 
 </sql>
-
 <select id="selectPayNum" resultType="string">
 	SELECT C_PAY_NUM.NEXTVAL FROM DUAL
 </select>
@@ -36,8 +35,6 @@ RES_NUM
 )
 </insert>
 
-
-
 <insert id="leisurePayInsert">
 INSERT INTO L_LEI_PAYMENT(PAY_NUM,TICKET_NUM) 
 VALUES(
@@ -45,6 +42,4 @@ VALUES(
 		(SELECT MAX(TO_NUMBER(TICKET_NUM)) FROM L_USER WHERE USER_ID = #{userId})
 		)
 </insert>
-
-
 </mapper>
