@@ -22,4 +22,6 @@ public class HotelResDTO {
 	String addReq;
 	String roomDivCd;
 	String payType;
+	String userId;
+	String roomNum;
 }
