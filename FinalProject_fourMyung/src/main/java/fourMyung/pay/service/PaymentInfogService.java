@@ -18,7 +18,6 @@ public class PaymentInfogService {
 	PaymentInfogService paymentInfogService;
 	public void payInsert(PayCommand paycommand, String userId) throws Exception{
 		String payNum = payMapper.selectPayNum();
-		
 		// TODO Auto-generated method stub
 		PayDTO payDto = new PayDTO();
 		payDto.setPayNum(payNum);
@@ -37,7 +36,7 @@ public class PaymentInfogService {
 		Integer j = payMapper.hotelPayInsert(userId);
 		System.out.println(j+"개의 호텔결제 정보가 입력되었습니다.");
 	}
-	public void payleisureInsert(String userId) throws Exception {
+	public void payleisureInsert(String userId) throws Exception{
 		Integer j = payMapper.leisurePayInsert(userId);
 		System.out.println(j+"개의 레저결제 정보가 입력되었습니다.");
 	}
