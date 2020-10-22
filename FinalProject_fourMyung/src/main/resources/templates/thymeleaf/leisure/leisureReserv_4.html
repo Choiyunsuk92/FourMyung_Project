@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <link rel="stylesheet" href="../static/css/leisure/reserv_top.css">
@@ -30,10 +30,10 @@
 					<div class="card">
 						<h2>예약정보</h2>
 						<br />
-						<table style="border: 1">
+						<table style="width: 100%">
 							<tr>
 								<td>이용날짜</td>
-								<td></td>
+								<td><span th:text="${#dates.format(session.reservCommand.useDate1, 'YYYY-MM-dd')}"></span></td>
 							</tr>
 							<tr>
 								<td width="20">이용권종류</td>
@@ -91,7 +91,7 @@
 											th:each="listCnt , cnt : ${session.reservCommand.listCnt}">
 											<tr
 												th:if="${session.reservCommand.listCnt[cnt.index]} != '0'">
-												<td>[[${listCnt} * ${list[cnt.index].leisurePrice}]]</td>
+												<td>[[${listCnt} * ${list[cnt.index].leisurePrice}]] 원</td>
 											</tr>
 										</th:block>
 									</table>
@@ -101,7 +101,7 @@
 
 						<h2>이용자정보</h2>
 						<br />
-						<table>
+						<table style="width: 100%">
 							<tr>
 								<td>이용상품</td>
 								<td>워터파크</td>
@@ -136,11 +136,11 @@
 						<br />
 						<table>
 							<tr>
-								<td>
+								<td style="width: 70%">
 									<input type="radio" name="payType" id="payType" value="BT" > 실시간계좌이체 <br/>
 									<input type="radio" name="payType" id="payType" value="KP" > 카카오페이
 								</td>
-								<td align="right">결제금액 &nbsp;&nbsp;: [[${session.totalPrice}]]</td>
+								<td style="font-size: 20px">결제금액 &nbsp;&nbsp;: [[${session.totalPrice}]] 원</td>
 							</tr>
 						</table>
 								<div style="display: none;">

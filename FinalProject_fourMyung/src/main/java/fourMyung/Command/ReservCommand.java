@@ -12,6 +12,7 @@ import lombok.Data;
 public class ReservCommand {
 	List<String> listLeisure;
 	List<String> listCnt;
-	Date useDate;	
+	String useDate;
+	Date useDate1;
 	String payType;
 }

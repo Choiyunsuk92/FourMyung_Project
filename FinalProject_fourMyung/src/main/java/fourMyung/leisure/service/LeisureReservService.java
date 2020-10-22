@@ -63,7 +63,7 @@ public class LeisureReservService {
 		  Date useDate = date.parse(useDate1);
 		  reservCommand.setListLeisure(listLeisure);
 		  reservCommand.setListCnt(listCnt);
-		  reservCommand.setUseDate(useDate);
+		  reservCommand.setUseDate1(useDate);
 //		  System.out.println(" 0000000000000 : "+reservCommand.getUseDate());
 		  session.setAttribute("reservCommand", reservCommand);
 	}
@@ -89,7 +89,7 @@ public class LeisureReservService {
 		dto.setPhNum((String)session.getAttribute("userPh"));
 		
 		ReservCommand reservCommand = (ReservCommand)session.getAttribute("reservCommand");
-		dto.setUseDate(reservCommand.getUseDate());
+		dto.setUseDate(reservCommand.getUseDate1());
 		System.out.println(reservCommand.getUseDate());
 		dto.setPayType(payCommand.getPayType());
 		leisureMapper.insertTicket(dto);
