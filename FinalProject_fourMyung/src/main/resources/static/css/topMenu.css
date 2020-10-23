@@ -26,6 +26,11 @@ body {
 	list-style-type: none;
 	padding: 0 8px;
 }
+.index_ul li i{
+	font-size: 18px;
+	color: #ffc107;
+	margin-right: 4px; 
+}
 .index_ul{
 	display: flex;
 	justify-content: flex-start;
