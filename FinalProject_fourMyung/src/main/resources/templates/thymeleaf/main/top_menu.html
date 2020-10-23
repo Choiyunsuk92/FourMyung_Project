@@ -9,6 +9,7 @@
 	</div>
 	<div class="login_Info">
 		<ul class="login_ul">
+			<span th:if="${session.authInfo != null} and ${session.authInfo.memDivCd} == 2">
 			<li class="registration">상품등록
 				<ul class="registration_ul">
 					<li><a href="../regist/hotelList">객실등록</a></li>
@@ -16,6 +17,7 @@
 					<li><a href="#">푸드등록</a></li>
 				</ul>
 			</li>
+			</span>
 			<span th:if="${session.authInfo == null}">
 				<li><a href="../login">LOGIN</a></li>
 			</span>

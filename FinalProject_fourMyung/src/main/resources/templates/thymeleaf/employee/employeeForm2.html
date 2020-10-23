@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div#memberTab {width:610px;margin:0 auto;}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+<form th:action='@{/emp/registOk}' method='POST' name='frm' id="frm" th:object="${empCommand}" >
+<header>
+		<div class="groupMenu" th:include="thymeleaf/main/top_menu.html"></div>
+	</header>
+<div id='memberTab'>
+<fieldset>
+	<legend>회원가입 정보</legend>
+<table width = '600' align = 'center' border = '1' >
+	<caption><strong>회원 가입</strong></caption>
+	<colgroup>
+	    <col width="25%" />
+		<col width="75%"  />
+    </colgroup>
+	<tfoot>
+	<tr>
+		<th colspan = 2>
+			<input type='submit' value='가입완료' />&nbsp;&nbsp;
+			<input type='reset' value='다시 입력' />&nbsp;&nbsp;
+			<input type='button' value='가입 안함' /></th>
+	</tr>
+	</tfoot>
+	<tbody>
+<!-- 	<tr>
+		<th >회원 유형</th>	
+		<td>
+		 &nbsp;&nbsp;&nbsp;&nbsp; 
+		<input type='radio' name='memDivCd' id='memDivCd' value='1' checked /> 회원 &nbsp;&nbsp;&nbsp;&nbsp; 
+		<input type='radio' name='memDivCd' id='memDivCd' value='2'  />	관리자
+		<span th:if="${#fields.hasErrors('memDivCd')}" th:errors="*{memDivCd}" ></span></td>
+	</tr> -->
+	<tr>
+		<th colspan= '2'>사용자 ID와 비밀번호 입력</th>
+	</tr>
+	<tr>
+		<input type='hidden' name='memDivCd' id='memDivCd' value='2' />
+		<th ><label for='empId'>사용자 ID</label></th>
+		<td ><input type='text' name='empId' id='empId' th:field="*{empId}"
+			class='empId' size='15' maxlength='10' autofocus="autofocus" />
+		<span th:if="${#fields.hasErrors('empId')}" th:errors="*{empId}"></span>
+		<span th:text="${duplicate_empId}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th ><label for='empPass'>비밀번호</label></th>
+		<td ><input type='password' name='empPass' id='empPass' th:field="*{empPass}" size='15' maxlength='12'/>
+		     <span th:if="${#fields.hasErrors('empPass')}" th:errors="*{empPass}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th><label for='empPwCon'>비밀번호확인</label></th>
+		<td><input type='password' name='empPwCon' id='empPwCon' th:field="*{empPwCon}" size='15' maxlength='12'/>
+		   <span th:if="${#fields.hasErrors('empPwCon')}" th:errors="*{empPwCon}" ></span>
+		   <span th:text="${valid_empPwCon}"></span>
+		</td>
+	</tr>
+	<tr>
+		<th colspan= '2'>사용자 기본 정보</th>
+	</tr>
+	<tr>
+		<th><label for='empNm'>사용자 이름</label></th>
+		<td><input type ='text' name='empNm' id='empNm' th:field="*{empNm}" size='15' maxlength='12'>
+	 		<span th:if="${#fields.hasErrors('empNm')}" th:errors="*{empNm}" ></span>
+		 </td>
+	</tr>
+ 	<tr>
+		<th><label for='empBirth'>생년원일</label></th>
+		<td><input type='datetime-local' name='empBirth' th:field="*{empBirth}" id='empBirth' placeholder='1999-12-12'>
+			<span th:if="${#fields.hasErrors('empBirth')}"  th:errors="*{empBirth}" ></span>
+		</td>
+	</tr>
+ 	<tr>
+		<th >성별</th>	
+		<td>
+		<input type='radio' name='empGender' id='empGender' value='M'  /> 남자 &nbsp;&nbsp;&nbsp;&nbsp; 
+		<input type='radio' name='empGender' id='empGender' value='F'  />	여자
+		<span th:if="${#fields.hasErrors('empGender')}" th:errors="*{empGender}" ></span>
+		</td>
+	</tr>
+	<tr>
+		<th colspan= '2'>사용자 연락처</th>
+	</tr>
+ 	<tr>
+		<th><label for='empEmail'>사용자 이메일</label></th>
+		<td><input type='email' name='empEmail' th:field="*{empEmail}" id='empEmail'/>
+ 		    <span th:if="${#fields.hasErrors('empEmail')}" th:errors="*{empEmail}" ></span>
+		 </td>
+	</tr>
+	<tr>
+		<th><label for='empAddr'>사용자 주소</label></th>
+		<td><input type='text' name='empAddr' th:field="*{empAddr}" id ='empAddr' />
+			<span th:if="${#fields.hasErrors('empAddr')}" th:errors="*{empAddr}" ></span>
+		</td>
+	</tr>
+	<tr>
+		<th ><label for='empPh'>연락처</label></th>
+		<td><input type='text' name='empPh' id ='empPh' th:field="*{empPh}" placeholder='123-123-1234 ,123-1234-1234' size= '26' maxlength='13' />
+			<span th:if="${#fields.hasErrors('empPh')}" th:errors="*{empPh}" ></span>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<fieldset>
+</div>
+</form>
+<div class="footer">
+		<footer th:include="thymeleaf/include/footer.html"></footer>
+	</div>
+</body>
+</html>

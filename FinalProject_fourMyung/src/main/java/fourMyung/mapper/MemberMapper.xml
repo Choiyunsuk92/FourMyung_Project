@@ -45,6 +45,32 @@ RES_CHK_IN_DT, RES_CHK_OUT_DT, USE_ADULT, USE_CHILD, ROOM_DIV_CD, SYS_CRET_DT, S
 	FROM C_MEMBER 
 	WHERE USER_ID = #{userId}
 </select>
+
+<update id="memberUpdate" parameterType="fourMyung.domain.member.MemberDTO">
+	update c_member
+	<trim prefix="set" suffixOverrides=",">
+		<if test="userEmail != null">user_email = #{userEmail},</if>
+		<if test="userAddr != null">user_addr = #{userAddr},</if>
+		<if test="userPh1 !=null"> user_ph = #{userPh1},</if>
+	</trim>
+	<where>
+		user_Id = #{userId}
+	</where>	
+</update>
+
+<delete id="myInfoDel" parameterType="string">
+	delete from c_member 
+	<where>
+		user_id = #{userId}
+	</where> 
+</delete>
+
+<update id="pwChange" parameterType="fourMyung.domain.member.MemberDTO">
+	update c_member 
+	set user_pass = #{newPw}
+	where user_id = #{userId}
+</update>
+
 <select id="myPageHotel" resultType="fourMyung.domain.hotel.HotelResInfoDTO">
 SELECT	H.RES_NUM AS RES_NUM, 
 		C.PAY_NUM AS PAY_NUM,
