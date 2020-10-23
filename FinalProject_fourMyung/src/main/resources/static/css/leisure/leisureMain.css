@@ -8,7 +8,7 @@ body {
 }
 
 .mySlides {
-	display: none
+	display: none;
 }
 
 img {
@@ -20,7 +20,8 @@ img {
 	max-width: 1000px;
 	position: relative;
 	margin: auto;
-	dotum;z-index:1
+	dotum;
+	z-index:1
 }
 
 /* Next & previous buttons */
