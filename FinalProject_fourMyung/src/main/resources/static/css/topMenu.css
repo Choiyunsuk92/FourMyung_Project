@@ -55,3 +55,8 @@ body {
 .registration_ul li:hover{
 	background-color: rgb(218, 179, 191);
 }
+.index_ul li i{
+	font-size: 18px;
+	color: #ffc107;
+	margin-right: 4px; 
+}

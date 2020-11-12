@@ -39,7 +39,8 @@ public class RoomRegistService {
 		String originalTotal ="";
 		String storeTotal = "";
 		String fileSizeTotal = "";
-		String path = "C:\\Users\\사용자\\git\\repository\\FinalProject_fourMyung\\src\\main\\resources\\static\\upload\\hotel";
+		String path = "C:\\javaprogram\\workspace\\FourMyung_Project\\FinalProject_fourMyung\\src\\main\\resources\\static\\upload\\hotel";
+				//"C:\\Users\\사용자\\git\\repository\\FinalProject_fourMyung\\src\\main\\resources\\static\\upload\\hotel";
 		
 		for(MultipartFile mf : roomInfoCommand.getRoomImg()) {
 			String original = mf.getOriginalFilename(); // 전송된 파일명

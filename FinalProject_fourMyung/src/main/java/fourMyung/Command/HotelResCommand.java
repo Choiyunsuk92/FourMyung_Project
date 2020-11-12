@@ -20,4 +20,5 @@ public class HotelResCommand {
 	String addReq;
 	String divCd;
 	String roomClass;
+	String roomNum;
 }

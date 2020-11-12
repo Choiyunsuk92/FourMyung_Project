@@ -38,7 +38,6 @@ public class MyPageSelectService {
 		model.addAttribute("hotelListDTO", hotelListDTO);
 		
 		List<MypageLeisureDTO> leisureListDTO = memberMapper.myPageLeisure(userId);
-		System.out.println(leisureListDTO.get(0));
 		model.addAttribute("leisure", leisureListDTO);
 		
 		return "";
